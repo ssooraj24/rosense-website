@@ -23,6 +23,18 @@ import {
   HelpCircle,
   BookOpen,
   ArrowUpRight,
+  Compass,
+  Mic,
+  Brain,
+  Search,
+  Database,
+  Zap,
+  Play,
+  Target,
+  Server,
+  ShieldAlert,
+  CheckSquare,
+  Layers,
 } from "lucide-react";
 
 export default function Navbar() {
@@ -99,88 +111,239 @@ export default function Navbar() {
 
               {/* Platform Mega Menu Panel */}
               {activeDropdown === "platform" && (
-                <div className="absolute top-full left-0 w-[720px] bg-white border border-slate-200 rounded-2xl shadow-2xl p-6 mt-1 grid grid-cols-12 gap-6 animate-in fade-in duration-150">
-                  {/* Col 1: Capabilities */}
-                  <div className="col-span-7 space-y-3 border-r border-slate-100 pr-6">
-                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-                      Core Platform Capabilities
+                <div className="absolute top-full left-0 w-[900px] bg-white border border-slate-200 rounded-2xl shadow-2xl p-6 mt-1 grid grid-cols-12 gap-6 animate-in fade-in duration-150">
+                  {/* Column 1: Discover */}
+                  <div className="col-span-4 space-y-2 border-r border-slate-100 pr-5">
+                    <p className="text-[11px] font-bold text-[#10B981] uppercase tracking-wider mb-2 font-mono flex items-center gap-1">
+                      <Compass className="w-3.5 h-3.5" /> Discover
                     </p>
+
                     <Link
                       href="/platform"
-                      className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-50 transition-colors group"
+                      className="flex items-start gap-2.5 p-2 rounded-xl hover:bg-slate-50 transition-colors group"
                     >
-                      <div className="w-8 h-8 rounded-lg bg-slate-900 text-[#10B981] flex items-center justify-center shrink-0 mt-0.5">
-                        <Sparkles className="w-4 h-4" />
+                      <div className="w-7 h-7 rounded-lg bg-slate-900 text-[#10B981] flex items-center justify-center shrink-0 mt-0.5">
+                        <Sparkles className="w-3.5 h-3.5" />
                       </div>
                       <div>
-                        <div className="text-sm font-bold text-slate-900 group-hover:text-[#10B981] transition-colors">
+                        <div className="text-xs font-bold text-slate-900 group-hover:text-[#10B981] transition-colors">
                           Platform Overview
                         </div>
-                        <div className="text-xs text-slate-500">
-                          Complete end-to-end conversation intelligence tour.
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          What is RoSense? End-to-end tour.
                         </div>
                       </div>
                     </Link>
+
                     <Link
-                      href="/platform#capabilities"
-                      className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-50 transition-colors group"
+                      href="/platform#how-it-works"
+                      className="flex items-start gap-2.5 p-2 rounded-xl hover:bg-slate-50 transition-colors group"
                     >
-                      <div className="w-8 h-8 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center shrink-0 mt-0.5">
-                        <FileCode2 className="w-4 h-4" />
+                      <div className="w-7 h-7 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center shrink-0 mt-0.5">
+                        <Layers className="w-3.5 h-3.5" />
                       </div>
                       <div>
-                        <div className="text-sm font-semibold text-slate-900 group-hover:text-[#10B981] transition-colors">
-                          Mamba-3 Decision Extraction
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#10B981] transition-colors">
+                          How It Works
                         </div>
-                        <div className="text-xs text-slate-500">
-                          Extract decisions, commitments, owners & risks.
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          Conversation → Knowledge → Action.
                         </div>
                       </div>
                     </Link>
+
                     <Link
-                      href="/platform#rag"
-                      className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-50 transition-colors group"
+                      href="/platform#product-tour"
+                      className="flex items-start gap-2.5 p-2 rounded-xl hover:bg-slate-50 transition-colors group"
                     >
-                      <div className="w-8 h-8 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center shrink-0 mt-0.5">
-                        <Share2 className="w-4 h-4" />
+                      <div className="w-7 h-7 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center shrink-0 mt-0.5">
+                        <Play className="w-3.5 h-3.5" />
                       </div>
                       <div>
-                        <div className="text-sm font-semibold text-slate-900 group-hover:text-[#10B981] transition-colors">
-                          pgvector Enterprise RAG Search
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#10B981] transition-colors">
+                          Product Tour
                         </div>
-                        <div className="text-xs text-slate-500">
-                          Sub-second semantic memory search with audio jump.
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          See platform in live action.
                         </div>
                       </div>
                     </Link>
-                    <div className="flex items-center justify-between pt-2 text-xs text-slate-400 font-mono">
-                      <span>APIs & Webhooks</span>
-                      <span className="text-[10px] font-bold text-[#10B981] bg-[#10B981]/10 px-2 py-0.5 rounded border border-[#10B981]/20">
-                        🚀 Coming Soon
-                      </span>
-                    </div>
+
+                    <Link
+                      href="/platform#intelligence"
+                      className="flex items-start gap-2.5 p-2 rounded-xl hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="w-7 h-7 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center shrink-0 mt-0.5">
+                        <Brain className="w-3.5 h-3.5" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#10B981] transition-colors">
+                          Enterprise Intelligence
+                        </div>
+                        <div className="text-[11px] text-slate-500 leading-tight">
+                          Turn discussions into business data.
+                        </div>
+                      </div>
+                    </Link>
                   </div>
 
-                  {/* Col 2: Flagship Appliance Spotlight Card */}
-                  <div className="col-span-5 bg-slate-900 text-white rounded-xl p-4 flex flex-col justify-between border border-slate-800">
-                    <div className="space-y-2">
-                      <div className="inline-flex items-center gap-1.5 text-[10px] font-mono text-[#10B981] bg-[#10B981]/10 px-2.5 py-0.5 rounded-full border border-[#10B981]/30">
-                        <Lock className="w-3 h-3" /> Flagship Hardware
+                  {/* Column 2: Business Value */}
+                  <div className="col-span-4 space-y-2 border-r border-slate-100 pr-5">
+                    <p className="text-[11px] font-bold text-[#10B981] uppercase tracking-wider mb-2 font-mono flex items-center gap-1">
+                      <Target className="w-3.5 h-3.5" /> Business Value
+                    </p>
+
+                    <Link
+                      href="/platform#audio-intelligence"
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <Mic className="w-4 h-4 text-slate-600 group-hover:text-[#10B981] shrink-0 mt-0.5" />
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#10B981]">
+                          Capture Every Conversation
+                        </div>
+                        <div className="text-[10px] text-slate-500">Audio intelligence & intake</div>
                       </div>
-                      <h4 className="text-base font-bold text-white">
-                        RoSense Box (Private Appliance)
-                      </h4>
-                      <p className="text-xs text-slate-300 leading-relaxed">
-                        ITX Ryzen 9 + RTX 5060 hardware box running 100% air-gapped on your office LAN (`rosense.local`).
-                      </p>
-                    </div>
+                    </Link>
+
+                    <Link
+                      href="/platform#decision-intelligence"
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <CheckSquare className="w-4 h-4 text-slate-600 group-hover:text-[#10B981] shrink-0 mt-0.5" />
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#10B981]">
+                          Extract Decisions & Actions
+                        </div>
+                        <div className="text-[10px] text-slate-500">Owners, risks & commitments</div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/platform#organizational-memory"
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <Database className="w-4 h-4 text-slate-600 group-hover:text-[#10B981] shrink-0 mt-0.5" />
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#10B981]">
+                          Build Organizational Memory
+                        </div>
+                        <div className="text-[10px] text-slate-500">Never lose knowledge again</div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/platform#enterprise-search"
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <Search className="w-4 h-4 text-slate-600 group-hover:text-[#10B981] shrink-0 mt-0.5" />
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#10B981]">
+                          Search Enterprise Knowledge
+                        </div>
+                        <div className="text-[10px] text-slate-500">Sub-second natural language RAG</div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/platform#executive-summaries"
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <FileText className="w-4 h-4 text-slate-600 group-hover:text-[#10B981] shrink-0 mt-0.5" />
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#10B981]">
+                          Executive Summaries
+                        </div>
+                        <div className="text-[10px] text-slate-500">Board-ready executive briefs</div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/platform#workflow-automation"
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <Zap className="w-4 h-4 text-slate-600 group-hover:text-[#10B981] shrink-0 mt-0.5" />
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#10B981]">
+                          Workflow Automation
+                        </div>
+                        <div className="text-[10px] text-slate-500">Turn insights into actions</div>
+                      </div>
+                    </Link>
+                  </div>
+
+                  {/* Column 3: Enterprise */}
+                  <div className="col-span-4 space-y-2">
+                    <p className="text-[11px] font-bold text-[#10B981] uppercase tracking-wider mb-2 font-mono flex items-center gap-1">
+                      <Server className="w-3.5 h-3.5" /> Enterprise
+                    </p>
+
+                    <Link
+                      href="/platform#private-deployment"
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <Server className="w-4 h-4 text-slate-600 group-hover:text-[#10B981] shrink-0 mt-0.5" />
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#10B981]">
+                          Private Deployment
+                        </div>
+                        <div className="text-[10px] text-slate-500">Cloud, Hybrid & On-Premise</div>
+                      </div>
+                    </Link>
+
                     <Link
                       href="/platform/appliance"
-                      className="mt-4 inline-flex items-center justify-center gap-1.5 bg-[#10B981] hover:bg-[#059669] text-slate-950 font-bold text-xs px-4 py-2 rounded-lg transition-colors"
+                      className="flex items-start gap-2.5 p-2 rounded-xl bg-slate-900 text-white hover:bg-slate-800 transition-colors group border border-slate-800"
                     >
-                      <span>Explore Appliance Specs</span>
-                      <ArrowUpRight className="w-3.5 h-3.5" />
+                      <Lock className="w-4 h-4 text-[#10B981] shrink-0 mt-0.5" />
+                      <div>
+                        <div className="text-xs font-bold text-white group-hover:text-[#10B981] flex items-center gap-1">
+                          <span>RoSense Box</span>
+                          <span className="text-[9px] bg-[#10B981]/20 text-[#10B981] px-1.5 py-0.2 rounded font-mono font-normal">
+                            Flagship
+                          </span>
+                        </div>
+                        <div className="text-[10px] text-slate-300 leading-tight">
+                          100% Air-gapped private hardware
+                        </div>
+                      </div>
                     </Link>
+
+                    <Link
+                      href="/platform#air-gapped"
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <ShieldAlert className="w-4 h-4 text-slate-600 group-hover:text-[#10B981] shrink-0 mt-0.5" />
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#10B981]">
+                          Air-Gapped Deployment
+                        </div>
+                        <div className="text-[10px] text-slate-500">Zero cloud network leakage</div>
+                      </div>
+                    </Link>
+
+                    <Link
+                      href="/company/trust"
+                      className="flex items-start gap-2.5 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group"
+                    >
+                      <ShieldCheck className="w-4 h-4 text-slate-600 group-hover:text-[#10B981] shrink-0 mt-0.5" />
+                      <div>
+                        <div className="text-xs font-semibold text-slate-900 group-hover:text-[#10B981]">
+                          Security & Governance
+                        </div>
+                        <div className="text-[10px] text-slate-500">DPDP compliance & encryption</div>
+                      </div>
+                    </Link>
+
+                    <div className="flex items-center justify-between p-2 rounded-lg bg-slate-50 border border-slate-100 mt-2">
+                      <div className="flex items-center gap-2">
+                        <Share2 className="w-3.5 h-3.5 text-slate-400" />
+                        <span className="text-xs font-semibold text-slate-700">APIs & Integrations</span>
+                      </div>
+                      <span className="text-[9px] font-bold text-[#10B981] bg-[#10B981]/10 px-1.5 py-0.5 rounded font-mono">
+                        Coming Soon
+                      </span>
+                    </div>
                   </div>
                 </div>
               )}
@@ -419,8 +582,8 @@ export default function Navbar() {
       {mobileMenuOpen && (
         <div className="lg:hidden bg-white border-b border-slate-200 px-4 pt-4 pb-6 space-y-4 shadow-xl max-h-[85vh] overflow-y-auto">
           <nav className="flex flex-col space-y-3">
-            <div className="font-bold text-xs text-slate-400 uppercase tracking-wider pt-2">
-              Platform & Product
+            <div className="font-bold text-xs text-[#10B981] uppercase tracking-wider pt-2 font-mono flex items-center gap-1">
+              <Compass className="w-3.5 h-3.5" /> Platform — Discover
             </div>
             <Link
               href="/platform"
@@ -428,6 +591,77 @@ export default function Navbar() {
               className="text-sm font-semibold text-slate-800 hover:text-[#10B981] pl-2"
             >
               Platform Overview
+            </Link>
+            <Link
+              href="/platform#how-it-works"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-sm font-semibold text-slate-800 hover:text-[#10B981] pl-2"
+            >
+              How It Works
+            </Link>
+            <Link
+              href="/platform#product-tour"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-sm font-semibold text-slate-800 hover:text-[#10B981] pl-2"
+            >
+              Product Tour
+            </Link>
+            <Link
+              href="/platform#intelligence"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-sm font-semibold text-slate-800 hover:text-[#10B981] pl-2"
+            >
+              Enterprise Conversation Intelligence
+            </Link>
+
+            <div className="font-bold text-xs text-[#10B981] uppercase tracking-wider pt-2 font-mono flex items-center gap-1">
+              <Target className="w-3.5 h-3.5" /> Platform — Business Value
+            </div>
+            <Link
+              href="/platform#audio-intelligence"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-sm font-semibold text-slate-800 hover:text-[#10B981] pl-2"
+            >
+              Capture Every Conversation
+            </Link>
+            <Link
+              href="/platform#decision-intelligence"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-sm font-semibold text-slate-800 hover:text-[#10B981] pl-2"
+            >
+              Extract Decisions & Actions
+            </Link>
+            <Link
+              href="/platform#organizational-memory"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-sm font-semibold text-slate-800 hover:text-[#10B981] pl-2"
+            >
+              Build Organizational Memory
+            </Link>
+            <Link
+              href="/platform#enterprise-search"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-sm font-semibold text-slate-800 hover:text-[#10B981] pl-2"
+            >
+              Search Enterprise Knowledge
+            </Link>
+            <Link
+              href="/platform#workflow-automation"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-sm font-semibold text-slate-800 hover:text-[#10B981] pl-2"
+            >
+              Workflow Automation
+            </Link>
+
+            <div className="font-bold text-xs text-[#10B981] uppercase tracking-wider pt-2 font-mono flex items-center gap-1">
+              <Server className="w-3.5 h-3.5" /> Platform — Enterprise
+            </div>
+            <Link
+              href="/platform#private-deployment"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-sm font-semibold text-slate-800 hover:text-[#10B981] pl-2"
+            >
+              Private Deployment
             </Link>
             <Link
               href="/platform/appliance"

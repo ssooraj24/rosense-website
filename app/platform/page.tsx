@@ -40,8 +40,15 @@ import {
   HelpCircle,
   TrendingUp,
   Sliders,
+  CheckSquare,
+  ShieldAlert,
+  Repeat,
+  BarChart3,
+  LineChart,
+  Target,
+  ArrowDown,
+  Award,
   Server,
-  HardDrive,
 } from "lucide-react";
 
 export default function PlatformOverviewPage() {
@@ -55,7 +62,7 @@ export default function PlatformOverviewPage() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  // Flow Timeline Steps (Section 3) with Model Capabilities
+  // Section 03: Flow Timeline Steps with Model Capabilities
   const flowSteps = [
     {
       step: "01",
@@ -140,23 +147,91 @@ export default function PlatformOverviewPage() {
     },
   ];
 
-  // Taxonomy Grid (Section 4)
-  const taxonomyItems = [
-    { label: "Decisions", icon: CheckCircle2, desc: "Agreed strategies & strategic choices" },
-    { label: "Commitments", icon: Briefcase, desc: "Promised deliverables & milestones" },
-    { label: "Action Items", icon: FileText, desc: "Assigned tasks with assigned owners" },
-    { label: "Risks", icon: AlertTriangle, desc: "Identified threats & blockers" },
-    { label: "Issues", icon: HelpCircle, desc: "Current operational bottlenecks" },
-    { label: "Dependencies", icon: Network, desc: "Cross-functional team blockers" },
-    { label: "Deadlines", icon: Calendar, desc: "Target dates & SLAs" },
-    { label: "Owners", icon: Users, desc: "Accountable leaders & assignees font-semibold" },
-    { label: "Questions", icon: HelpCircle, desc: "Unresolved queries needing follow-up" },
-    { label: "Customer Feedback", icon: User, desc: "Direct voice of customer insights" },
-    { label: "Business Insights", icon: Brain, desc: "Market & operational observations" },
-    { label: "Knowledge Gaps", icon: Sliders, desc: "Areas requiring additional research" },
+  // Section 04: Business Transformation (Before vs After)
+  const transformationItems = [
+    {
+      before: "Decisions forgotten in unread transcripts",
+      after: "Every decision indexed and searchable in <200ms",
+    },
+    {
+      before: "Notes scattered across Slack, docs & emails",
+      after: "One centralized, interconnected enterprise memory graph",
+    },
+    {
+      before: "Manual follow-up requiring constant checking",
+      after: "Automatic task attribution & execution tracking",
+    },
+    {
+      before: "Repeated discussions on previously settled topics",
+      after: "Permanent institutional knowledge retained across quarters",
+    },
+    {
+      before: "Hours searching for who agreed to what",
+      after: "Instant answers backed by 1-click audio proof",
+    },
+    {
+      before: "Critical context leaves when employees depart",
+      after: "Knowledge remains permanently with the organization",
+    },
   ];
 
-  // Deliver to Workflows (Section 8)
+  // Section 05: Built for Every Business Team
+  const teamRoles = [
+    {
+      role: "Executive Leadership",
+      emoji: "👔",
+      desc: "Gain instant visibility into strategic decisions, cross-department alignment, and organizational risks across all executive sessions.",
+      highlights: ["Strategic Alignment", "Risk Tracking", "Board Briefing Export"],
+    },
+    {
+      role: "Sales & Revenue",
+      emoji: "💼",
+      desc: "Capture exact customer commitments, deal risks, contract objections, and action items automatically synced to your CRM.",
+      highlights: ["Deal Risk Alerts", "CRM Auto-Sync", "Customer Voice Search"],
+    },
+    {
+      role: "Operations & Delivery",
+      emoji: "🛠",
+      desc: "Track execution, resolve project bottlenecks, enforce clear accountability, and ensure commitments are never missed.",
+      highlights: ["Owner Attribution", "Blocker Resolution", "SLAs & Deadlines"],
+    },
+    {
+      role: "HR & People",
+      emoji: "👥",
+      desc: "Preserve deep interview insights, streamline new employee onboarding, and retain institutional memory during team transitions.",
+      highlights: ["Instant Onboarding", "Interview Archival", "Talent Context"],
+    },
+    {
+      role: "Engineering & Product",
+      emoji: "💻",
+      desc: "Record architectural decisions (ADRs), system design trade-offs, technical debts, and RFC discussions with precise audio proof.",
+      highlights: ["ADR Auto-Doc", "Tech Spec Search", "Audio Proof Verification"],
+    },
+  ];
+
+  // Section 06: What Will Your Organization Never Miss Again? (Reframed Taxonomy)
+  const protectionItems = [
+    { label: "Decisions", icon: CheckCircle2, desc: "Strategic choices & binding management agreements", category: "Governance" },
+    { label: "Action Items", icon: CheckSquare, desc: "Assigned tasks linked to explicit owners & timelines", category: "Execution" },
+    { label: "Risks", icon: AlertTriangle, desc: "Identified operational, technical & financial threats", category: "Risk Mgmt" },
+    { label: "Customer Feedback", icon: User, desc: "Direct client insights, feature requests & objections", category: "Market" },
+    { label: "Blockers", icon: ShieldAlert, desc: "Cross-functional dependencies holding up delivery", category: "Operations" },
+    { label: "Deadlines", icon: Calendar, desc: "Hard target dates, SLA milestones & launch windows", category: "Timeline" },
+    { label: "Escalations", icon: TrendingUp, desc: "Priority bottlenecks requiring executive intervention", category: "Leadership" },
+    { label: "Compliance Issues", icon: Shield, desc: "Regulatory mandates, policy flags & audit trails", category: "Legal" },
+  ];
+
+  // Section 10: Turn Conversations Into Action (Workflow Pipeline)
+  const workflowSteps = [
+    { title: "Meeting Ends", desc: "Local audio streams finalized", color: "border-slate-700 bg-slate-900" },
+    { title: "Decision Identified", desc: "Mamba-3 extracts core facts", color: "border-[#10B981]/50 bg-[#10B981]/10 text-[#10B981]" },
+    { title: "Owner Assigned", desc: "Speaker linked to action item", color: "border-emerald-500/50 bg-slate-900" },
+    { title: "Task Created", desc: "Normalized JSON-LD record", color: "border-teal-500/50 bg-slate-900" },
+    { title: "Slack Notification", desc: "Instant channel dispatch", color: "border-slate-700 bg-slate-900" },
+    { title: "Jira Updated", desc: "Backlog ticket auto-populated", color: "border-slate-700 bg-slate-900" },
+    { title: "CRM Updated", desc: "Salesforce / HubSpot sync", color: "border-[#10B981]/80 bg-[#10B981]/20 text-white" },
+  ];
+
   const workflowCards = [
     {
       icon: FileText,
@@ -185,7 +260,7 @@ export default function PlatformOverviewPage() {
     },
   ];
 
-  // Deployment Models (Section 9)
+  // Section 11: Deployment Models
   const deploymentModels = [
     {
       name: "Cloud Sandbox",
@@ -231,14 +306,66 @@ export default function PlatformOverviewPage() {
     },
   ];
 
-  // Outcomes (Section 10)
-  const outcomes = [
-    { title: "Faster Decisions", desc: "Eliminate days wasted re-discussing topics already settled in previous meetings." },
-    { title: "Better Accountability", desc: "Clear owner attribution and audio-proven commitments ensure follow-through." },
-    { title: "Zero Lost Knowledge", desc: "Preserve historical context even when key employees or project leads transition." },
-    { title: "Reduced Overhead", desc: "Dramatically decrease unnecessary status check-ins and follow-up synchronization calls." },
-    { title: "Organizational Memory", desc: "Build an interconnected knowledge graph that grows smarter with every meeting." },
-    { title: "AI Search Across All", desc: "Find any past agreement, objection, or technical decision in under 200 milliseconds." },
+  // Section 12: Measurable ROI & Business Impact
+  const roiMetrics = [
+    {
+      stat: "80%",
+      unit: "Reduction",
+      title: "Meeting Administration",
+      desc: "Eliminate manual note-taking, transcript cleanup, and post-meeting status report writing.",
+    },
+    {
+      stat: "3x",
+      unit: "Faster",
+      title: "Decision Follow-Up",
+      desc: "Accelerate task execution with automatic owner attribution and immediate integration dispatch.",
+    },
+    {
+      stat: "100%",
+      unit: "Retention",
+      title: "Institutional Knowledge",
+      desc: "Preserve historical context permanently, ensuring critical decisions survive team transitions.",
+    },
+    {
+      stat: "0",
+      unit: "Re-debates",
+      title: "Zero Duplicate Discussions",
+      desc: "Prevent re-discussing settled decisions with instant audio citations and historical memory graphs.",
+    },
+    {
+      stat: "60%",
+      unit: "Shorter",
+      title: "Employee Onboarding Time",
+      desc: "New hires quickly get up to speed by searching historical decisions, project context, and meeting recordings.",
+    },
+    {
+      stat: "Instant",
+      unit: "Audit",
+      title: "Compliance & Governance",
+      desc: "Produce verifiable audio proof for regulatory audits, internal controls, and policy mandates.",
+    },
+  ];
+
+  // Section 13: Designed for Enterprise Trust (Social Proof Placeholders)
+  const trustSignals = [
+    {
+      badge: "Architecture Mandate",
+      title: "Zero Cloud Data Leakage",
+      desc: "All audio processing and model inference runs strictly inside your local network. No external API calls, no third-party cloud data harvesting.",
+      icon: Shield,
+    },
+    {
+      badge: "Compliance Ready",
+      title: "DPDP & SOC2 Alignment",
+      desc: "Built from the ground up for strict data privacy requirements, complete audit trails, and enterprise role-based access control (RBAC).",
+      icon: Lock,
+    },
+    {
+      badge: "Enterprise Proven",
+      title: "Hardware Hardware Isolation",
+      desc: "Deploy on dedicated air-gapped physical appliances (RoSense Box) or existing enterprise private cloud infrastructure.",
+      icon: Server,
+    },
   ];
 
   return (
@@ -422,8 +549,8 @@ export default function PlatformOverviewPage() {
         {/* =========================================================================
             SECTION 03: THE ROSENSE INTELLIGENCE FLOW (VISUAL TIMELINE)
            ========================================================================= */}
-        <section className="py-24 bg-slate-950 text-white relative border-b border-slate-800">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="how-it-works" className="py-24 bg-slate-950 text-white relative border-b border-slate-800 scroll-mt-20">
+          <div id="audio-intelligence" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-20">
             <div className="text-center max-w-3xl mx-auto mb-12">
               <div className="inline-flex items-center gap-1.5 bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/30 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
                 <Network className="w-3.5 h-3.5" />
@@ -454,9 +581,11 @@ export default function PlatformOverviewPage() {
                       }`}
                       id={`stepper-btn-${step.step}`}
                     >
-                      <span className={`w-5 h-5 rounded-md flex items-center justify-center text-[10px] font-bold ${
-                        isActive ? "bg-slate-950 text-[#10B981]" : "bg-slate-800 text-slate-300"
-                      }`}>
+                      <span
+                        className={`w-5 h-5 rounded-md flex items-center justify-center text-[10px] font-bold ${
+                          isActive ? "bg-slate-950 text-[#10B981]" : "bg-slate-800 text-slate-300"
+                        }`}
+                      >
                         {step.step}
                       </span>
                       <span>{step.title}</span>
@@ -488,11 +617,13 @@ export default function PlatformOverviewPage() {
                   >
                     {/* Header Row */}
                     <div className="flex items-center justify-between mb-3">
-                      <span className={`font-mono text-xs font-bold px-2.5 py-1 rounded-md border transition-colors ${
-                        isActive
-                          ? "text-slate-950 bg-[#10B981] border-[#10B981]"
-                          : "text-[#10B981] bg-[#10B981]/10 border-[#10B981]/20"
-                      }`}>
+                      <span
+                        className={`font-mono text-xs font-bold px-2.5 py-1 rounded-md border transition-colors ${
+                          isActive
+                            ? "text-slate-950 bg-[#10B981] border-[#10B981]"
+                            : "text-[#10B981] bg-[#10B981]/10 border-[#10B981]/20"
+                        }`}
+                      >
                         STAGE {step.step}
                       </span>
                       <div className="flex items-center gap-2">
@@ -545,34 +676,139 @@ export default function PlatformOverviewPage() {
         </section>
 
         {/* =========================================================================
-            SECTION 04: WHAT ROSENSE UNDERSTANDS (TAXONOMY GRID)
+            SECTION 04: BUSINESS OUTCOMES — WHAT CHANGES AFTER ROSENSE? (NEW)
            ========================================================================= */}
-        <section className="py-20 bg-white border-b border-slate-200">
+        <section className="py-24 bg-white border-b border-slate-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-16">
+              <div className="inline-flex items-center gap-1.5 bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/30 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
+                <TrendingUp className="w-3.5 h-3.5" />
+                <span>Business Transformation</span>
+              </div>
               <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
-                What RoSense <span className="text-[#10B981]">Understands</span>
+                What Changes After <span className="text-[#10B981]">RoSense?</span>
               </h2>
               <p className="mt-3 text-slate-600 text-base">
-                Our taxonomy engine automatically categorizes raw conversations into 12 distinct structural dimensions.
+                Stop treating meetings as isolated events. Transform unstructured conversation into permanent operational leverage.
+              </p>
+            </div>
+
+            <div className="max-w-5xl mx-auto rounded-3xl bg-slate-900 text-white p-6 sm:p-10 border border-slate-800 shadow-2xl emerald-glow-sm">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pb-6 border-b border-slate-800 font-mono text-xs uppercase tracking-wider text-slate-400">
+                <div className="flex items-center gap-2 text-rose-400">
+                  <X className="w-4 h-4" />
+                  <span>Before RoSense (Fragmented Operations)</span>
+                </div>
+                <div className="flex items-center gap-2 text-[#10B981]">
+                  <CheckCircle2 className="w-4 h-4" />
+                  <span>After RoSense (Enterprise Knowledge Engine)</span>
+                </div>
+              </div>
+
+              <div className="divide-y divide-slate-800/80">
+                {transformationItems.map((item, idx) => (
+                  <div key={idx} className="grid grid-cols-1 md:grid-cols-2 gap-6 py-5 items-center">
+                    <div className="flex items-start gap-3 text-slate-400">
+                      <span className="w-2 h-2 rounded-full bg-rose-500 shrink-0 mt-2" />
+                      <span className="text-sm line-through text-slate-400">{item.before}</span>
+                    </div>
+
+                    <div className="flex items-start gap-3 bg-[#10B981]/10 p-3.5 rounded-xl border border-[#10B981]/30 text-white font-medium">
+                      <Check className="w-4 h-4 text-[#10B981] shrink-0 mt-0.5 stroke-[3]" />
+                      <span className="text-sm font-semibold text-slate-100">{item.after}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =========================================================================
+            SECTION 05: BUILT FOR EVERY BUSINESS TEAM (NEW)
+           ========================================================================= */}
+        <section className="py-24 bg-slate-950 text-white relative border-b border-slate-800">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <div className="inline-flex items-center gap-1.5 bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/30 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
+                <Users className="w-3.5 h-3.5" />
+                <span>Role-Based Enterprise Value</span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+                Built for <span className="text-gradient-emerald">Every Business Team</span>
+              </h2>
+              <p className="mt-3 text-slate-300 text-base">
+                Whether you lead strategy, drive revenue, run operations, hire talent, or architect systems—RoSense empowers your team.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+              {teamRoles.map((team, idx) => (
+                <div
+                  key={idx}
+                  className="rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-[#10B981] p-6 flex flex-col justify-between transition-all hover:-translate-y-1 hover:shadow-xl group"
+                >
+                  <div>
+                    <div className="text-3xl mb-4 group-hover:scale-110 transition-transform">{team.emoji}</div>
+                    <h3 className="text-lg font-bold text-white mb-2 group-hover:text-[#10B981] transition-colors">
+                      {team.role}
+                    </h3>
+                    <p className="text-xs text-slate-300 leading-relaxed mb-6">{team.desc}</p>
+                  </div>
+
+                  <div className="space-y-2 pt-4 border-t border-slate-800">
+                    {team.highlights.map((h, hIdx) => (
+                      <div key={hIdx} className="flex items-center gap-2 text-[11px] text-[#10B981] font-mono">
+                        <Check className="w-3 h-3 stroke-[3]" />
+                        <span>{h}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* =========================================================================
+            SECTION 06: WHAT WILL YOUR ORGANIZATION NEVER MISS AGAIN? (REFRAMED TAXONOMY)
+           ========================================================================= */}
+        <section id="intelligence" className="py-20 bg-white border-b border-slate-200 scroll-mt-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <div className="inline-flex items-center gap-1.5 bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/30 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
+                <Target className="w-3.5 h-3.5" />
+                <span>Business Protection Framework</span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
+                What Will Your Organization <span className="text-[#10B981]">Never Miss Again?</span>
+              </h2>
+              <p className="mt-3 text-slate-600 text-base">
+                RoSense automatically parses and indexes 8 core business protection dimensions across every single meeting.
               </p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {taxonomyItems.map((item, idx) => {
+              {protectionItems.map((item, idx) => {
                 const IconComp = item.icon;
                 return (
                   <div
                     key={idx}
-                    className="p-6 rounded-2xl bg-white border border-slate-200 hover:border-[#10B981] hover:shadow-md transition-all group"
+                    className="p-6 rounded-2xl bg-white border border-slate-200 hover:border-[#10B981] hover:shadow-lg transition-all group relative overflow-hidden"
                   >
-                    <div className="w-10 h-10 rounded-xl bg-slate-900 text-[#10B981] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                      <IconComp className="w-5 h-5" />
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="w-10 h-10 rounded-xl bg-slate-900 text-[#10B981] flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <IconComp className="w-5 h-5" />
+                      </div>
+                      <span className="text-[10px] font-mono font-bold text-slate-500 uppercase bg-slate-100 px-2 py-0.5 rounded-md">
+                        {item.category}
+                      </span>
                     </div>
-                    <h3 className="text-base font-bold text-slate-900 group-hover:text-[#10B981] transition-colors mb-1">
+
+                    <h3 className="text-base font-bold text-slate-900 group-hover:text-[#10B981] transition-colors mb-2">
                       {item.label}
                     </h3>
-                    <p className="text-xs text-slate-500">{item.desc}</p>
+                    <p className="text-xs text-slate-600 leading-relaxed">{item.desc}</p>
                   </div>
                 );
               })}
@@ -581,9 +817,9 @@ export default function PlatformOverviewPage() {
         </section>
 
         {/* =========================================================================
-            SECTION 05: DECISION TRACEABILITY — 1-CLICK PROOF (TRUST ANCHOR)
+            SECTION 07: DECISION TRACEABILITY — 1-CLICK PROOF (TRUST ANCHOR)
            ========================================================================= */}
-        <section className="py-24 bg-slate-50 border-b border-slate-200">
+        <section id="decision-intelligence" className="py-24 bg-slate-50 border-b border-slate-200 scroll-mt-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-12">
               <div className="inline-flex items-center gap-1.5 bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/30 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
@@ -672,9 +908,9 @@ export default function PlatformOverviewPage() {
         </section>
 
         {/* =========================================================================
-            SECTION 06: ENTERPRISE MEMORY — CONNECTED KNOWLEDGE
+            SECTION 08: ENTERPRISE MEMORY — CONNECTED KNOWLEDGE
            ========================================================================= */}
-        <section className="py-20 bg-white border-b border-slate-200">
+        <section id="organizational-memory" className="py-20 bg-white border-b border-slate-200 scroll-mt-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="space-y-6">
@@ -738,49 +974,81 @@ export default function PlatformOverviewPage() {
         </section>
 
         {/* =========================================================================
-            SECTION 07: SEARCH ACROSS EVERYTHING (REUSING SEARCHSANDBOX COMPONENT)
+            SECTION 09: SEARCH ACROSS EVERYTHING (REUSING SEARCHSANDBOX COMPONENT)
            ========================================================================= */}
         <SearchSandbox />
 
         {/* =========================================================================
-            SECTION 08: DELIVER TO YOUR WORKFLOWS
+            SECTION 10: TURN CONVERSATIONS INTO ACTION (WORKFLOW AUTOMATION UPGRADED)
            ========================================================================= */}
-        <section className="py-20 bg-white border-b border-slate-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="workflow-automation" className="py-24 bg-slate-950 text-white relative border-b border-slate-800 scroll-mt-20">
+          <div id="executive-summaries" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-20">
             <div className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
-                Deliver to Your <span className="text-[#10B981]">Workflows</span>
+              <div className="inline-flex items-center gap-1.5 bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/30 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
+                <Zap className="w-3.5 h-3.5" />
+                <span>Operational Execution Flow</span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+                Turn Conversations Into <span className="text-gradient-emerald">Action</span>
               </h2>
-              <p className="mt-3 text-slate-600 text-base">
-                RoSense doesn&apos;t just store intelligence—it delivers it directly into the tools your team uses every day.
+              <p className="mt-3 text-slate-300 text-base">
+                RoSense doesn&apos;t just capture spoken words—it drives execution by automatically routing structured outcomes directly into your enterprise stack.
               </p>
             </div>
 
+            {/* Visual Workflow Sequential Diagram */}
+            <div className="mb-16 rounded-2xl bg-slate-900/90 border border-slate-800 p-6 sm:p-8 backdrop-blur-md shadow-2xl">
+              <h3 className="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider mb-6 text-center">
+                Automated Post-Meeting Operational Sequence
+              </h3>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-3 relative">
+                {workflowSteps.map((step, sIdx) => (
+                  <div key={sIdx} className="flex flex-col items-center text-center relative group">
+                    <div className={`w-full p-3.5 rounded-xl border ${step.color} transition-all duration-300 hover:scale-105`}>
+                      <span className="font-mono text-[10px] text-[#10B981] block mb-1 font-bold">
+                        STEP 0{sIdx + 1}
+                      </span>
+                      <h4 className="text-xs font-bold text-white mb-1">{step.title}</h4>
+                      <p className="text-[10px] text-slate-400 leading-tight">{step.desc}</p>
+                    </div>
+
+                    {sIdx < workflowSteps.length - 1 && (
+                      <div className="hidden lg:block absolute -right-3.5 top-1/2 -translate-y-1/2 text-slate-600 font-mono text-sm z-10">
+                        ➔
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Workflow Cards */}
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {workflowCards.map((card, idx) => {
                 const CardIcon = card.icon;
                 return (
                   <div
                     key={idx}
-                    className="p-6 rounded-2xl bg-white border border-slate-200 hover:border-[#10B981] shadow-sm hover:shadow-md transition-all flex flex-col justify-between"
+                    className="p-6 rounded-2xl bg-slate-900 border border-slate-800 hover:border-[#10B981] shadow-sm transition-all flex flex-col justify-between"
                   >
                     <div>
                       <div className="flex items-center justify-between mb-4">
-                        <div className="w-10 h-10 rounded-xl bg-slate-900 text-[#10B981] flex items-center justify-center">
+                        <div className="w-10 h-10 rounded-xl bg-slate-950 text-[#10B981] flex items-center justify-center border border-slate-800">
                           <CardIcon className="w-5 h-5" />
                         </div>
                         <span
                           className={`text-[10px] font-bold px-2.5 py-1 rounded-full border ${
                             card.isComingSoon
-                              ? "bg-amber-50 text-amber-600 border-amber-200"
-                              : "bg-[#10B981]/10 text-[#10B981] border-[#10B981]/20"
+                              ? "bg-amber-500/10 text-amber-400 border-amber-500/30"
+                              : "bg-[#10B981]/10 text-[#10B981] border-[#10B981]/30"
                           }`}
                         >
                           {card.tag}
                         </span>
                       </div>
-                      <h3 className="text-lg font-bold text-slate-900 mb-2">{card.title}</h3>
-                      <p className="text-xs text-slate-600 leading-relaxed">{card.desc}</p>
+                      <h3 className="text-lg font-bold text-white mb-2">{card.title}</h3>
+                      <p className="text-xs text-slate-300 leading-relaxed">{card.desc}</p>
                     </div>
                   </div>
                 );
@@ -790,10 +1058,10 @@ export default function PlatformOverviewPage() {
         </section>
 
         {/* =========================================================================
-            SECTION 09: ENTERPRISE READY — PRIVATE DEPLOYMENT
+            SECTION 11: ENTERPRISE READY — PRIVATE DEPLOYMENT
            ========================================================================= */}
-        <section className="py-24 bg-slate-950 text-white relative border-b border-slate-800">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="private-deployment" className="py-24 bg-slate-950 text-white relative border-b border-slate-800 scroll-mt-20">
+          <div id="air-gapped" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-20">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <div className="inline-flex items-center gap-1.5 bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/30 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
                 <Lock className="w-3.5 h-3.5" />
@@ -861,30 +1129,42 @@ export default function PlatformOverviewPage() {
         </section>
 
         {/* =========================================================================
-            SECTION 10: OUTCOMES — WHAT YOU GAIN
+            SECTION 12: ROI & BUSINESS IMPACT (NEW)
            ========================================================================= */}
-        <section className="py-20 bg-slate-50 border-b border-slate-200">
+        <section className="py-24 bg-slate-50 border-b border-slate-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-16">
+              <div className="inline-flex items-center gap-1.5 bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/30 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
+                <BarChart3 className="w-3.5 h-3.5" />
+                <span>Quantifiable Value</span>
+              </div>
               <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
-                Outcomes — <span className="text-[#10B981]">What You Gain</span>
+                ROI & Business <span className="text-[#10B981]">Impact</span>
               </h2>
               <p className="mt-3 text-slate-600 text-base">
-                Beyond transcription. Beyond summaries. Organizational intelligence.
+                Enterprise buyers expect results. RoSense delivers immediate operational ROI across every business metric.
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {outcomes.map((out, idx) => (
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              {roiMetrics.map((roi, idx) => (
                 <div
                   key={idx}
-                  className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover:border-[#10B981] transition-all"
+                  className="p-8 rounded-2xl bg-white border border-slate-200 shadow-md hover:border-[#10B981] transition-all flex flex-col justify-between group"
                 >
-                  <div className="w-8 h-8 rounded-lg bg-[#10B981]/10 text-[#10B981] flex items-center justify-center mb-3">
-                    <Check className="w-4 h-4 stroke-[3]" />
+                  <div>
+                    <div className="flex items-baseline gap-2 mb-3">
+                      <span className="text-4xl sm:text-5xl font-black text-slate-900 group-hover:text-[#10B981] transition-colors">
+                        {roi.stat}
+                      </span>
+                      <span className="text-xs font-bold uppercase tracking-wider text-[#10B981] font-mono">
+                        {roi.unit}
+                      </span>
+                    </div>
+
+                    <h3 className="text-lg font-bold text-slate-900 mb-2">{roi.title}</h3>
+                    <p className="text-xs text-slate-600 leading-relaxed">{roi.desc}</p>
                   </div>
-                  <h3 className="text-base font-bold text-slate-900 mb-1">{out.title}</h3>
-                  <p className="text-xs text-slate-600 leading-relaxed">{out.desc}</p>
                 </div>
               ))}
             </div>
@@ -892,7 +1172,55 @@ export default function PlatformOverviewPage() {
         </section>
 
         {/* =========================================================================
-            SECTION 11: FINAL CTA
+            SECTION 13: DESIGNED FOR ENTERPRISE TRUST / SOCIAL PROOF (NEW)
+           ========================================================================= */}
+        <section className="py-24 bg-slate-900 text-white relative border-b border-slate-800">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <div className="inline-flex items-center gap-1.5 bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/30 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
+                <Award className="w-3.5 h-3.5" />
+                <span>Enterprise Trust Signals</span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+                Designed for <span className="text-gradient-emerald">Enterprise Trust</span>
+              </h2>
+              <p className="mt-3 text-slate-300 text-base">
+                Architected for high-compliance environments, sensitive executive discussions, and mission-critical deployments.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8 mb-16">
+              {trustSignals.map((ts, idx) => {
+                const TsIcon = ts.icon;
+                return (
+                  <div key={idx} className="p-8 rounded-2xl bg-slate-950 border border-slate-800 space-y-4">
+                    <div className="inline-flex items-center gap-2 text-[10px] font-mono font-bold text-[#10B981] bg-[#10B981]/10 px-3 py-1 rounded-md border border-[#10B981]/30">
+                      <TsIcon className="w-3.5 h-3.5" />
+                      <span>{ts.badge}</span>
+                    </div>
+
+                    <h3 className="text-xl font-bold text-white">{ts.title}</h3>
+                    <p className="text-xs text-slate-300 leading-relaxed">{ts.desc}</p>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Reserved Layout Card for Customer Case Studies / Testimonials */}
+            <div className="rounded-2xl bg-slate-950/80 border border-dashed border-slate-700 p-8 text-center max-w-4xl mx-auto">
+              <div className="inline-flex items-center gap-2 text-slate-400 font-mono text-xs mb-2">
+                <Users className="w-4 h-4 text-[#10B981]" />
+                <span>Customer Success & Industry Case Studies</span>
+              </div>
+              <p className="text-sm text-slate-300">
+                Reserving capacity for upcoming enterprise pilot testimonials, case studies, and customer deployment statistics.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* =========================================================================
+            SECTION 14: FINAL CTA — BOOK DEMO
            ========================================================================= */}
         <section className="py-24 bg-slate-950 text-white relative">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
