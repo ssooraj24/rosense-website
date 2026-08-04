@@ -32,10 +32,10 @@ export default function Hero() {
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Column: Outcome Copy & Dual CTAs */}
           <div className="lg:col-span-7 space-y-8 text-center lg:text-left">
-            {/* Top Privacy Badge */}
+            {/* Top Eyebrow Badge */}
             <div className="inline-flex items-center gap-2 bg-slate-900 text-white text-xs font-semibold px-3.5 py-1.5 rounded-full shadow-sm">
               <span className="flex h-2 w-2 rounded-full bg-[#10B981] animate-pulse" />
-              <span className="text-slate-200">100% Data Sovereignty</span>
+              <span className="text-slate-200 font-mono text-[11px] uppercase tracking-wider">ENTERPRISE CONVERSATION INTELLIGENCE</span>
               <span className="text-slate-500">•</span>
               <span className="text-[#10B981] flex items-center gap-1 font-mono">
                 <Lock className="w-3 h-3" /> On-Prem & Cloud
@@ -44,15 +44,14 @@ export default function Hero() {
 
             {/* Outcome Headline */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 leading-[1.12]" id="hero-headline">
-              Turn Every Business Conversation into{" "}
-              <span className="text-gradient-emerald">Structured Action.</span>
+              Turn 18 Hours of Strategy into{" "}
+              <span className="text-gradient-emerald">Immediate Execution.</span>
             </h1>
 
             {/* Subheadline */}
             <p className="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal" id="hero-subheadline">
-              RoSense captures every business discussion, extracts decisions, commitments,
-              risks, and insights, then builds a permanent, searchable memory for your
-              enterprise—without compromising privacy.
+              RoSense AI captures conversations, extracts decisions and commitments, and builds
+              a searchable organizational memory—privately, securely, and at enterprise scale.
             </p>
 
             {/* Dual CTAs Group */}
@@ -63,7 +62,7 @@ export default function Hero() {
                 id="cta-request-box"
               >
                 <Cpu className="w-5 h-5" />
-                <span>Request Private Box Demo</span>
+                <span>Book a Private Demo</span>
                 <ArrowRight className="w-4 h-4 ml-1" />
               </Link>
               <Link

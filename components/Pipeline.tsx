@@ -75,47 +75,63 @@ export default function Pipeline() {
           </p>
         </div>
 
+        {/* Visual Narrative Flow Banner */}
+        <div className="flex items-center justify-center gap-2 sm:gap-4 mb-8 text-xs font-mono font-bold text-slate-500 uppercase tracking-wider">
+          <span className={`px-3 py-1.5 rounded-lg border transition-all ${activeStep === 0 ? "bg-slate-900 text-emerald-400 border-slate-800 shadow-md" : "bg-slate-100 text-slate-600 border-slate-200"}`}>
+            01. Listen
+          </span>
+          <ArrowRight className="w-4 h-4 text-[#10B981] shrink-0 animate-pulse" />
+          <span className={`px-3 py-1.5 rounded-lg border transition-all ${activeStep === 1 ? "bg-slate-900 text-emerald-400 border-slate-800 shadow-md" : "bg-slate-100 text-slate-600 border-slate-200"}`}>
+            02. Structure
+          </span>
+          <ArrowRight className="w-4 h-4 text-[#10B981] shrink-0 animate-pulse" />
+          <span className={`px-3 py-1.5 rounded-lg border transition-all ${activeStep === 2 ? "bg-slate-900 text-emerald-400 border-slate-800 shadow-md" : "bg-slate-100 text-slate-600 border-slate-200"}`}>
+            03. Deliver
+          </span>
+        </div>
+
         {/* Step Selector Buttons */}
-        <div className="grid md:grid-cols-3 gap-4 mb-12">
+        <div className="grid md:grid-cols-3 gap-4 mb-12 relative">
           {steps.map((step, index) => {
             const Icon = step.icon;
             const isActive = activeStep === index;
             return (
-              <button
-                key={step.id}
-                onClick={() => setActiveStep(index)}
-                className={`p-6 rounded-2xl text-left transition-all duration-300 border ${
-                  isActive
-                    ? "bg-slate-900 text-white border-slate-800 shadow-xl scale-[1.02]"
-                    : "bg-slate-50 hover:bg-slate-100 text-slate-800 border-slate-200"
-                }`}
-                id={`pipeline-step-${step.id}`}
-              >
-                <div className="flex items-center justify-between mb-4">
-                  <span
-                    className={`font-mono text-xs font-bold px-2.5 py-1 rounded-md ${
-                      isActive
-                        ? "bg-[#10B981] text-slate-950"
-                        : "bg-slate-200 text-slate-700"
+              <div key={step.id} className="relative">
+                <button
+                  onClick={() => setActiveStep(index)}
+                  className={`w-full p-6 rounded-2xl text-left transition-all duration-300 border ${
+                    isActive
+                      ? "bg-slate-900 text-white border-slate-800 shadow-xl scale-[1.02]"
+                      : "bg-slate-50 hover:bg-slate-100 text-slate-800 border-slate-200"
+                  }`}
+                  id={`pipeline-step-${step.id}`}
+                >
+                  <div className="flex items-center justify-between mb-4">
+                    <span
+                      className={`font-mono text-xs font-bold px-2.5 py-1 rounded-md ${
+                        isActive
+                          ? "bg-[#10B981] text-slate-950"
+                          : "bg-slate-200 text-slate-700"
+                      }`}
+                    >
+                      STEP {step.number}
+                    </span>
+                    <Icon
+                      className={`w-6 h-6 ${
+                        isActive ? "text-[#10B981]" : "text-slate-500"
+                      }`}
+                    />
+                  </div>
+                  <h3 className="text-xl font-bold mb-1">{step.title}</h3>
+                  <p
+                    className={`text-xs ${
+                      isActive ? "text-slate-400" : "text-slate-500"
                     }`}
                   >
-                    STEP {step.number}
-                  </span>
-                  <Icon
-                    className={`w-6 h-6 ${
-                      isActive ? "text-[#10B981]" : "text-slate-500"
-                    }`}
-                  />
-                </div>
-                <h3 className="text-xl font-bold mb-1">{step.title}</h3>
-                <p
-                  className={`text-xs ${
-                    isActive ? "text-slate-400" : "text-slate-500"
-                  }`}
-                >
-                  {step.subtitle}
-                </p>
-              </button>
+                    {step.subtitle}
+                  </p>
+                </button>
+              </div>
             );
           })}
         </div>

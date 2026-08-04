@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Cpu, Server, Shield, Lock, HardDrive, Zap, CheckCircle2, ArrowRight } from "lucide-react";
+import { Server, Shield, Lock, CheckCircle2, ArrowRight, ShieldCheck, Cpu, Database } from "lucide-react";
 
 export default function ApplianceSpotlight() {
   return (
@@ -13,19 +13,19 @@ export default function ApplianceSpotlight() {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/30 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider mb-4">
             <Lock className="w-3.5 h-3.5" />
-            <span>Turnkey On-Premise Hardware</span>
+            <span>Turnkey On-Premise Appliance</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white">
             The <span className="text-gradient-emerald">RoSense Private Box</span>
           </h2>
           <p className="mt-4 text-lg text-slate-300">
-            For organizations with extreme data confidentiality requirements. A physical ITX appliance pre-configured to run 100% offline inside your server room.
+            Private AI. Complete Data Sovereignty. Run enterprise conversation intelligence entirely inside your organization&apos;s infrastructure with zero public cloud dependency.
           </p>
         </div>
 
-        {/* Hardware Render Showcase & Specs Grid */}
+        {/* Enterprise Appliance Visual Showcase & Specs Grid */}
         <div className="grid lg:grid-cols-12 gap-12 items-center">
-          {/* Left Column: Virtual ITX Appliance Chassis Visual */}
+          {/* Left Column: Virtual ITX Appliance Card */}
           <div className="lg:col-span-6">
             <div className="relative rounded-3xl bg-slate-900/90 border border-slate-800 p-8 shadow-2xl emerald-glow">
               {/* Box Top Header */}
@@ -36,13 +36,13 @@ export default function ApplianceSpotlight() {
                   </div>
                   <div>
                     <div className="text-base font-bold text-white flex items-center gap-2">
-                      <span>RoSense Appliance v3.0</span>
+                      <span>RoSense Private Appliance</span>
                       <span className="text-[10px] font-mono bg-[#10B981]/20 text-[#10B981] px-2 py-0.5 rounded border border-[#10B981]/30">
                         rosense.local
                       </span>
                     </div>
                     <div className="text-xs text-slate-400 font-mono">
-                      Ryzen 9 • RTX 5060 8GB GPU • 14.3GB Offline Models
+                      High-Performance Local AI • Plug & Play LAN Server
                     </div>
                   </div>
                 </div>
@@ -52,74 +52,89 @@ export default function ApplianceSpotlight() {
                 </div>
               </div>
 
-              {/* Internal Architecture Stream Simulation */}
+              {/* 3 Pillars Grid */}
               <div className="py-6 space-y-4 font-mono text-xs">
                 <div className="text-slate-400 text-[11px] uppercase tracking-wider font-semibold">
-                  Local Processing Pipeline (Zero Public Internet):
+                  Enterprise Capability Architecture:
                 </div>
 
-                <div className="grid grid-cols-3 gap-2 text-center">
+                <div className="grid grid-cols-3 gap-2 text-left">
                   <div className="p-3 rounded-xl bg-slate-800 border border-slate-700">
-                    <Cpu className="w-4 h-4 text-emerald-400 mx-auto mb-1" />
-                    <div className="text-white text-[11px] font-bold">WhisperX</div>
-                    <div className="text-[10px] text-slate-400">4GB CUDA</div>
+                    <Cpu className="w-4 h-4 text-emerald-400 mb-1" />
+                    <div className="text-white text-[11px] font-bold mb-1">Private AI</div>
+                    <div className="text-[10px] text-slate-400 space-y-0.5">
+                      <div>✓ 100% Local</div>
+                      <div>✓ Zero Internet</div>
+                    </div>
                   </div>
                   <div className="p-3 rounded-xl bg-slate-800 border border-slate-700">
-                    <Zap className="w-4 h-4 text-amber-400 mx-auto mb-1" />
-                    <div className="text-white text-[11px] font-bold">bge-large</div>
-                    <div className="text-[10px] text-slate-400">CPU Embed</div>
+                    <Database className="w-4 h-4 text-amber-400 mb-1" />
+                    <div className="text-white text-[11px] font-bold mb-1">Intelligence</div>
+                    <div className="text-[10px] text-slate-400 space-y-0.5">
+                      <div>✓ Decisions</div>
+                      <div>✓ Commitments</div>
+                    </div>
                   </div>
                   <div className="p-3 rounded-xl bg-slate-800 border border-slate-700">
-                    <HardDrive className="w-4 h-4 text-purple-400 mx-auto mb-1" />
-                    <div className="text-white text-[11px] font-bold">Mamba SSM</div>
-                    <div className="text-[10px] text-slate-400">5.8GB VRAM</div>
+                    <ShieldCheck className="w-4 h-4 text-purple-400 mb-1" />
+                    <div className="text-white text-[11px] font-bold mb-1">Deployment</div>
+                    <div className="text-[10px] text-slate-400 space-y-0.5">
+                      <div>✓ On-Premises</div>
+                      <div>✓ Air-Gapped</div>
+                    </div>
                   </div>
                 </div>
 
+                {/* Enterprise Security Checklist Container */}
                 <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 text-slate-300 space-y-2">
-                  <div className="flex justify-between text-[11px]">
-                    <span className="text-slate-400">Network Firewall Status:</span>
-                    <span className="text-emerald-400 font-bold">UFW DENY ALL INBOUND</span>
-                  </div>
-                  <div className="flex justify-between text-[11px]">
-                    <span className="text-slate-400">Decryption Mode:</span>
-                    <span className="text-slate-200">RAM-Only BytesIO (No Temp File)</span>
-                  </div>
-                  <div className="flex justify-between text-[11px]">
-                    <span className="text-slate-400">Local Domain:</span>
-                    <span className="text-[#10B981]">http://rosense.local:3001</span>
+                  <div className="text-[11px] font-bold text-white mb-2 font-mono">Enterprise Safeguards:</div>
+                  <div className="space-y-1.5 text-[11px] font-sans">
+                    <div className="flex items-center gap-2 text-slate-300">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                      <span>Conversations never leave your infrastructure</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-slate-300">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                      <span>Zero customer data used for AI model training</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-slate-300">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                      <span>Customer-controlled deployment & auditability</span>
+                    </div>
                   </div>
                 </div>
 
-                {/* Automated 3-2-1 Backup Banner */}
+                {/* Enterprise Ready Bottom Strip */}
                 <div className="p-3 rounded-xl bg-[#10B981]/10 border border-[#10B981]/20 flex items-center justify-between text-xs text-[#10B981]">
                   <span className="flex items-center gap-1.5">
-                    <Shield className="w-4 h-4" /> 3-2-1 Automated Backup Topology Active
+                    <Shield className="w-4 h-4" /> Enterprise Ready
                   </span>
-                  <span className="font-mono text-[10px]">L1/L2/L3 USB</span>
+                  <span className="font-mono text-[10px] text-slate-300">
+                    Automated Backup • Recovery • Business Continuity
+                  </span>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Key Appliance Benefits & Spec Checklist */}
+          {/* Right Column: Key Appliance Benefits & Value Checklist */}
           <div className="lg:col-span-6 space-y-6">
             <h3 className="text-2xl sm:text-3xl font-bold text-white leading-snug">
-              Complete Infrastructure Sovereignty for Your Building.
+              Complete Infrastructure Sovereignty for Your Organization.
             </h3>
 
             <p className="text-slate-300 text-base leading-relaxed">
-              The RoSense Box is a plug-and-play ITX server pre-installed with PostgreSQL pgvector, Redis, and 14.3GB of pre-loaded AI models. Plug it into your LAN, and every workshop audio file is processed strictly inside your office.
+              Designed for organizations with the highest security and compliance requirements. The RoSense Private Box operates strictly inside your LAN—no external AI cloud calls, no data transmission outside your perimeter.
             </p>
 
             <div className="space-y-3 pt-2">
               {[
                 "Zero byte transmitted outside your local area network (LAN)",
-                "Pre-configured Ryzen 9 processor with RTX 5060 8GB GPU",
-                "Stage-swapped model pipeline prevents VRAM out-of-memory crashes",
-                "Automated 3-2-1 local backup (Layer 1 SATA, Layer 2 NAS, Layer 3 USB)",
-                "Includes Master Vault Key with instant 1-second crypto-shredding",
-                "Turnkey installation backed by dedicated security team & AMC support",
+                "Compact, high-performance turn-key local AI server",
+                "Automated business continuity with local encrypted backups",
+                "Instant 1-second master key crypto-shredding capability",
+                "Role-based access control & complete audit trail integration",
+                "Turnkey installation backed by dedicated enterprise AMC support",
               ].map((spec, i) => (
                 <div key={i} className="flex items-start gap-3">
                   <div className="w-5 h-5 rounded-full bg-[#10B981]/20 text-[#10B981] flex items-center justify-center shrink-0 mt-0.5">
@@ -136,7 +151,7 @@ export default function ApplianceSpotlight() {
                 className="inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-[#059669] text-white text-base font-semibold px-7 py-3.5 rounded-xl shadow-lg shadow-emerald-500/20 hover:scale-[1.02] transition-all"
                 id="cta-appliance-demo"
               >
-                <span>Request Appliance Pricing</span>
+                <span>Book a Private Demo</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>

@@ -18,7 +18,7 @@ export default function TrustBar() {
     },
     {
       icon: Lock,
-      title: "AES-256 Envelope Vault",
+      title: "AES-256 Encrypted",
       subtitle: "RAM-only decryption & storage safety",
       highlight: false,
     },
