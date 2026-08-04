@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import Pricing from "@/components/Pricing";
+import PricingEnterprise from "@/components/PricingEnterprise";
+import PricingCloud from "@/components/PricingCloud";
 import PricingDrivers from "@/components/PricingDrivers";
 import PricingHardwareSpotlight from "@/components/PricingHardwareSpotlight";
 import PricingIncluded from "@/components/PricingIncluded";
@@ -13,9 +14,9 @@ import Link from "next/link";
 import { Sparkles, ArrowRight, ShieldCheck, Server, Cpu, Cloud, CheckCircle2 } from "lucide-react";
 
 export const metadata = {
-  title: "Enterprise AI Pricing & Deployment Options — RoSense AI",
+  title: "Pricing Built for Every Scale — RoSense AI Enterprise",
   description:
-    "Transparent enterprise AI pricing tailored to your infrastructure, security requirements, models, and data sovereignty. Explore Private Box, Enterprise On-Prem, and Cloud options.",
+    "Transparent enterprise AI pricing tailored to your infrastructure, security requirements, and data sovereignty. Explore Private Box appliances, On-Prem GPU, and Cloud options.",
 };
 
 export default function PricingPage() {
@@ -35,31 +36,31 @@ export default function PricingPage() {
               <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
                 <div className="inline-flex items-center gap-1.5 bg-[#10B981]/15 text-[#10B981] border border-[#10B981]/30 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider">
                   <Sparkles className="w-3.5 h-3.5" />
-                  <span>Transparent Enterprise Architecture</span>
+                  <span>Enterprise AI Platform Pricing</span>
                 </div>
 
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
-                  Enterprise AI, Priced for <span className="text-gradient-emerald">Real Business</span>
+                  Pricing Built for <span className="text-gradient-emerald">Every Scale</span>
                 </h1>
 
                 <p className="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                  Pricing that scales with your organization—not with hidden surprises. Every deployment is tailored to your infrastructure, security, AI models, and business requirements.
+                  From self-service evaluation to turnkey air-gapped enterprise deployment. Choose the path that fits your infrastructure, security, and team requirements.
                 </p>
 
                 <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
                   <Link
-                    href="/company/contact"
+                    href="#enterprise-pricing"
                     className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-[#059669] text-slate-950 font-bold px-7 py-4 rounded-xl transition-all shadow-lg hover:shadow-emerald-900/30 text-sm"
                   >
-                    <span>Get Custom Quote</span>
+                    <span>Deploy Enterprise Appliance</span>
                     <ArrowRight className="w-4 h-4" />
                   </Link>
 
                   <Link
-                    href="/company/contact"
+                    href="#cloud-pricing"
                     className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-semibold px-7 py-4 rounded-xl transition-all text-sm"
                   >
-                    <span>Book Live Demo</span>
+                    <span>Try Cloud Platform</span>
                   </Link>
                 </div>
 
@@ -79,7 +80,7 @@ export default function PricingPage() {
                 </div>
               </div>
 
-              {/* Right Hero Visual: Interconnected Deployment Diagram */}
+              {/* Right Hero Visual: Interconnected Deployment Topology */}
               <div className="lg:col-span-5">
                 <div className="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-6 shadow-2xl relative">
                   <div className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-4 pb-3 border-b border-slate-700/80 flex items-center justify-between">
@@ -104,7 +105,7 @@ export default function PricingPage() {
                       <span className="text-[#10B981] text-xs font-bold font-mono">2-5 DAYS</span>
                     </div>
 
-                    {/* Connecting glowing line */}
+                    {/* Connecting line */}
                     <div className="flex justify-center my-0.5">
                       <div className="w-0.5 h-3 bg-gradient-to-b from-[#10B981] to-slate-700" />
                     </div>
@@ -116,14 +117,14 @@ export default function PricingPage() {
                           <Server className="w-5 h-5" />
                         </div>
                         <div>
-                          <div className="font-bold text-white text-sm">Enterprise Data Center</div>
+                          <div className="font-bold text-white text-sm">Enterprise On-Prem</div>
                           <div className="text-slate-400 text-xs">Your Existing GPU Cluster</div>
                         </div>
                       </div>
                       <span className="text-slate-300 text-xs font-bold font-mono">1-3 WEEKS</span>
                     </div>
 
-                    {/* Connecting glowing line */}
+                    {/* Connecting line */}
                     <div className="flex justify-center my-0.5">
                       <div className="w-0.5 h-3 bg-gradient-to-b from-slate-700 to-purple-500" />
                     </div>
@@ -135,7 +136,7 @@ export default function PricingPage() {
                           <Cloud className="w-5 h-5" />
                         </div>
                         <div>
-                          <div className="font-bold text-white text-sm">Managed Cloud</div>
+                          <div className="font-bold text-white text-sm">Managed Cloud SaaS</div>
                           <div className="text-slate-400 text-xs">Fastest Evaluation Route</div>
                         </div>
                       </div>
@@ -148,34 +149,37 @@ export default function PricingPage() {
           </div>
         </section>
 
-        {/* Section 2: Three Pricing Models */}
-        <Pricing />
+        {/* Section 2: JOURNEY 1 — DEPLOY ROSENSE (Enterprise Infrastructure — Primary) */}
+        <PricingEnterprise />
 
-        {/* Section 3: What Influences Pricing (6 Driver Cards) */}
+        {/* Section 3: JOURNEY 2 — TRY ROSENSE (Cloud Platform — Evaluation Path — Secondary) */}
+        <PricingCloud />
+
+        {/* Section 4: What Influences Pricing (6 Cost Driver Cards) */}
         <PricingDrivers />
 
-        {/* Section 4: Hardware Appliance Product Showcase */}
+        {/* Section 5: Private Box Product Launch Showcase */}
         <PricingHardwareSpotlight />
 
-        {/* Section 5: Every Deployment Includes (Grouped 3 Pillars) */}
+        {/* Section 6: Every Deployment Includes (Grouped 3 Pillars) */}
         <PricingIncluded />
 
-        {/* Section 6: Compare Deployment Options Matrix */}
+        {/* Section 7: Feature & Capability Upgrade Matrix */}
         <PricingMatrix />
 
-        {/* Section 7: NEW Section — Why Enterprises Choose RoSense (Trust Building) */}
+        {/* Section 8: Why Enterprises Choose RoSense (4 Key Trust Pillars) */}
         <PricingTrust />
 
-        {/* Section 8: Interactive ROI & Productivity Calculator */}
+        {/* Section 9: Interactive ROI & Productivity Calculator */}
         <PricingROICalculator />
 
-        {/* Section 9: Solution-Oriented Security Assessment Callout */}
+        {/* Section 10: Solution-Oriented Security Advisory Callout */}
         <PricingSecurityCallout />
 
-        {/* Section 10: Enterprise FAQ Accordion (9 Q&As) */}
+        {/* Section 11: Enterprise FAQ Accordion (9 Q&As) */}
         <PricingFAQ />
 
-        {/* Section 11: Redesigned Final Enterprise CTA Banner */}
+        {/* Section 12: Final Enterprise CTA Banner */}
         <section className="py-24 bg-slate-950 text-white border-t border-slate-800 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950" />
           <div className="max-w-4xl mx-auto px-4 text-center space-y-6 relative z-10">
