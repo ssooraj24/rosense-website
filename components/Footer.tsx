@@ -100,13 +100,13 @@ export default function Footer() {
         {/* Bottom Legal & Rights */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
           <div className="flex items-center gap-3">
-            <div className="relative w-6 h-6 rounded bg-slate-900 border border-slate-800 overflow-hidden">
+            <div className="relative h-8 w-auto flex items-center">
               <Image
                 src="/logo-R.png"
                 alt="RoSense AI Logo"
-                width={24}
-                height={24}
-                className="object-contain p-0.5"
+                width={140}
+                height={35}
+                className="h-8 w-auto object-contain"
               />
             </div>
             <span>© {new Date().getFullYear()} RoSense AI. All rights reserved. Prepared for Nisol & Enterprise Clients.</span>

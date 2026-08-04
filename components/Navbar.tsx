@@ -64,31 +64,18 @@ export default function Navbar() {
           {/* Left Corner Logo Lockup */}
           <Link
             href="/"
-            className="flex items-center gap-3 group focus:outline-none"
+            className="flex items-center group focus:outline-none py-1"
             id="nav-logo"
           >
-            <div className="relative w-9 h-9 flex items-center justify-center rounded-lg bg-slate-900 overflow-hidden shadow-md group-hover:scale-105 transition-transform duration-200">
+            <div className="relative h-11 sm:h-12 w-auto flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
               <Image
                 src="/logo-R.png"
                 alt="RoSense AI Logo"
-                width={36}
-                height={36}
-                className="object-contain p-1"
+                width={200}
+                height={50}
+                className="h-11 sm:h-12 w-auto object-contain"
                 priority
               />
-            </div>
-            <div className="flex flex-col">
-              <div className="flex items-center gap-1">
-                <span className="font-bold text-xl tracking-tight text-slate-900">
-                  Ro<span className="text-slate-700 font-medium">Sense</span>
-                </span>
-                <span className="text-[10px] font-bold tracking-widest text-[#10B981] bg-[#10B981]/10 px-1.5 py-0.5 rounded border border-[#10B981]/20 uppercase">
-                  AI
-                </span>
-              </div>
-              <span className="text-[10px] text-slate-500 font-medium tracking-wide hidden sm:block">
-                Listen. Structure. Deliver.
-              </span>
             </div>
           </Link>
 
