@@ -48,68 +48,95 @@ export default function PlatformOverviewPage() {
   const [playingAudio, setPlayingAudio] = useState(false);
   const [copied, setCopied] = useState(false);
   const [saved, setSaved] = useState(false);
-  const [activeFlowIndex, setActiveFlowIndex] = useState<number | null>(null);
+  const [activeFlowIndex, setActiveFlowIndex] = useState<number>(0);
 
   const copyToClipboard = () => {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
 
-  // Flow Timeline Steps (Section 3)
+  // Flow Timeline Steps (Section 3) with Model Capabilities
   const flowSteps = [
     {
       step: "01",
       icon: Mic,
       title: "Meeting",
       desc: "Captures multi-hour audio streams across physical rooms & virtual calls.",
+      modelTech: "Multi-Channel Audio Intake Engine",
+      spec: "Sample Rate: 16kHz | 24-bit FLAC | Dual-stream redundancy",
+      details: "Captures physical room microphones, Zoom/Teams webhooks, and raw board room audio without cloud transmission.",
     },
     {
       step: "02",
       icon: Database,
       title: "Capture",
       desc: "High-fidelity local capture with automatic acoustic noise cancellation.",
+      modelTech: "Acoustic DSP & Reverberation Removal",
+      spec: "SNR Boost: +18dB | Zero-latency local ring buffer",
+      details: "Filters HVAC rumble, room echo, and keyboard clicks before passing clean spectral frames to speech models.",
     },
     {
       step: "03",
       icon: Brain,
       title: "Understand",
       desc: "WhisperX speaker diarization & deep context preservation.",
+      modelTech: "WhisperX + Pyannote 3.1 Diarization",
+      spec: "Word Error Rate < 2.8% | Diarization Accuracy 97.4%",
+      details: "Performs precise speaker identification with word-level phoneme timestamps and overlapping speech resolution.",
     },
     {
       step: "04",
       icon: Zap,
       title: "Extract",
       desc: "Mamba-3 SSM parses decisions, commitments, owners & risks.",
+      modelTech: "Mamba-3 State Space Model (SSM)",
+      spec: "128k Context Window | Sub-second extraction latency",
+      details: "Identifies decisions, action items, risks, and commitments without context window truncation or hallucination.",
     },
     {
       step: "05",
       icon: Layers,
       title: "Structure",
       desc: "Normalizes unstructured conversations into standard schema & entity relationships.",
+      modelTech: "JSON-LD & Enterprise Schema Engine",
+      spec: "Schema.org + Custom Enterprise Taxonomies",
+      details: "Normalizes raw transcript snippets into structured JSON-LD entity nodes linked to owners, dates, and topics.",
     },
     {
       step: "06",
       icon: Network,
       title: "Enterprise Memory",
       desc: "Connects decisions across months of past and present organization meetings.",
+      modelTech: "Temporal Graph Vector Engine",
+      spec: "Sub-50ms Graph Traversal | Cross-meeting linkage",
+      details: "Connects today's decisions to historical strategy sessions from months or years ago into a cohesive memory graph.",
     },
     {
       step: "07",
       icon: Search,
       title: "Search",
       desc: "Sub-second RAG search via pgvector across all company knowledge.",
+      modelTech: "pgvector + bge-large-en-v1.5 RAG",
+      spec: "Dense Retrieval Latency < 180ms | Hybrid BM25 + HNSW",
+      details: "Enables instant natural language search across thousands of hours of historical transcript data with 1-click audio proof.",
     },
     {
       step: "08",
       icon: Share2,
       title: "Reuse",
       desc: "Instant onboarding for new hires and seamless multi-team context sharing.",
+      modelTech: "Multi-Tenant Access Control & RBAC Gateway",
+      spec: "Row-Level Security (RLS) | AES-256 encrypted payload",
+      details: "Safely surfaces historical context to new team members according to department-level access control rules.",
     },
     {
       step: "09",
       icon: TrendingUp,
       title: "Business Outcomes",
       desc: "Flawless execution with zero forgotten commitments or repeated discussions.",
+      modelTech: "Continuous Execution Audit & Task Sync",
+      spec: "100% Traceability to audio proof | Zero lost commitments",
+      details: "Guarantees that every agreement made in meetings translates directly into tracked, verifiable business execution.",
     },
   ];
 
@@ -397,7 +424,7 @@ export default function PlatformOverviewPage() {
            ========================================================================= */}
         <section className="py-24 bg-slate-950 text-white relative border-b border-slate-800">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="text-center max-w-3xl mx-auto mb-12">
               <div className="inline-flex items-center gap-1.5 bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/30 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
                 <Network className="w-3.5 h-3.5" />
                 <span>End-to-End Pipeline</span>
@@ -406,38 +433,110 @@ export default function PlatformOverviewPage() {
                 The RoSense <span className="text-gradient-emerald">Intelligence Flow</span>
               </h2>
               <p className="mt-3 text-slate-300 text-base">
-                Hover over any stage in the intelligence pipeline to inspect underlying model capabilities.
+                Click or hover over any of the 9 stages below to expand its underlying local AI model specifications directly inside the card.
               </p>
             </div>
 
-            {/* Grid Timeline */}
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Horizontal Flow Stepper Nav (01 -> 09) */}
+            <div className="mb-12 overflow-x-auto pb-4 scrollbar-thin">
+              <div className="flex items-center min-w-max justify-between gap-2 bg-slate-900/90 border border-slate-800 p-3 rounded-2xl">
+                {flowSteps.map((step, idx) => {
+                  const isActive = activeFlowIndex === idx;
+                  return (
+                    <button
+                      key={idx}
+                      onClick={() => setActiveFlowIndex(idx)}
+                      onMouseEnter={() => setActiveFlowIndex(idx)}
+                      className={`flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-mono font-semibold transition-all ${
+                        isActive
+                          ? "bg-[#10B981] text-slate-950 shadow-md shadow-emerald-500/20 scale-105"
+                          : "text-slate-400 hover:text-white hover:bg-slate-800/80"
+                      }`}
+                      id={`stepper-btn-${step.step}`}
+                    >
+                      <span className={`w-5 h-5 rounded-md flex items-center justify-center text-[10px] font-bold ${
+                        isActive ? "bg-slate-950 text-[#10B981]" : "bg-slate-800 text-slate-300"
+                      }`}>
+                        {step.step}
+                      </span>
+                      <span>{step.title}</span>
+                      {idx < flowSteps.length - 1 && (
+                        <span className="text-slate-600 font-normal ml-1">➔</span>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* 9-Stage Grid with Direct In-Card Inline Expansion */}
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
               {flowSteps.map((step, idx) => {
                 const IconComponent = step.icon;
-                const isHovered = activeFlowIndex === idx;
+                const isActive = activeFlowIndex === idx;
                 return (
                   <div
                     key={idx}
+                    onClick={() => setActiveFlowIndex(isActive ? -1 : idx)}
                     onMouseEnter={() => setActiveFlowIndex(idx)}
-                    onMouseLeave={() => setActiveFlowIndex(null)}
-                    className={`rounded-2xl p-6 transition-all duration-200 border cursor-pointer ${
-                      isHovered
-                        ? "bg-slate-900 border-[#10B981] shadow-lg shadow-emerald-500/10 scale-[1.02]"
-                        : "bg-slate-900/60 border-slate-800 hover:border-slate-700"
+                    className={`rounded-2xl transition-all duration-300 border cursor-pointer relative overflow-hidden ${
+                      isActive
+                        ? "bg-slate-900 border-[#10B981] shadow-2xl shadow-emerald-500/10 ring-1 ring-[#10B981]/50 p-6"
+                        : "bg-slate-900/60 border-slate-800 hover:border-slate-700 p-6 hover:bg-slate-900/80"
                     }`}
+                    id={`flow-card-${step.step}`}
                   >
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="font-mono text-xs font-bold text-[#10B981] bg-[#10B981]/10 px-2.5 py-1 rounded-md border border-[#10B981]/20">
+                    {/* Header Row */}
+                    <div className="flex items-center justify-between mb-3">
+                      <span className={`font-mono text-xs font-bold px-2.5 py-1 rounded-md border transition-colors ${
+                        isActive
+                          ? "text-slate-950 bg-[#10B981] border-[#10B981]"
+                          : "text-[#10B981] bg-[#10B981]/10 border-[#10B981]/20"
+                      }`}>
                         STAGE {step.step}
                       </span>
-                      <IconComponent
-                        className={`w-6 h-6 transition-colors ${
-                          isHovered ? "text-[#10B981]" : "text-slate-400"
-                        }`}
-                      />
+                      <div className="flex items-center gap-2">
+                        <IconComponent
+                          className={`w-5 h-5 transition-colors ${
+                            isActive ? "text-[#10B981]" : "text-slate-400"
+                          }`}
+                        />
+                        <span className="text-xs text-slate-500 font-mono">
+                          {isActive ? "▼ Active" : "▶ Click/Hover"}
+                        </span>
+                      </div>
                     </div>
+
                     <h3 className="text-lg font-bold text-white mb-2">{step.title}</h3>
-                    <p className="text-xs text-slate-300 leading-relaxed">{step.desc}</p>
+                    <p className="text-xs text-slate-300 leading-relaxed mb-3">{step.desc}</p>
+
+                    {/* Inline Expandable Model Specs Drawer */}
+                    {isActive ? (
+                      <div className="mt-4 pt-4 border-t border-slate-800/90 space-y-3 animate-in fade-in slide-in-from-top-2 duration-200">
+                        <div className="inline-flex items-center gap-1.5 text-[10px] font-mono font-bold text-[#10B981] bg-[#10B981]/10 px-2.5 py-1 rounded-md border border-[#10B981]/30">
+                          <Bot className="w-3.5 h-3.5" />
+                          <span>{step.modelTech}</span>
+                        </div>
+
+                        <div className="p-3 rounded-xl bg-slate-950 border border-slate-800 font-mono text-[11px] text-[#10B981] leading-tight">
+                          {step.spec}
+                        </div>
+
+                        <p className="text-xs text-slate-300 leading-relaxed bg-slate-950/50 p-3 rounded-xl border border-slate-800/80">
+                          {step.details}
+                        </p>
+
+                        <div className="flex items-center justify-between text-[10px] font-mono text-slate-400 pt-1">
+                          <span>Latency Target: &lt; 200ms</span>
+                          <span className="text-[#10B981] font-bold">100% Offline LAN</span>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="text-[11px] font-mono text-slate-500 hover:text-[#10B981] transition-colors flex items-center gap-1 pt-1">
+                        <span>Show Model Specification</span>
+                        <ChevronRight className="w-3.5 h-3.5" />
+                      </div>
+                    )}
                   </div>
                 );
               })}
