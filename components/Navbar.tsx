@@ -35,6 +35,15 @@ import {
   ShieldAlert,
   CheckSquare,
   Layers,
+  TrendingUp,
+  UserCheck,
+  BarChart3,
+  DollarSign,
+  Megaphone,
+  UserPlus,
+  Wrench,
+  Headphones,
+  LayoutGrid,
 } from "lucide-react";
 
 export default function Navbar() {
@@ -366,72 +375,246 @@ export default function Navbar() {
               </button>
 
               {activeDropdown === "solutions" && (
-                <div className="absolute top-full left-0 w-[580px] bg-white border border-slate-200 rounded-2xl shadow-2xl p-6 mt-1 grid grid-cols-2 gap-6 animate-in fade-in duration-150">
-                  <div className="space-y-3 border-r border-slate-100 pr-4">
-                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-                      By Use Case
-                    </p>
-                    <Link
-                      href="/solutions/workshops"
-                      className="flex items-start gap-2.5 p-2 rounded-lg hover:bg-slate-50 transition-colors group"
-                    >
-                      <Briefcase className="w-4 h-4 text-[#10B981] mt-0.5 shrink-0" />
-                      <div>
-                        <div className="text-xs font-bold text-slate-900 group-hover:text-[#10B981]">
-                          Strategy Workshops & Offsites ⭐
+                <div className="absolute top-full left-[-160px] w-[940px] bg-white border border-slate-200 rounded-2xl shadow-2xl p-6 mt-1 animate-in fade-in duration-150">
+                  <div className="grid grid-cols-3 gap-6 pb-4 border-b border-slate-100">
+                    {/* Column 1: Leadership */}
+                    <div className="space-y-2 border-r border-slate-100 pr-4">
+                      <p className="text-[11px] font-bold text-[#10B981] uppercase tracking-wider mb-2 font-mono flex items-center gap-1">
+                        <Users className="w-3.5 h-3.5" /> Leadership & Strategy
+                      </p>
+
+                      <Link
+                        href="/solutions/executive-leadership"
+                        className="flex items-start gap-2.5 p-2 rounded-xl hover:bg-slate-50 transition-colors group"
+                      >
+                        <div className="w-7 h-7 rounded-lg bg-slate-900 text-[#10B981] flex items-center justify-center shrink-0 mt-0.5">
+                          <Users className="w-3.5 h-3.5" />
                         </div>
-                        <div className="text-[11px] text-slate-500">
-                          Process 18+ hour offsite audio into executive summaries.
+                        <div>
+                          <div className="text-xs font-bold text-slate-900 group-hover:text-[#10B981] transition-colors">
+                            Executive Leadership
+                          </div>
+                          <div className="text-[11px] text-slate-500 leading-tight">
+                            Strategic decision tracking & board briefs.
+                          </div>
                         </div>
-                      </div>
-                    </Link>
-                    <Link
-                      href="/solutions/board-meetings"
-                      className="flex items-start gap-2.5 p-2 rounded-lg hover:bg-slate-50 transition-colors group"
-                    >
-                      <Users className="w-4 h-4 text-slate-600 mt-0.5 shrink-0" />
-                      <div>
-                        <div className="text-xs font-bold text-slate-900 group-hover:text-[#10B981]">
-                          Board & Executive Meetings
+                      </Link>
+
+                      <Link
+                        href="/solutions/strategy-pmo"
+                        className="flex items-start gap-2.5 p-2 rounded-xl hover:bg-slate-50 transition-colors group"
+                      >
+                        <div className="w-7 h-7 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center shrink-0 mt-0.5">
+                          <Briefcase className="w-3.5 h-3.5" />
                         </div>
-                        <div className="text-[11px] text-slate-500">
-                          Confidential boardroom decision tracking.
+                        <div>
+                          <div className="text-xs font-semibold text-slate-900 group-hover:text-[#10B981] transition-colors">
+                            Strategy & PMO
+                          </div>
+                          <div className="text-[11px] text-slate-500 leading-tight">
+                            Offsite synthesis & milestone execution.
+                          </div>
                         </div>
-                      </div>
-                    </Link>
+                      </Link>
+
+                      <Link
+                        href="/solutions/operations"
+                        className="flex items-start gap-2.5 p-2 rounded-xl hover:bg-slate-50 transition-colors group"
+                      >
+                        <div className="w-7 h-7 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center shrink-0 mt-0.5">
+                          <BarChart3 className="w-3.5 h-3.5" />
+                        </div>
+                        <div>
+                          <div className="text-xs font-semibold text-slate-900 group-hover:text-[#10B981] transition-colors">
+                            Operations Leaders
+                          </div>
+                          <div className="text-[11px] text-slate-500 leading-tight">
+                            SOP extraction & cross-team execution.
+                          </div>
+                        </div>
+                      </Link>
+
+                      <Link
+                        href="/solutions/compliance-risk"
+                        className="flex items-start gap-2.5 p-2 rounded-xl hover:bg-slate-50 transition-colors group"
+                      >
+                        <div className="w-7 h-7 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center shrink-0 mt-0.5">
+                          <Landmark className="w-3.5 h-3.5" />
+                        </div>
+                        <div>
+                          <div className="text-xs font-semibold text-slate-900 group-hover:text-[#10B981] transition-colors">
+                            Compliance & Risk
+                          </div>
+                          <div className="text-[11px] text-slate-500 leading-tight">
+                            DPDP compliance & air-gapped logs.
+                          </div>
+                        </div>
+                      </Link>
+                    </div>
+
+                    {/* Column 2: Business Teams */}
+                    <div className="space-y-2 border-r border-slate-100 pr-4">
+                      <p className="text-[11px] font-bold text-[#10B981] uppercase tracking-wider mb-2 font-mono flex items-center gap-1">
+                        <TrendingUp className="w-3.5 h-3.5" /> Business & Revenue
+                      </p>
+
+                      <Link
+                        href="/solutions/sales"
+                        className="flex items-start gap-2.5 p-2 rounded-xl hover:bg-slate-50 transition-colors group"
+                      >
+                        <div className="w-7 h-7 rounded-lg bg-slate-900 text-[#10B981] flex items-center justify-center shrink-0 mt-0.5">
+                          <TrendingUp className="w-3.5 h-3.5" />
+                        </div>
+                        <div>
+                          <div className="text-xs font-bold text-slate-900 group-hover:text-[#10B981] transition-colors">
+                            Sales Teams
+                          </div>
+                          <div className="text-[11px] text-slate-500 leading-tight">
+                            Never lose a deal commitment or objection.
+                          </div>
+                        </div>
+                      </Link>
+
+                      <Link
+                        href="/solutions/customer-success"
+                        className="flex items-start gap-2.5 p-2 rounded-xl hover:bg-slate-50 transition-colors group"
+                      >
+                        <div className="w-7 h-7 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center shrink-0 mt-0.5">
+                          <UserCheck className="w-3.5 h-3.5" />
+                        </div>
+                        <div>
+                          <div className="text-xs font-semibold text-slate-900 group-hover:text-[#10B981] transition-colors">
+                            Customer Success
+                          </div>
+                          <div className="text-[11px] text-slate-500 leading-tight">
+                            Renewal risk tracking & client handoff.
+                          </div>
+                        </div>
+                      </Link>
+
+                      <Link
+                        href="/solutions/marketing"
+                        className="flex items-start gap-2.5 p-2 rounded-xl hover:bg-slate-50 transition-colors group"
+                      >
+                        <div className="w-7 h-7 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center shrink-0 mt-0.5">
+                          <Megaphone className="w-3.5 h-3.5" />
+                        </div>
+                        <div>
+                          <div className="text-xs font-semibold text-slate-900 group-hover:text-[#10B981] transition-colors">
+                            Marketing
+                          </div>
+                          <div className="text-[11px] text-slate-500 leading-tight">
+                            Voice-of-Customer pain points & quotes.
+                          </div>
+                        </div>
+                      </Link>
+
+                      <Link
+                        href="/solutions/finance"
+                        className="flex items-start gap-2.5 p-2 rounded-xl hover:bg-slate-50 transition-colors group"
+                      >
+                        <div className="w-7 h-7 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center shrink-0 mt-0.5">
+                          <DollarSign className="w-3.5 h-3.5" />
+                        </div>
+                        <div>
+                          <div className="text-xs font-semibold text-slate-900 group-hover:text-[#10B981] transition-colors">
+                            Finance
+                          </div>
+                          <div className="text-[11px] text-slate-500 leading-tight">
+                            Budget discussion logs & contract audit.
+                          </div>
+                        </div>
+                      </Link>
+                    </div>
+
+                    {/* Column 3: Operations & Tech */}
+                    <div className="space-y-2">
+                      <p className="text-[11px] font-bold text-[#10B981] uppercase tracking-wider mb-2 font-mono flex items-center gap-1">
+                        <Cpu className="w-3.5 h-3.5" /> Operations & Tech
+                      </p>
+
+                      <Link
+                        href="/solutions/engineering"
+                        className="flex items-start gap-2.5 p-2 rounded-xl hover:bg-slate-50 transition-colors group"
+                      >
+                        <div className="w-7 h-7 rounded-lg bg-slate-900 text-[#10B981] flex items-center justify-center shrink-0 mt-0.5">
+                          <FileCode2 className="w-3.5 h-3.5" />
+                        </div>
+                        <div>
+                          <div className="text-xs font-bold text-slate-900 group-hover:text-[#10B981] transition-colors">
+                            Engineering
+                          </div>
+                          <div className="text-[11px] text-slate-500 leading-tight">
+                            Architecture decisions & tech debt memory.
+                          </div>
+                        </div>
+                      </Link>
+
+                      <Link
+                        href="/solutions/it-support"
+                        className="flex items-start gap-2.5 p-2 rounded-xl hover:bg-slate-50 transition-colors group"
+                      >
+                        <div className="w-7 h-7 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center shrink-0 mt-0.5">
+                          <Headphones className="w-3.5 h-3.5" />
+                        </div>
+                        <div>
+                          <div className="text-xs font-semibold text-slate-900 group-hover:text-[#10B981] transition-colors">
+                            IT & Support
+                          </div>
+                          <div className="text-[11px] text-slate-500 leading-tight">
+                            Incident debriefs & KB auto-documentation.
+                          </div>
+                        </div>
+                      </Link>
+
+                      <Link
+                        href="/solutions/hr-talent"
+                        className="flex items-start gap-2.5 p-2 rounded-xl hover:bg-slate-50 transition-colors group"
+                      >
+                        <div className="w-7 h-7 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center shrink-0 mt-0.5">
+                          <UserPlus className="w-3.5 h-3.5" />
+                        </div>
+                        <div>
+                          <div className="text-xs font-semibold text-slate-900 group-hover:text-[#10B981] transition-colors">
+                            HR & Talent
+                          </div>
+                          <div className="text-[11px] text-slate-500 leading-tight">
+                            Unbiased interview notes & talent briefs.
+                          </div>
+                        </div>
+                      </Link>
+
+                      <Link
+                        href="/solutions/consulting"
+                        className="flex items-start gap-2.5 p-2 rounded-xl hover:bg-slate-50 transition-colors group"
+                      >
+                        <div className="w-7 h-7 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center shrink-0 mt-0.5">
+                          <Wrench className="w-3.5 h-3.5" />
+                        </div>
+                        <div>
+                          <div className="text-xs font-semibold text-slate-900 group-hover:text-[#10B981] transition-colors">
+                            Consulting & Advisory
+                          </div>
+                          <div className="text-[11px] text-slate-500 leading-tight">
+                            Billable discovery synthesis & client reports.
+                          </div>
+                        </div>
+                      </Link>
+                    </div>
                   </div>
 
-                  <div className="space-y-3">
-                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-                      By Sector & Governance
-                    </p>
-                    <Link
-                      href="/solutions/compliance"
-                      className="flex items-start gap-2.5 p-2 rounded-lg hover:bg-slate-50 transition-colors group"
-                    >
-                      <Landmark className="w-4 h-4 text-slate-600 mt-0.5 shrink-0" />
-                      <div>
-                        <div className="text-xs font-bold text-slate-900 group-hover:text-[#10B981]">
-                          Legal & Compliance Audit Prep
-                        </div>
-                        <div className="text-[11px] text-slate-500">
-                          Air-gapped records & DPDP audit trails.
-                        </div>
-                      </div>
-                    </Link>
+                  {/* Mega Menu Footer Banner */}
+                  <div className="pt-3 flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-xs text-slate-600">
+                      <LayoutGrid className="w-4 h-4 text-[#10B981]" />
+                      <span className="font-medium text-slate-700">Looking for custom role configurations or all solutions?</span>
+                    </div>
                     <Link
                       href="/solutions"
-                      className="flex items-start gap-2.5 p-2 rounded-lg hover:bg-slate-50 transition-colors group"
+                      className="inline-flex items-center gap-1 text-xs font-bold text-[#10B981] hover:text-[#059669] hover:underline"
                     >
-                      <Building2 className="w-4 h-4 text-slate-600 mt-0.5 shrink-0" />
-                      <div>
-                        <div className="text-xs font-bold text-slate-900 group-hover:text-[#10B981]">
-                          All Enterprise Solutions
-                        </div>
-                        <div className="text-[11px] text-slate-500">
-                          Consulting, Government, Banking & Tech.
-                        </div>
-                      </div>
+                      <span>Explore All Solutions Hub</span>
+                      <ChevronRight className="w-3.5 h-3.5" />
                     </Link>
                   </div>
                 </div>
@@ -674,29 +857,108 @@ export default function Navbar() {
               </span>
             </Link>
 
-            <div className="font-bold text-xs text-slate-400 uppercase tracking-wider pt-2">
-              Solutions & Use Cases
+            <div className="font-bold text-xs text-[#10B981] uppercase tracking-wider pt-2 font-mono flex items-center gap-1">
+              <Users className="w-3.5 h-3.5" /> Solutions — Leadership
             </div>
             <Link
-              href="/solutions/workshops"
+              href="/solutions/executive-leadership"
               onClick={() => setMobileMenuOpen(false)}
               className="text-sm font-semibold text-slate-800 hover:text-[#10B981] pl-2"
             >
-              Strategy Workshops & Offsites ⭐
+              Executive Leadership
             </Link>
             <Link
-              href="/solutions/board-meetings"
+              href="/solutions/strategy-pmo"
               onClick={() => setMobileMenuOpen(false)}
               className="text-sm font-semibold text-slate-800 hover:text-[#10B981] pl-2"
             >
-              Board & Executive Meetings
+              Strategy & PMO
             </Link>
             <Link
-              href="/solutions/compliance"
+              href="/solutions/operations"
               onClick={() => setMobileMenuOpen(false)}
               className="text-sm font-semibold text-slate-800 hover:text-[#10B981] pl-2"
             >
-              Legal & Compliance Audit Prep
+              Operations Leaders
+            </Link>
+            <Link
+              href="/solutions/compliance-risk"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-sm font-semibold text-slate-800 hover:text-[#10B981] pl-2"
+            >
+              Compliance & Risk
+            </Link>
+
+            <div className="font-bold text-xs text-[#10B981] uppercase tracking-wider pt-2 font-mono flex items-center gap-1">
+              <TrendingUp className="w-3.5 h-3.5" /> Solutions — Business Teams
+            </div>
+            <Link
+              href="/solutions/sales"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-sm font-semibold text-slate-800 hover:text-[#10B981] pl-2"
+            >
+              Sales Teams
+            </Link>
+            <Link
+              href="/solutions/customer-success"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-sm font-semibold text-slate-800 hover:text-[#10B981] pl-2"
+            >
+              Customer Success
+            </Link>
+            <Link
+              href="/solutions/marketing"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-sm font-semibold text-slate-800 hover:text-[#10B981] pl-2"
+            >
+              Marketing
+            </Link>
+            <Link
+              href="/solutions/finance"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-sm font-semibold text-slate-800 hover:text-[#10B981] pl-2"
+            >
+              Finance
+            </Link>
+
+            <div className="font-bold text-xs text-[#10B981] uppercase tracking-wider pt-2 font-mono flex items-center gap-1">
+              <Cpu className="w-3.5 h-3.5" /> Solutions — Operations & Tech
+            </div>
+            <Link
+              href="/solutions/engineering"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-sm font-semibold text-slate-800 hover:text-[#10B981] pl-2"
+            >
+              Engineering
+            </Link>
+            <Link
+              href="/solutions/it-support"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-sm font-semibold text-slate-800 hover:text-[#10B981] pl-2"
+            >
+              IT & Support
+            </Link>
+            <Link
+              href="/solutions/hr-talent"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-sm font-semibold text-slate-800 hover:text-[#10B981] pl-2"
+            >
+              HR & Talent
+            </Link>
+            <Link
+              href="/solutions/consulting"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-sm font-semibold text-slate-800 hover:text-[#10B981] pl-2"
+            >
+              Consulting & Advisory
+            </Link>
+            <Link
+              href="/solutions"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-sm font-bold text-[#10B981] hover:underline pl-2 flex items-center gap-1"
+            >
+              <span>Explore All Solutions Hub</span>
+              <ChevronRight className="w-4 h-4" />
             </Link>
 
             <div className="font-bold text-xs text-slate-400 uppercase tracking-wider pt-2">
