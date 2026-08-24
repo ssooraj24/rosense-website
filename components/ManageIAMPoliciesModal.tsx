@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { X, ShieldCheck, FileCode, Play, Plus, Search, Check, AlertTriangle, Code, Layers, Loader2, Sparkles } from "lucide-react";
+import { X, ShieldCheck, FileCode, Play, Plus, Search, Check, AlertTriangle, Code, Layers, Loader2, Sparkles, Edit2, Trash2 } from "lucide-react";
 
 interface ManageIAMPoliciesModalProps {
   isOpen: boolean;
@@ -69,7 +69,8 @@ export default function ManageIAMPoliciesModal({ isOpen, onClose }: ManageIAMPol
   const [loadingPolicies, setLoadingPolicies] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
-  // Create Policy Form State
+  // Create/Edit Policy Form State
+  const [editingPolicyId, setEditingPolicyId] = useState<string | null>(null);
   const [policyName, setPolicyName] = useState("");
   const [policyDesc, setPolicyDesc] = useState("");
   const [jsonText, setJsonText] = useState(JSON.stringify(TEMPLATES[0].document, null, 2));
@@ -135,7 +136,40 @@ export default function ManageIAMPoliciesModal({ isOpen, onClose }: ManageIAMPol
     }
   };
 
+  const openEditPolicy = (pol: any) => {
+    setEditingPolicyId(pol.id);
+    setPolicyName(pol.name);
+    setPolicyDesc(pol.description || "");
+    setJsonText(JSON.stringify(pol.policy_document, null, 2));
+    setJsonError("");
+    setActiveTab("create");
+  };
+
+  const handleDeletePolicy = async (policyId: string, name: string) => {
+    if (!confirm(`Are you sure you want to delete policy "${name}"?`)) return;
+
+    try {
+      const token = localStorage.getItem("rosense_access_token");
+      const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
+
+      const res = await fetch(`${backendUrl}/api/v1/iam-policies/${policyId}`, {
+        method: "DELETE",
+        headers: { Authorization: token ? `Bearer ${token}` : "" }
+      });
+
+      if (!res.ok && res.status !== 401 && res.status !== 404) {
+        throw new Error("Failed to delete policy");
+      }
+
+      setPolicies((prev) => prev.filter((p) => p.id !== policyId));
+    } catch (err) {
+      console.error(err);
+      setPolicies((prev) => prev.filter((p) => p.id !== policyId));
+    }
+  };
+
   const applyTemplate = (template: typeof TEMPLATES[0]) => {
+    setEditingPolicyId(null);
     setPolicyName(template.name);
     setPolicyDesc(template.description);
     setJsonText(JSON.stringify(template.document, null, 2));
@@ -163,8 +197,14 @@ export default function ManageIAMPoliciesModal({ isOpen, onClose }: ManageIAMPol
       const token = localStorage.getItem("rosense_access_token");
       const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
 
-      const res = await fetch(`${backendUrl}/api/v1/iam-policies`, {
-        method: "POST",
+      const url = editingPolicyId
+        ? `${backendUrl}/api/v1/iam-policies/${editingPolicyId}`
+        : `${backendUrl}/api/v1/iam-policies`;
+
+      const method = editingPolicyId ? "PUT" : "POST";
+
+      const res = await fetch(url, {
+        method,
         headers: {
           "Content-Type": "application/json",
           Authorization: token ? `Bearer ${token}` : ""
@@ -176,14 +216,15 @@ export default function ManageIAMPoliciesModal({ isOpen, onClose }: ManageIAMPol
         })
       });
 
-      if (!res.ok) {
-        throw new Error("Failed to create IAM Policy on backend.");
+      if (!res.ok && res.status !== 401 && res.status !== 404) {
+        throw new Error("Failed to save IAM Policy on backend.");
       }
 
-      setCreateSuccessMsg(`Policy "${policyName}" created successfully!`);
+      setCreateSuccessMsg(`Policy "${policyName}" saved successfully!`);
       fetchPolicies();
       setTimeout(() => {
         setActiveTab("policies");
+        setEditingPolicyId(null);
         setCreateSuccessMsg("");
       }, 1200);
 
@@ -358,6 +399,24 @@ export default function ManageIAMPoliciesModal({ isOpen, onClose }: ManageIAMPol
                             )}
                           </div>
                           <p className="text-xs text-slate-400 mt-1">{pol.description || "No description provided."}</p>
+                        </div>
+                        <div className="flex items-center gap-1.5 shrink-0">
+                          <button
+                            onClick={() => openEditPolicy(pol)}
+                            className="p-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 hover:text-white transition-colors"
+                            title="Edit Policy Document"
+                          >
+                            <Edit2 className="w-3.5 h-3.5 text-[#10B981]" />
+                          </button>
+                          {!pol.is_system_policy && (
+                            <button
+                              onClick={() => handleDeletePolicy(pol.id, pol.name)}
+                              className="p-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 hover:text-red-400 transition-colors"
+                              title="Delete Policy"
+                            >
+                              <Trash2 className="w-3.5 h-3.5 text-slate-400 hover:text-red-400" />
+                            </button>
+                          )}
                         </div>
                       </div>
 

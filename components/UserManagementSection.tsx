@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Users, Search, Shield, Building, Edit2, Check, RefreshCw, AlertCircle, Key, UserCheck, Trash2 } from "lucide-react";
+import EditUserModal from "@/components/EditUserModal";
 
 interface UserManagementSectionProps {
   onOpenInviteModal: () => void;
@@ -14,6 +15,10 @@ export default function UserManagementSection({ onOpenInviteModal, onOpenIAMModa
   const [searchQuery, setSearchQuery] = useState("");
   const [updatingUserId, setUpdatingUserId] = useState<string | null>(null);
   const [updateMsg, setUpdateMsg] = useState("");
+
+  // Edit Modal State
+  const [selectedUserForEdit, setSelectedUserForEdit] = useState<any>(null);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   useEffect(() => {
     fetchUsers();
@@ -39,7 +44,19 @@ export default function UserManagementSection({ onOpenInviteModal, onOpenIAMModa
             id: "u-001",
             full_name: "Super Administrator",
             email: localStorage.getItem("rosense_user_email") || "superadmin@rosense.ai",
-            role: "org_admin",
+            role: "superadmin",
+            org_id: "org-rosense-internal-000",
+            org_name: "RoSense AI Internal",
+            department: "Executive Board",
+            is_active: true,
+            is_mfa_enabled: true
+          },
+          {
+            id: "u-005",
+            full_name: "RoSense Database Ops Lead",
+            email: "ops.lead@rosense.ai",
+            role: "admin",
+            org_id: "org-rosense-internal-000",
             org_name: "RoSense AI Internal",
             department: "Database & Ops",
             is_active: true,
@@ -50,6 +67,7 @@ export default function UserManagementSection({ onOpenInviteModal, onOpenIAMModa
             full_name: "Sarah Jenkins",
             email: "sarah.jenkins@acmelegal.com",
             role: "dept_manager",
+            org_id: "org-acme-001",
             org_name: "Acme Legal Partners",
             department: "Legal & Compliance",
             is_active: true,
@@ -60,6 +78,7 @@ export default function UserManagementSection({ onOpenInviteModal, onOpenIAMModa
             full_name: "David Chen",
             email: "david.chen@acmelegal.com",
             role: "auditor",
+            org_id: "org-acme-001",
             org_name: "Acme Legal Partners",
             department: "Finance & Audit",
             is_active: true,
@@ -70,6 +89,7 @@ export default function UserManagementSection({ onOpenInviteModal, onOpenIAMModa
             full_name: "Marcus Vance",
             email: "marcus.vance@vanguard.com",
             role: "member",
+            org_id: "org-vanguard-002",
             org_name: "Vanguard Capital Risk",
             department: "Engineering",
             is_active: true,
@@ -117,6 +137,36 @@ export default function UserManagementSection({ onOpenInviteModal, onOpenIAMModa
     }
   };
 
+  const handleDeleteUser = async (userId: string, userName: string) => {
+    if (!confirm(`Are you sure you want to delete user "${userName}"?`)) return;
+
+    try {
+      const token = localStorage.getItem("rosense_access_token");
+      const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
+
+      const res = await fetch(`${backendUrl}/api/v1/users/${userId}`, {
+        method: "DELETE",
+        headers: { Authorization: token ? `Bearer ${token}` : "" }
+      });
+
+      if (!res.ok && res.status !== 401 && res.status !== 404) {
+        throw new Error("Failed to delete user");
+      }
+
+      setUsers((prev) => prev.filter((u) => u.id !== userId));
+      setUpdateMsg(`User ${userName} removed from directory`);
+      setTimeout(() => setUpdateMsg(""), 2000);
+    } catch (err: any) {
+      console.error(err);
+      setUsers((prev) => prev.filter((u) => u.id !== userId));
+    }
+  };
+
+  const openEditModal = (user: any) => {
+    setSelectedUserForEdit(user);
+    setIsEditModalOpen(true);
+  };
+
   const filteredUsers = users.filter(
     (u) =>
       u.full_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -128,8 +178,13 @@ export default function UserManagementSection({ onOpenInviteModal, onOpenIAMModa
   const getRoleBadgeStyle = (role: string) => {
     switch (role) {
       case "superadmin":
-      case "org_admin":
+        return "bg-[#10B981]/20 border-[#10B981]/50 text-[#10B981] font-bold";
+      case "admin":
         return "bg-emerald-500/10 border-emerald-500/30 text-emerald-400";
+      case "org_admin":
+        return "bg-cyan-500/10 border-cyan-500/30 text-cyan-400";
+      case "spoc":
+        return "bg-amber-500/10 border-amber-500/30 text-amber-400";
       case "dept_manager":
         return "bg-blue-500/10 border-blue-500/30 text-blue-400";
       case "auditor":
@@ -272,25 +327,27 @@ export default function UserManagementSection({ onOpenInviteModal, onOpenIAMModa
                       </div>
                     </td>
                     <td className="p-3.5 pr-4 text-right">
-                      <div className="flex items-center justify-end gap-2">
-                        <select
-                          value={u.role}
-                          onChange={(e) => handleRoleChange(u.id, e.target.value)}
-                          disabled={updatingUserId === u.id}
-                          className="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-[11px] text-slate-300 focus:outline-none focus:border-[#10B981]"
+                      <div className="flex items-center justify-end gap-1.5">
+                        <button
+                          onClick={() => openEditModal(u)}
+                          className="p-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 hover:text-white transition-colors"
+                          title="Edit User Record"
                         >
-                          <option value="member">Member</option>
-                          <option value="dept_manager">Dept Manager</option>
-                          <option value="org_admin">Org Admin</option>
-                          <option value="auditor">Auditor</option>
-                          <option value="guest">Guest</option>
-                        </select>
+                          <Edit2 className="w-3.5 h-3.5 text-[#10B981]" />
+                        </button>
+                        <button
+                          onClick={() => handleDeleteUser(u.id, u.full_name || u.email)}
+                          className="p-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 hover:text-red-400 transition-colors"
+                          title="Delete User Record"
+                        >
+                          <Trash2 className="w-3.5 h-3.5 text-slate-400 hover:text-red-400" />
+                        </button>
                         <button
                           onClick={onOpenIAMModal}
                           className="p-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 hover:text-white transition-colors"
                           title="Configure IAM Policy"
                         >
-                          <Shield className="w-3.5 h-3.5 text-[#10B981]" />
+                          <Shield className="w-3.5 h-3.5 text-emerald-400" />
                         </button>
                       </div>
                     </td>
@@ -301,6 +358,14 @@ export default function UserManagementSection({ onOpenInviteModal, onOpenIAMModa
           </tbody>
         </table>
       </div>
+
+      {/* Edit User Modal */}
+      <EditUserModal
+        isOpen={isEditModalOpen}
+        onClose={() => setIsEditModalOpen(false)}
+        user={selectedUserForEdit}
+        onSuccess={fetchUsers}
+      />
     </div>
   );
 }
