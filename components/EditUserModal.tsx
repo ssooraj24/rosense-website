@@ -7,7 +7,7 @@ interface EditUserModalProps {
   isOpen: boolean;
   onClose: () => void;
   user: any;
-  onSuccess?: () => void;
+  onSuccess?: (updatedUser?: any) => void;
 }
 
 export default function EditUserModal({ isOpen, onClose, user, onSuccess }: EditUserModalProps) {
