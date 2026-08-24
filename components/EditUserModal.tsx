@@ -31,7 +31,7 @@ export default function EditUserModal({ isOpen, onClose, user, onSuccess }: Edit
       setFullName(user.full_name || "");
       setEmail(user.email || "");
       setRole(user.role || "member");
-      setSelectedOrgId(user.org_id || user.organizations?.id || "org-rosense-internal-000");
+      setSelectedOrgId(user.org_id || user.organizations?.id || "");
       setDepartment(user.department || "");
       setIsActive(user.is_active !== false);
       fetchOrganizations();
@@ -77,7 +77,7 @@ export default function EditUserModal({ isOpen, onClose, user, onSuccess }: Edit
         body: JSON.stringify({
           full_name: fullName,
           role,
-          org_id: selectedOrgId,
+          org_id: selectedOrgId || null,
           department_id: department || undefined,
           is_active: isActive
         })
@@ -139,22 +139,23 @@ export default function EditUserModal({ isOpen, onClose, user, onSuccess }: Edit
 
         {/* Form Body */}
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Organization Selection Field */}
+          {/* Organization Selection Field (Optional) */}
           <div>
             <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5 flex items-center justify-between">
-              <span>Organization (Tenant Scope) *</span>
-              <span className="text-[10px] text-[#10B981] font-mono lowercase">Multi-tenant scope</span>
+              <span>Organization Scope (Optional)</span>
+              <span className="text-[10px] text-slate-400 font-mono lowercase">Blank for RoSense AI System Scope</span>
             </label>
             <div className="relative">
-              <Building2 className="absolute left-3 top-3 w-4 h-4 text-emerald-400" />
+              <Building2 className="absolute left-3 top-3 w-4 h-4 text-slate-500" />
               <select
                 value={selectedOrgId}
                 onChange={(e) => setSelectedOrgId(e.target.value)}
                 className="w-full pl-9 pr-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white focus:outline-none focus:border-[#10B981] font-medium"
               >
+                <option value="">-- No Organization (System Scope) --</option>
                 {organizations.map((org) => (
                   <option key={org.id} value={org.id}>
-                    {org.name} {org.name?.includes("RoSense AI Internal") ? "(System Admin Scope)" : ""}
+                    {org.name}
                   </option>
                 ))}
               </select>

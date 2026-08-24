@@ -285,8 +285,9 @@ export default function UserManagementSection({ onOpenInviteModal, onOpenIAMModa
               </tr>
             ) : (
               filteredUsers.map((u) => {
-                const orgDisplay = u.org_name || u.organizations?.name || "RoSense AI Internal";
-                const isInternal = orgDisplay.includes("RoSense AI Internal");
+                const isInternalRole = u.role === "superadmin" || u.role === "admin";
+                const orgDisplay = u.org_name || u.organizations?.name || (isInternalRole ? "RoSense AI Internal" : "-- System Scope --");
+                const isInternal = isInternalRole || orgDisplay.includes("RoSense AI Internal");
                 return (
                   <tr key={u.id} className="hover:bg-slate-900/50 transition-colors">
                     <td className="p-3.5 pl-4 flex items-center gap-3">

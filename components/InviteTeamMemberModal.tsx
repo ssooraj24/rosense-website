@@ -13,10 +13,9 @@ export default function InviteTeamMemberModal({ isOpen, onClose, onSuccess }: In
   const [email, setEmail] = useState("");
   const [fullName, setFullName] = useState("");
   const [role, setRole] = useState("member");
-  const [selectedOrgId, setSelectedOrgId] = useState("org-rosense-internal-000");
+  const [selectedOrgId, setSelectedOrgId] = useState("");
   const [department, setDepartment] = useState("");
   const [organizations, setOrganizations] = useState<any[]>([
-    { id: "org-rosense-internal-000", name: "RoSense AI Internal" },
     { id: "org-acme-001", name: "Acme Legal Partners" },
     { id: "org-vanguard-002", name: "Vanguard Capital Risk" },
   ]);
@@ -43,13 +42,6 @@ export default function InviteTeamMemberModal({ isOpen, onClose, onSuccess }: In
         const data = await res.json();
         if (data.organizations && data.organizations.length > 0) {
           setOrganizations(data.organizations);
-          // Set RoSense AI Internal as default if present
-          const internalOrg = data.organizations.find((o: any) => o.name?.includes("RoSense AI Internal"));
-          if (internalOrg) {
-            setSelectedOrgId(internalOrg.id);
-          } else {
-            setSelectedOrgId(data.organizations[0].id);
-          }
         }
       }
     } catch (err) {
@@ -102,7 +94,7 @@ export default function InviteTeamMemberModal({ isOpen, onClose, onSuccess }: In
           email,
           full_name: fullName,
           role,
-          org_id: selectedOrgId,
+          org_id: selectedOrgId || undefined,
           department_id: department || undefined,
           temp_password: tempPassword,
         }),
@@ -114,8 +106,8 @@ export default function InviteTeamMemberModal({ isOpen, onClose, onSuccess }: In
         // Fallback simulation if backend endpoint is unavailable
         if (response.status === 401 || response.status === 404 || response.status === 500) {
           console.warn("Backend invite API offline, applying fallback client simulation");
-          setSuccessMsg(`Simulated invite link generated for ${email} in ${selectedOrg?.name || "selected organization"}`);
-          if (onSuccess) onSuccess({ email, full_name: fullName, role, org_id: selectedOrgId, org_name: selectedOrg?.name, department });
+          setSuccessMsg(`Simulated invite generated for ${email}`);
+          if (onSuccess) onSuccess({ email, full_name: fullName, role, org_id: selectedOrgId || null, org_name: selectedOrg?.name || "RoSense AI Internal", department });
           setTimeout(() => {
             resetForm();
             onClose();
@@ -125,7 +117,7 @@ export default function InviteTeamMemberModal({ isOpen, onClose, onSuccess }: In
         throw new Error(data.detail || "Failed to send team invitation.");
       }
 
-      setSuccessMsg(`Invitation sent successfully to ${email} (${selectedOrg?.name || "Organization"})`);
+      setSuccessMsg(`Invitation sent successfully to ${email}`);
       if (onSuccess) onSuccess(data);
 
       setTimeout(() => {
@@ -143,6 +135,7 @@ export default function InviteTeamMemberModal({ isOpen, onClose, onSuccess }: In
     setEmail("");
     setFullName("");
     setRole("member");
+    setSelectedOrgId("");
     setDepartment("");
     setErrorMsg("");
     setSuccessMsg("");
@@ -159,7 +152,7 @@ export default function InviteTeamMemberModal({ isOpen, onClose, onSuccess }: In
             </div>
             <div>
               <h2 className="text-lg font-bold text-white">Invite Team Member</h2>
-              <p className="text-xs text-slate-400">Add user to tenant scope with RBAC role & organization assignment</p>
+              <p className="text-xs text-slate-400">Add user with RBAC role & optional organization scope</p>
             </div>
           </div>
           <button
@@ -186,22 +179,23 @@ export default function InviteTeamMemberModal({ isOpen, onClose, onSuccess }: In
 
         {/* Form Body */}
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Organization Selection Field */}
+          {/* Organization Selection Field (Optional) */}
           <div>
             <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5 flex items-center justify-between">
-              <span>Assign Organization (Tenant Scope) *</span>
-              <span className="text-[10px] text-[#10B981] font-mono lowercase">RoSense AI Internal Default</span>
+              <span>Assign Organization (Optional)</span>
+              <span className="text-[10px] text-slate-400 font-mono lowercase">Blank for RoSense AI System Scope</span>
             </label>
             <div className="relative">
-              <Building2 className="absolute left-3 top-3 w-4 h-4 text-emerald-400" />
+              <Building2 className="absolute left-3 top-3 w-4 h-4 text-slate-500" />
               <select
                 value={selectedOrgId}
                 onChange={(e) => setSelectedOrgId(e.target.value)}
                 className="w-full pl-9 pr-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white focus:outline-none focus:border-[#10B981] font-medium"
               >
+                <option value="">-- No Organization (System / Internal Scope) --</option>
                 {organizations.map((org) => (
                   <option key={org.id} value={org.id}>
-                    {org.name} {org.name?.includes("RoSense AI Internal") ? "(System Admin Scope)" : ""}
+                    {org.name}
                   </option>
                 ))}
               </select>
