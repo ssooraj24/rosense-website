@@ -3,11 +3,58 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Lock, ArrowRight, ShieldCheck, Server } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { Lock, ArrowRight, ShieldCheck, Server, AlertCircle, CheckCircle2 } from "lucide-react";
 
 export default function LoginPage() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setErrorMessage("");
+    setSuccessMessage("");
+
+    try {
+      // Reads NEXT_PUBLIC_BACKEND_URL (e.g. set in Vercel environment settings or fallback to localhost:8000)
+      const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
+
+      const res = await fetch(`${backendUrl}/api/v1/auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.detail || "Authentication failed. Please check your credentials.");
+      }
+
+      // Save credentials in localStorage
+      localStorage.setItem("rosense_access_token", data.access_token);
+      localStorage.setItem("rosense_user_id", data.user_id);
+      localStorage.setItem("rosense_user_email", data.email);
+
+      setSuccessMessage(`Login successful! Redirecting to Workspace Dashboard...`);
+
+      // Redirect automatically to Dashboard after 1 second
+      setTimeout(() => {
+        router.push("/dashboard");
+      }, 1000);
+    } catch (err: any) {
+      setErrorMessage(err.message || "Unable to connect to login authentication service.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-slate-950 text-white flex flex-col justify-between p-4 sm:p-8">
@@ -48,7 +95,21 @@ export default function LoginPage() {
           </p>
         </div>
 
-        <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
+        {errorMessage && (
+          <div className="mb-4 p-3 rounded-xl bg-red-950/50 border border-red-800 text-red-300 text-xs flex items-center gap-2">
+            <AlertCircle className="w-4 h-4 shrink-0 text-red-400" />
+            <span>{errorMessage}</span>
+          </div>
+        )}
+
+        {successMessage && (
+          <div className="mb-4 p-3 rounded-xl bg-emerald-950/50 border border-emerald-800 text-emerald-300 text-xs flex items-center gap-2">
+            <CheckCircle2 className="w-4 h-4 shrink-0 text-[#10B981]" />
+            <span>{successMessage}</span>
+          </div>
+        )}
+
+        <form onSubmit={handleLogin} className="space-y-4">
           <div>
             <label className="block text-xs font-bold text-slate-400 uppercase mb-1">
               Work Email
@@ -80,11 +141,12 @@ export default function LoginPage() {
           </div>
 
           <button
-            type="button"
-            className="w-full py-3.5 bg-[#10B981] hover:bg-[#059669] text-slate-950 font-bold text-sm rounded-xl transition-all shadow-md flex items-center justify-center gap-2"
+            type="submit"
+            disabled={isLoading}
+            className="w-full py-3.5 bg-[#10B981] hover:bg-[#059669] text-slate-950 font-bold text-sm rounded-xl transition-all shadow-md flex items-center justify-center gap-2 disabled:opacity-50"
             id="login-submit-btn"
           >
-            <span>Sign In to Workspace</span>
+            <span>{isLoading ? "Authenticating..." : "Sign In to Workspace"}</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </form>
