@@ -20,10 +20,19 @@ import {
   Key
 } from "lucide-react";
 
+import InviteTeamMemberModal from "@/components/InviteTeamMemberModal";
+import ManageIAMPoliciesModal from "@/components/ManageIAMPoliciesModal";
+import UserManagementSection from "@/components/UserManagementSection";
+
 export default function DashboardPage() {
   const router = useRouter();
   const [userProfile, setUserProfile] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
+
+  // Modal Visibility State
+  const [isInviteModalOpen, setIsInviteModalOpen] = useState(false);
+  const [isIAMModalOpen, setIsIAMModalOpen] = useState(false);
+  const [refreshTrigger, setRefreshTrigger] = useState(0);
 
   useEffect(() => {
     // Read stored token
@@ -220,10 +229,16 @@ export default function DashboardPage() {
               Invite department managers, associates, and auditors to your workspace while controlling access via fine-grained JSON IAM policies.
             </p>
             <div className="pt-2 flex items-center gap-3">
-              <button className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs rounded-lg transition-colors border border-slate-700">
+              <button
+                onClick={() => setIsInviteModalOpen(true)}
+                className="px-4 py-2 bg-[#10B981] hover:bg-[#059669] text-slate-950 font-bold text-xs rounded-lg transition-colors uppercase tracking-wider"
+              >
                 Invite Team Member
               </button>
-              <button className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs rounded-lg transition-colors border border-slate-700">
+              <button
+                onClick={() => setIsIAMModalOpen(true)}
+                className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs rounded-lg transition-colors border border-slate-700"
+              >
                 Manage IAM Policies
               </button>
             </div>
@@ -249,7 +264,26 @@ export default function DashboardPage() {
             </div>
           </div>
         </div>
+
+        {/* User Management Directory Component */}
+        <UserManagementSection
+          key={refreshTrigger}
+          onOpenInviteModal={() => setIsInviteModalOpen(true)}
+          onOpenIAMModal={() => setIsIAMModalOpen(true)}
+        />
       </main>
+
+      {/* Interactive Modals */}
+      <InviteTeamMemberModal
+        isOpen={isInviteModalOpen}
+        onClose={() => setIsInviteModalOpen(false)}
+        onSuccess={() => setRefreshTrigger((prev) => prev + 1)}
+      />
+
+      <ManageIAMPoliciesModal
+        isOpen={isIAMModalOpen}
+        onClose={() => setIsIAMModalOpen(false)}
+      />
 
       {/* Footer */}
       <footer className="border-t border-slate-800 bg-slate-900/30 px-6 py-4 text-center text-xs text-slate-500 font-mono">
@@ -258,3 +292,4 @@ export default function DashboardPage() {
     </div>
   );
 }
+
