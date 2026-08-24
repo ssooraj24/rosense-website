@@ -42,8 +42,13 @@ export default function MeetingDetailPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  // Search filter
+  // Search filter & Vector States
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchMode, setSearchMode] = useState<"keyword" | "semantic">("keyword");
+  const [semanticResults, setSemanticResults] = useState<any[]>([]);
+  const [isSearchingSemantic, setIsSearchingSemantic] = useState(false);
+  const [embeddingsStatus, setEmbeddingsStatus] = useState<any>(null);
+  const [isIndexingVectors, setIsIndexingVectors] = useState(false);
 
   // Audio Player States
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -93,11 +98,95 @@ export default function MeetingDetailPage() {
     }
   };
 
+  const fetchEmbeddingsStatus = async () => {
+    const token = localStorage.getItem("rosense_access_token");
+    if (!token || !meetingId) return;
+    try {
+      const res = await fetch(`${backendUrl}/api/v1/meetings/${meetingId}/embeddings/status`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setEmbeddingsStatus(data);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleTriggerIndexing = async () => {
+    const token = localStorage.getItem("rosense_access_token");
+    if (!token || !meetingId) return;
+    setIsIndexingVectors(true);
+    try {
+      const res = await fetch(`${backendUrl}/api/v1/meetings/${meetingId}/embed`, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      if (res.ok) {
+        setTimeout(() => {
+          fetchEmbeddingsStatus();
+          setIsIndexingVectors(false);
+        }, 2000);
+      }
+    } catch (err) {
+      console.error(err);
+      setIsIndexingVectors(false);
+    }
+  };
+
+  const performSemanticSearch = async (q: string) => {
+    if (!q || q.trim().length < 2) {
+      setSemanticResults([]);
+      return;
+    }
+    const token = localStorage.getItem("rosense_access_token");
+    if (!token) return;
+
+    setIsSearchingSemantic(true);
+    try {
+      const res = await fetch(`${backendUrl}/api/v1/search/semantic`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          query: q,
+          meeting_id: meetingId,
+          min_similarity: 0.25,
+          limit: 20,
+        }),
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        setSemanticResults(data || []);
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsSearchingSemantic(false);
+    }
+  };
+
   useEffect(() => {
     if (meetingId) {
       fetchMeetingData();
+      fetchEmbeddingsStatus();
     }
   }, [meetingId]);
+
+  useEffect(() => {
+    if (searchMode === "semantic" && searchQuery.trim().length >= 2) {
+      const timer = setTimeout(() => {
+        performSemanticSearch(searchQuery);
+      }, 350);
+      return () => clearTimeout(timer);
+    } else if (searchMode === "semantic" && searchQuery.trim().length < 2) {
+      setSemanticResults([]);
+    }
+  }, [searchQuery, searchMode]);
 
   // Audio time format helper
   const formatTime = (secs: number) => {
@@ -249,11 +338,25 @@ export default function MeetingDetailPage() {
     }
   };
 
-  // Filter chunks by search
-  const filteredChunks = chunks.filter((c) =>
-    c.text.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    (c.speaker_label && c.speaker_label.toLowerCase().includes(searchQuery.toLowerCase()))
-  );
+  // Filter chunks by search (Keyword vs Stage 2 AI Semantic Vector Retrieval)
+  const filteredChunks = searchMode === "semantic" && searchQuery.trim().length >= 2
+    ? semanticResults.map((m) => {
+        const orig = chunks.find((c) => c.sequence_index === m.sequence_index || c.start_time === m.start_time) || {};
+        return {
+          ...orig,
+          id: m.chunk_id || m.id,
+          speaker_label: m.speaker_label,
+          start_time: m.start_time,
+          end_time: m.end_time,
+          text: m.text,
+          similarity_score: m.similarity_score,
+          context_window: m.context_window,
+        };
+      })
+    : chunks.filter((c) =>
+        c.text.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (c.speaker_label && c.speaker_label.toLowerCase().includes(searchQuery.toLowerCase()))
+      );
 
   const token = typeof window !== "undefined" ? localStorage.getItem("rosense_access_token") : null;
   const audioSourceUrl = `${backendUrl}/api/v1/meetings/${meetingId}/audio?token=${token}`;
@@ -485,11 +588,11 @@ export default function MeetingDetailPage() {
             {/* Stage 1 Ingestion Audit Stats */}
             <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
               <div className="text-xs font-bold text-slate-400 uppercase tracking-wider font-mono">
-                Stage 1 Audit Lineage
+                Stage 1 & 2 Audit Lineage
               </div>
               <div className="space-y-2 text-xs font-mono text-slate-400">
                 <div className="flex justify-between">
-                  <span>Engine:</span>
+                  <span>STT Engine:</span>
                   <span className="text-emerald-400 font-bold">WhisperX Large v3</span>
                 </div>
                 <div className="flex justify-between">
@@ -497,14 +600,31 @@ export default function MeetingDetailPage() {
                   <span className="text-white">PyAnnote 3.1</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Confidence:</span>
-                  <span className="text-emerald-400">98.4% Mean</span>
+                  <span>Dense Vectors:</span>
+                  <span className="text-indigo-400 font-bold">BGE-Large-v1.5 (1024d)</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Audio Stream:</span>
-                  <span className="text-slate-300">{meeting?.audio_file_name || "audio.webm"}</span>
+                  <span>Vector Index:</span>
+                  <span className="text-white">pgvector HNSW Cosine</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Vector Status:</span>
+                  <span className={embeddingsStatus?.is_indexed ? "text-emerald-400 font-bold" : "text-amber-400"}>
+                    {embeddingsStatus?.is_indexed ? "Indexed (100%)" : (embeddingsStatus?.indexed_embedding_chunks ? `${embeddingsStatus.indexed_embedding_chunks} chunks` : "Pending Indexing")}
+                  </span>
                 </div>
               </div>
+
+              {!embeddingsStatus?.is_indexed && (
+                <button
+                  onClick={handleTriggerIndexing}
+                  disabled={isIndexingVectors}
+                  className="w-full mt-2 py-2 px-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white text-xs font-bold font-mono flex items-center justify-center gap-1.5 transition-all shadow-md"
+                >
+                  <Cpu className={`w-3.5 h-3.5 ${isIndexingVectors ? "animate-spin" : ""}`} />
+                  <span>{isIndexingVectors ? "Generating Vectors..." : "Index Dense Vectors"}</span>
+                </button>
+              )}
             </div>
           </div>
 
@@ -512,16 +632,50 @@ export default function MeetingDetailPage() {
           <div className="lg:col-span-3 space-y-4">
             {/* Action Bar (Search & Export) */}
             <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
-              {/* Search */}
-              <div className="relative w-full sm:w-80">
-                <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" />
-                <input
-                  type="text"
-                  placeholder="Search keywords in transcript..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-white text-xs placeholder-slate-500 focus:outline-none focus:border-emerald-500"
-                />
+              {/* Search Box & Mode Switcher */}
+              <div className="flex items-center gap-2 w-full sm:w-auto">
+                <div className="relative flex-1 sm:w-80">
+                  <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" />
+                  <input
+                    type="text"
+                    placeholder={searchMode === "semantic" ? "Semantic AI vector search..." : "Search keywords in transcript..."}
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className={`w-full pl-10 pr-4 py-2 rounded-xl bg-slate-900 border text-white text-xs placeholder-slate-500 focus:outline-none transition-colors ${
+                      searchMode === "semantic"
+                        ? "border-indigo-500/60 focus:border-indigo-400 ring-1 ring-indigo-500/20"
+                        : "border-slate-800 focus:border-emerald-500"
+                    }`}
+                  />
+                  {isSearchingSemantic && (
+                    <div className="w-3.5 h-3.5 border-2 border-indigo-400 border-t-transparent rounded-full animate-spin absolute right-3 top-1/2 -translate-y-1/2"></div>
+                  )}
+                </div>
+
+                {/* Mode Switcher */}
+                <div className="flex rounded-xl bg-slate-900 p-1 border border-slate-800 text-xs font-semibold">
+                  <button
+                    onClick={() => setSearchMode("keyword")}
+                    className={`px-2.5 py-1 rounded-lg transition-colors ${
+                      searchMode === "keyword"
+                        ? "bg-slate-800 text-white"
+                        : "text-slate-400 hover:text-white"
+                    }`}
+                  >
+                    Exact
+                  </button>
+                  <button
+                    onClick={() => setSearchMode("semantic")}
+                    className={`px-2.5 py-1 rounded-lg flex items-center gap-1 transition-colors ${
+                      searchMode === "semantic"
+                        ? "bg-indigo-600 text-white shadow-sm"
+                        : "text-slate-400 hover:text-white"
+                    }`}
+                  >
+                    <Sparkles className="w-3 h-3 text-indigo-200" />
+                    <span>AI Vector</span>
+                  </button>
+                </div>
               </div>
 
               {/* Export Actions */}
@@ -600,6 +754,12 @@ export default function MeetingDetailPage() {
                         </div>
 
                         <div className="flex items-center gap-2 font-mono text-xs">
+                          {chunk.similarity_score !== undefined && (
+                            <span className="text-indigo-300 bg-indigo-500/20 px-2 py-0.5 rounded-md border border-indigo-500/30 flex items-center gap-1 font-bold">
+                              <Sparkles className="w-2.5 h-2.5 text-indigo-400" />
+                              {Math.round(chunk.similarity_score * 100)}% Match
+                            </span>
+                          )}
                           <span className="text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 hover:bg-emerald-500/20">
                             {formatTime(chunk.start_time)} - {formatTime(chunk.end_time)}
                           </span>
