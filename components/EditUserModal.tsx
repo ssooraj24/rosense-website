@@ -30,7 +30,8 @@ export default function EditUserModal({ isOpen, onClose, user, onSuccess }: Edit
     if (isOpen && user) {
       setFullName(user.full_name || "");
       setEmail(user.email || "");
-      setRole(user.role || "member");
+      const resolvedRole = user.role || user.user_roles?.[0]?.role || (typeof user.user_roles === "object" ? user.user_roles?.role : null) || "member";
+      setRole(resolvedRole);
       setSelectedOrgId(user.org_id || user.organizations?.id || "");
       setDepartment(user.department || "");
       setIsActive(user.is_active !== false);
@@ -68,6 +69,8 @@ export default function EditUserModal({ isOpen, onClose, user, onSuccess }: Edit
       const token = localStorage.getItem("rosense_access_token");
       const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
 
+      const selectedOrg = organizations.find((o) => o.id === selectedOrgId);
+
       const res = await fetch(`${backendUrl}/api/v1/users/${user.id}`, {
         method: "PUT",
         headers: {
@@ -88,12 +91,22 @@ export default function EditUserModal({ isOpen, onClose, user, onSuccess }: Edit
       }
 
       setSuccessMsg("User record updated successfully!");
-      if (onSuccess) onSuccess();
+      if (onSuccess) {
+        onSuccess({
+          ...user,
+          full_name: fullName,
+          role,
+          org_id: selectedOrgId || null,
+          org_name: selectedOrg?.name || null,
+          department: department || "General",
+          is_active: isActive
+        });
+      }
 
       setTimeout(() => {
         setSuccessMsg("");
         onClose();
-      }, 1200);
+      }, 1000);
     } catch (err: any) {
       setErrorMsg(err.message || "An unexpected error occurred.");
     } finally {

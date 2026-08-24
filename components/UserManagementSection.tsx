@@ -36,7 +36,12 @@ export default function UserManagementSection({ onOpenInviteModal, onOpenIAMModa
 
       if (res.ok) {
         const data = await res.json();
-        setUsers(data.users || []);
+        const normalized = (data.users || []).map((u: any) => ({
+          ...u,
+          role: u.role || u.user_roles?.[0]?.role || (typeof u.user_roles === "object" ? u.user_roles?.role : null) || "member",
+          org_name: u.org_name || u.organizations?.name || null
+        }));
+        setUsers(normalized);
       } else {
         // Fallback default users for interactive presentation
         setUsers([
@@ -165,6 +170,15 @@ export default function UserManagementSection({ onOpenInviteModal, onOpenIAMModa
   const openEditModal = (user: any) => {
     setSelectedUserForEdit(user);
     setIsEditModalOpen(true);
+  };
+
+  const handleUserUpdated = (updatedUser?: any) => {
+    if (updatedUser && updatedUser.id) {
+      setUsers((prev) =>
+        prev.map((u) => (u.id === updatedUser.id ? { ...u, ...updatedUser } : u))
+      );
+    }
+    fetchUsers();
   };
 
   const filteredUsers = users.filter(
@@ -365,7 +379,7 @@ export default function UserManagementSection({ onOpenInviteModal, onOpenIAMModa
         isOpen={isEditModalOpen}
         onClose={() => setIsEditModalOpen(false)}
         user={selectedUserForEdit}
-        onSuccess={fetchUsers}
+        onSuccess={handleUserUpdated}
       />
     </div>
   );
