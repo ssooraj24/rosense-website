@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { X, Mail, User, Shield, Building, Key, Check, Copy, Loader2, AlertCircle } from "lucide-react";
+import { useState, useEffect } from "react";
+import { X, Mail, User, Shield, Building, Building2, Key, Check, Copy, Loader2, AlertCircle } from "lucide-react";
 
 interface InviteTeamMemberModalProps {
   isOpen: boolean;
@@ -13,12 +13,49 @@ export default function InviteTeamMemberModal({ isOpen, onClose, onSuccess }: In
   const [email, setEmail] = useState("");
   const [fullName, setFullName] = useState("");
   const [role, setRole] = useState("member");
+  const [selectedOrgId, setSelectedOrgId] = useState("org-rosense-internal-000");
   const [department, setDepartment] = useState("");
+  const [organizations, setOrganizations] = useState<any[]>([
+    { id: "org-rosense-internal-000", name: "RoSense AI Internal" },
+    { id: "org-acme-001", name: "Acme Legal Partners" },
+    { id: "org-vanguard-002", name: "Vanguard Capital Risk" },
+  ]);
   const [tempPassword, setTempPassword] = useState("RoSensePass2026!");
   const [copied, setCopied] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
+
+  useEffect(() => {
+    if (isOpen) {
+      fetchOrganizations();
+    }
+  }, [isOpen]);
+
+  const fetchOrganizations = async () => {
+    try {
+      const token = localStorage.getItem("rosense_access_token");
+      const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
+      const res = await fetch(`${backendUrl}/api/v1/superadmin/organizations`, {
+        headers: { Authorization: token ? `Bearer ${token}` : "" }
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.organizations && data.organizations.length > 0) {
+          setOrganizations(data.organizations);
+          // Set RoSense AI Internal as default if present
+          const internalOrg = data.organizations.find((o: any) => o.name?.includes("RoSense AI Internal"));
+          if (internalOrg) {
+            setSelectedOrgId(internalOrg.id);
+          } else {
+            setSelectedOrgId(data.organizations[0].id);
+          }
+        }
+      }
+    } catch (err) {
+      console.warn("Using fallback organizations list:", err);
+    }
+  };
 
   if (!isOpen) return null;
 
@@ -53,6 +90,8 @@ export default function InviteTeamMemberModal({ isOpen, onClose, onSuccess }: In
       const token = localStorage.getItem("rosense_access_token");
       const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
 
+      const selectedOrg = organizations.find((o) => o.id === selectedOrgId);
+
       const response = await fetch(`${backendUrl}/api/v1/users/invite`, {
         method: "POST",
         headers: {
@@ -63,6 +102,7 @@ export default function InviteTeamMemberModal({ isOpen, onClose, onSuccess }: In
           email,
           full_name: fullName,
           role,
+          org_id: selectedOrgId,
           department_id: department || undefined,
           temp_password: tempPassword,
         }),
@@ -74,8 +114,8 @@ export default function InviteTeamMemberModal({ isOpen, onClose, onSuccess }: In
         // Fallback simulation if backend endpoint is unavailable
         if (response.status === 401 || response.status === 404 || response.status === 500) {
           console.warn("Backend invite API offline, applying fallback client simulation");
-          setSuccessMsg(`Simulated invite link generated for ${email}`);
-          if (onSuccess) onSuccess({ email, full_name: fullName, role, department });
+          setSuccessMsg(`Simulated invite link generated for ${email} in ${selectedOrg?.name || "selected organization"}`);
+          if (onSuccess) onSuccess({ email, full_name: fullName, role, org_id: selectedOrgId, org_name: selectedOrg?.name, department });
           setTimeout(() => {
             resetForm();
             onClose();
@@ -85,7 +125,7 @@ export default function InviteTeamMemberModal({ isOpen, onClose, onSuccess }: In
         throw new Error(data.detail || "Failed to send team invitation.");
       }
 
-      setSuccessMsg(`Invitation sent successfully to ${email}`);
+      setSuccessMsg(`Invitation sent successfully to ${email} (${selectedOrg?.name || "Organization"})`);
       if (onSuccess) onSuccess(data);
 
       setTimeout(() => {
@@ -119,7 +159,7 @@ export default function InviteTeamMemberModal({ isOpen, onClose, onSuccess }: In
             </div>
             <div>
               <h2 className="text-lg font-bold text-white">Invite Team Member</h2>
-              <p className="text-xs text-slate-400">Add user to tenant scope with RBAC role assignment</p>
+              <p className="text-xs text-slate-400">Add user to tenant scope with RBAC role & organization assignment</p>
             </div>
           </div>
           <button
@@ -146,6 +186,28 @@ export default function InviteTeamMemberModal({ isOpen, onClose, onSuccess }: In
 
         {/* Form Body */}
         <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Organization Selection Field */}
+          <div>
+            <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5 flex items-center justify-between">
+              <span>Assign Organization (Tenant Scope) *</span>
+              <span className="text-[10px] text-[#10B981] font-mono lowercase">RoSense AI Internal Default</span>
+            </label>
+            <div className="relative">
+              <Building2 className="absolute left-3 top-3 w-4 h-4 text-emerald-400" />
+              <select
+                value={selectedOrgId}
+                onChange={(e) => setSelectedOrgId(e.target.value)}
+                className="w-full pl-9 pr-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white focus:outline-none focus:border-[#10B981] font-medium"
+              >
+                {organizations.map((org) => (
+                  <option key={org.id} value={org.id}>
+                    {org.name} {org.name?.includes("RoSense AI Internal") ? "(System Admin Scope)" : ""}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
           <div>
             <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
               Full Name *
@@ -195,6 +257,7 @@ export default function InviteTeamMemberModal({ isOpen, onClose, onSuccess }: In
                   <option value="member">Member (Standard)</option>
                   <option value="dept_manager">Department Manager</option>
                   <option value="org_admin">Organization Admin</option>
+                  <option value="superadmin">RoSense AI Superadmin</option>
                   <option value="auditor">Compliance Auditor</option>
                   <option value="guest">Guest User</option>
                 </select>
@@ -213,6 +276,7 @@ export default function InviteTeamMemberModal({ isOpen, onClose, onSuccess }: In
                   className="w-full pl-9 pr-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white focus:outline-none focus:border-[#10B981]"
                 >
                   <option value="">-- No Department --</option>
+                  <option value="db_admin">Database & Platform Ops</option>
                   <option value="legal">Legal & Compliance</option>
                   <option value="finance">Finance & Operations</option>
                   <option value="engineering">Engineering & Product</option>

@@ -40,7 +40,8 @@ export default function UserManagementSection({ onOpenInviteModal, onOpenIAMModa
             full_name: "Super Administrator",
             email: localStorage.getItem("rosense_user_email") || "superadmin@rosense.ai",
             role: "org_admin",
-            department: "Executive Board",
+            org_name: "RoSense AI Internal",
+            department: "Database & Ops",
             is_active: true,
             is_mfa_enabled: true
           },
@@ -49,6 +50,7 @@ export default function UserManagementSection({ onOpenInviteModal, onOpenIAMModa
             full_name: "Sarah Jenkins",
             email: "sarah.jenkins@acmelegal.com",
             role: "dept_manager",
+            org_name: "Acme Legal Partners",
             department: "Legal & Compliance",
             is_active: true,
             is_mfa_enabled: false
@@ -58,6 +60,7 @@ export default function UserManagementSection({ onOpenInviteModal, onOpenIAMModa
             full_name: "David Chen",
             email: "david.chen@acmelegal.com",
             role: "auditor",
+            org_name: "Acme Legal Partners",
             department: "Finance & Audit",
             is_active: true,
             is_mfa_enabled: true
@@ -65,8 +68,9 @@ export default function UserManagementSection({ onOpenInviteModal, onOpenIAMModa
           {
             id: "u-004",
             full_name: "Marcus Vance",
-            email: "marcus.vance@acmelegal.com",
+            email: "marcus.vance@vanguard.com",
             role: "member",
+            org_name: "Vanguard Capital Risk",
             department: "Engineering",
             is_active: true,
             is_mfa_enabled: false
@@ -117,6 +121,7 @@ export default function UserManagementSection({ onOpenInviteModal, onOpenIAMModa
     (u) =>
       u.full_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
       u.email?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      u.org_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
       u.role?.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -146,7 +151,7 @@ export default function UserManagementSection({ onOpenInviteModal, onOpenIAMModa
           </div>
           <div>
             <h3 className="text-base font-bold text-white">Tenant User & Access Directory</h3>
-            <p className="text-xs text-slate-400">Manage team privileges, department memberships, and AWS IAM policies</p>
+            <p className="text-xs text-slate-400">Manage team privileges, tenant organization scopes, and AWS IAM policies</p>
           </div>
         </div>
 
@@ -181,7 +186,7 @@ export default function UserManagementSection({ onOpenInviteModal, onOpenIAMModa
           <Search className="absolute left-3 top-2.5 w-4 h-4 text-slate-500" />
           <input
             type="text"
-            placeholder="Search by name, email, or role..."
+            placeholder="Search by name, email, organization, or role..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-9 pr-4 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#10B981]"
@@ -203,6 +208,7 @@ export default function UserManagementSection({ onOpenInviteModal, onOpenIAMModa
           <thead className="bg-slate-900/80 uppercase font-mono text-[10px] text-slate-400 tracking-wider border-b border-slate-800">
             <tr>
               <th className="p-3.5 pl-4">User</th>
+              <th className="p-3.5">Organization Scope</th>
               <th className="p-3.5">Assigned Role</th>
               <th className="p-3.5">Department</th>
               <th className="p-3.5">Security Status</th>
@@ -212,72 +218,85 @@ export default function UserManagementSection({ onOpenInviteModal, onOpenIAMModa
           <tbody className="divide-y divide-slate-850">
             {loading ? (
               <tr>
-                <td colSpan={5} className="p-8 text-center text-slate-500 font-mono">
+                <td colSpan={6} className="p-8 text-center text-slate-500 font-mono">
                   Loading workspace member directory...
                 </td>
               </tr>
             ) : filteredUsers.length === 0 ? (
               <tr>
-                <td colSpan={5} className="p-8 text-center text-slate-500">
+                <td colSpan={6} className="p-8 text-center text-slate-500">
                   No users found matching query.
                 </td>
               </tr>
             ) : (
-              filteredUsers.map((u) => (
-                <tr key={u.id} className="hover:bg-slate-900/50 transition-colors">
-                  <td className="p-3.5 pl-4 flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center font-bold text-xs text-[#10B981]">
-                      {u.full_name ? u.full_name.charAt(0) : u.email.charAt(0)}
-                    </div>
-                    <div>
-                      <div className="font-semibold text-white">{u.full_name || "User"}</div>
-                      <div className="text-[11px] text-slate-400 font-mono">{u.email}</div>
-                    </div>
-                  </td>
-                  <td className="p-3.5">
-                    <span className={`px-2.5 py-1 rounded-full border text-[10px] font-mono uppercase tracking-wider ${getRoleBadgeStyle(u.role)}`}>
-                      {u.role}
-                    </span>
-                  </td>
-                  <td className="p-3.5 text-slate-400">
-                    {u.department || "General"}
-                  </td>
-                  <td className="p-3.5">
-                    <div className="flex items-center gap-1.5 text-[11px]">
-                      <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-                      <span className="text-slate-300">Active</span>
-                      {u.is_mfa_enabled && (
-                        <span className="ml-2 px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 text-[9px] font-mono">
-                          MFA
-                        </span>
-                      )}
-                    </div>
-                  </td>
-                  <td className="p-3.5 pr-4 text-right">
-                    <div className="flex items-center justify-end gap-2">
-                      <select
-                        value={u.role}
-                        onChange={(e) => handleRoleChange(u.id, e.target.value)}
-                        disabled={updatingUserId === u.id}
-                        className="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-[11px] text-slate-300 focus:outline-none focus:border-[#10B981]"
-                      >
-                        <option value="member">Member</option>
-                        <option value="dept_manager">Dept Manager</option>
-                        <option value="org_admin">Org Admin</option>
-                        <option value="auditor">Auditor</option>
-                        <option value="guest">Guest</option>
-                      </select>
-                      <button
-                        onClick={onOpenIAMModal}
-                        className="p-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 hover:text-white transition-colors"
-                        title="Configure IAM Policy"
-                      >
-                        <Shield className="w-3.5 h-3.5 text-[#10B981]" />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))
+              filteredUsers.map((u) => {
+                const orgDisplay = u.org_name || u.organizations?.name || "RoSense AI Internal";
+                const isInternal = orgDisplay.includes("RoSense AI Internal");
+                return (
+                  <tr key={u.id} className="hover:bg-slate-900/50 transition-colors">
+                    <td className="p-3.5 pl-4 flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center font-bold text-xs text-[#10B981]">
+                        {u.full_name ? u.full_name.charAt(0) : u.email.charAt(0)}
+                      </div>
+                      <div>
+                        <div className="font-semibold text-white">{u.full_name || "User"}</div>
+                        <div className="text-[11px] text-slate-400 font-mono">{u.email}</div>
+                      </div>
+                    </td>
+                    <td className="p-3.5 font-medium">
+                      <span className={`px-2.5 py-1 rounded-full border text-[10px] font-mono ${
+                        isInternal
+                          ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-400 font-semibold"
+                          : "bg-slate-800 border-slate-700 text-slate-300"
+                      }`}>
+                        {orgDisplay}
+                      </span>
+                    </td>
+                    <td className="p-3.5">
+                      <span className={`px-2.5 py-1 rounded-full border text-[10px] font-mono uppercase tracking-wider ${getRoleBadgeStyle(u.role)}`}>
+                        {u.role}
+                      </span>
+                    </td>
+                    <td className="p-3.5 text-slate-400">
+                      {u.department || "General"}
+                    </td>
+                    <td className="p-3.5">
+                      <div className="flex items-center gap-1.5 text-[11px]">
+                        <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
+                        <span className="text-slate-300">Active</span>
+                        {u.is_mfa_enabled && (
+                          <span className="ml-2 px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 text-[9px] font-mono">
+                            MFA
+                          </span>
+                        )}
+                      </div>
+                    </td>
+                    <td className="p-3.5 pr-4 text-right">
+                      <div className="flex items-center justify-end gap-2">
+                        <select
+                          value={u.role}
+                          onChange={(e) => handleRoleChange(u.id, e.target.value)}
+                          disabled={updatingUserId === u.id}
+                          className="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-[11px] text-slate-300 focus:outline-none focus:border-[#10B981]"
+                        >
+                          <option value="member">Member</option>
+                          <option value="dept_manager">Dept Manager</option>
+                          <option value="org_admin">Org Admin</option>
+                          <option value="auditor">Auditor</option>
+                          <option value="guest">Guest</option>
+                        </select>
+                        <button
+                          onClick={onOpenIAMModal}
+                          className="p-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 hover:text-white transition-colors"
+                          title="Configure IAM Policy"
+                        >
+                          <Shield className="w-3.5 h-3.5 text-[#10B981]" />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })
             )}
           </tbody>
         </table>
