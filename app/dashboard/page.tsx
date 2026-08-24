@@ -17,7 +17,7 @@ import {
   Brain,
   Activity,
   Layers,
-  KeyAndLock
+  Key
 } from "lucide-react";
 
 export default function DashboardPage() {
