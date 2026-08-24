@@ -17,7 +17,10 @@ import {
   Brain,
   Activity,
   Layers,
-  Key
+  Key,
+  FileAudio,
+  Mic,
+  Calendar
 } from "lucide-react";
 
 import InviteTeamMemberModal from "@/components/InviteTeamMemberModal";
@@ -27,6 +30,7 @@ import UserManagementSection from "@/components/UserManagementSection";
 export default function DashboardPage() {
   const router = useRouter();
   const [userProfile, setUserProfile] = useState<any>(null);
+  const [recentMeetings, setRecentMeetings] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   // Modal Visibility State
@@ -42,7 +46,7 @@ export default function DashboardPage() {
       return;
     }
 
-    const fetchUserProfile = async () => {
+    const fetchUserProfileAndMeetings = async () => {
       try {
         const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
         const res = await fetch(`${backendUrl}/api/v1/auth/me`, {
@@ -57,6 +61,21 @@ export default function DashboardPage() {
 
         const data = await res.json();
         setUserProfile(data);
+
+        // Fetch recent meetings
+        try {
+          const mRes = await fetch(`${backendUrl}/api/v1/meetings?limit=6`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          if (mRes.ok) {
+            const mData = await mRes.json();
+            setRecentMeetings(mData);
+          }
+        } catch (e) {
+          console.warn("Failed fetching meetings:", e);
+        }
       } catch (err) {
         console.error("Failed to fetch user profile:", err);
         // Fallback profile if backend unreachable in demo
@@ -70,8 +89,8 @@ export default function DashboardPage() {
       }
     };
 
-    fetchUserProfile();
-  }, [router]);
+    fetchUserProfileAndMeetings();
+  }, [router, refreshTrigger]);
 
   const handleLogout = () => {
     localStorage.removeItem("rosense_access_token");
@@ -192,19 +211,25 @@ export default function DashboardPage() {
           <div className="p-5 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
             <div className="flex items-center justify-between text-slate-400">
               <span className="text-xs font-semibold uppercase tracking-wider">Total Meetings</span>
-              <FileText className="w-4 h-4 text-emerald-400" />
+              <FileAudio className="w-4 h-4 text-emerald-400" />
             </div>
-            <div className="text-2xl font-bold text-white font-mono">0</div>
-            <div className="text-[11px] text-slate-500">Processed in Tenant Scope</div>
+            <div className="text-2xl font-bold text-white font-mono">{recentMeetings.length}</div>
+            <div className="text-[11px] text-slate-500">
+              <Link href="/meetings" className="text-emerald-400 hover:underline">
+                View All &rarr;
+              </Link>
+            </div>
           </div>
 
           <div className="p-5 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
             <div className="flex items-center justify-between text-slate-400">
-              <span className="text-xs font-semibold uppercase tracking-wider font-mono">Decisions Memory</span>
-              <Brain className="w-4 h-4 text-emerald-400" />
+              <span className="text-xs font-semibold uppercase tracking-wider font-mono">Stage 1 STT</span>
+              <Mic className="w-4 h-4 text-emerald-400" />
             </div>
-            <div className="text-2xl font-bold text-white font-mono">0</div>
-            <div className="text-[11px] text-slate-500">Tracked with Provenance</div>
+            <div className="text-2xl font-bold text-emerald-400 font-mono">
+              {recentMeetings.filter((m) => m.status === "stage1_completed" || m.status === "ready").length}
+            </div>
+            <div className="text-[11px] text-slate-500">WhisperX Diarized Transcripts</div>
           </div>
 
           <div className="p-5 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
@@ -213,7 +238,7 @@ export default function DashboardPage() {
               <CheckCircle2 className="w-4 h-4 text-emerald-400" />
             </div>
             <div className="text-2xl font-bold text-white font-mono">0</div>
-            <div className="text-[11px] text-slate-500">Open Tasks & Assignments</div>
+            <div className="text-[11px] text-slate-500">Stage 3 Extraction Pending</div>
           </div>
 
           <div className="p-5 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
@@ -227,6 +252,79 @@ export default function DashboardPage() {
             </div>
             <div className="text-[11px] text-slate-500">Postgres Row-Level Security</div>
           </div>
+        </div>
+
+        {/* Recent Meetings & STT Section */}
+        <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="p-2.5 rounded-xl bg-slate-800 text-[#10B981]">
+                <FileAudio className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="text-base font-bold text-white">Recent Meeting Recordings & Transcripts</h3>
+                <p className="text-xs text-slate-400">Stage 1 WhisperX Speech-to-Text Ingestion Pipeline</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <Link
+                href="/meetings"
+                className="text-xs text-slate-400 hover:text-white font-medium transition-colors"
+              >
+                View All Hub &rarr;
+              </Link>
+              <Link
+                href="/meetings/new"
+                className="px-3.5 py-1.5 bg-[#10B981] hover:bg-[#059669] text-slate-950 font-bold text-xs rounded-lg transition-colors flex items-center gap-1.5"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>New Audio</span>
+              </Link>
+            </div>
+          </div>
+
+          {recentMeetings.length === 0 ? (
+            <div className="p-8 rounded-xl bg-slate-950/60 border border-slate-800 text-center space-y-3">
+              <Mic className="w-8 h-8 text-slate-600 mx-auto" />
+              <p className="text-xs text-slate-400">No meeting recordings ingested yet in this tenant.</p>
+              <Link
+                href="/meetings/new"
+                className="inline-flex items-center gap-1.5 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-emerald-400 text-xs font-semibold rounded-lg transition-colors"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Upload Audio or Record In-Browser</span>
+              </Link>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {recentMeetings.slice(0, 3).map((m) => (
+                <Link
+                  key={m.id}
+                  href={`/meetings/${m.id}`}
+                  className="p-4 rounded-xl bg-slate-950 border border-slate-800 hover:border-emerald-500/40 transition-all space-y-2 group block"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                      Stage 1 STT
+                    </span>
+                    <span className="text-[10px] text-slate-500 font-mono">
+                      {new Date(m.created_at).toLocaleDateString()}
+                    </span>
+                  </div>
+                  <h4 className="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors line-clamp-1">
+                    {m.title}
+                  </h4>
+                  <div className="text-xs text-slate-400 flex items-center justify-between pt-1">
+                    <span>{m.audio_duration_seconds ? `${Math.round(m.audio_duration_seconds)}s duration` : "Audio stream"}</span>
+                    <span className="text-emerald-400 font-semibold group-hover:underline text-[11px]">
+                      Open Transcript &rarr;
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Action Panel for Superadmin / Org Admin */}
