@@ -1119,6 +1119,13 @@ export default function Navbar() {
               Company & Security
             </div>
             <Link
+              href="/company/about"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-sm font-semibold text-slate-800 hover:text-[#10B981] pl-2"
+            >
+              About Us (Mission & Vision)
+            </Link>
+            <Link
               href="/pricing"
               onClick={() => setMobileMenuOpen(false)}
               className="text-sm font-semibold text-slate-800 hover:text-[#10B981] pl-2"
