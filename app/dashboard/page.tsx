@@ -20,7 +20,10 @@ import {
   Key,
   FileAudio,
   Mic,
-  Calendar
+  Calendar,
+  Clock,
+  Zap,
+  ArrowUpRight
 } from "lucide-react";
 
 import InviteTeamMemberModal from "@/components/InviteTeamMemberModal";
@@ -31,6 +34,7 @@ export default function DashboardPage() {
   const router = useRouter();
   const [userProfile, setUserProfile] = useState<any>(null);
   const [recentMeetings, setRecentMeetings] = useState<any[]>([]);
+  const [quotaData, setQuotaData] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   // Modal Visibility State
@@ -75,6 +79,21 @@ export default function DashboardPage() {
           }
         } catch (e) {
           console.warn("Failed fetching meetings:", e);
+        }
+
+        // Fetch live monthly quota & usage transparency
+        try {
+          const qRes = await fetch(`${backendUrl}/api/v1/meetings/quota`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          if (qRes.ok) {
+            const qData = await qRes.json();
+            setQuotaData(qData);
+          }
+        } catch (qe) {
+          console.warn("Failed fetching quota metrics:", qe);
         }
       } catch (err) {
         console.error("Failed to fetch user profile:", err);
@@ -204,6 +223,140 @@ export default function DashboardPage() {
               </Link>
             </div>
           </div>
+        </div>
+
+        {/* Monthly Processing Quota & Transparency Card */}
+        <div className="p-6 rounded-2xl bg-slate-900/90 border border-slate-800 shadow-xl relative overflow-hidden backdrop-blur-sm">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-800/80">
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+                <Clock className="w-5 h-5" />
+              </div>
+              <div>
+                <div className="flex items-center gap-2">
+                  <h2 className="text-base font-semibold text-white">Monthly Processing Quota & Transparency</h2>
+                  <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-medium bg-emerald-500/15 border border-emerald-500/30 text-emerald-400">
+                    {quotaData?.tier_name || "Cloud Sandbox"}
+                  </span>
+                </div>
+                <p className="text-xs text-slate-400">
+                  Real-time compute duration tracking with anti-abuse enforcement & transparent billing meters.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <div className="text-right text-xs text-slate-400 font-mono hidden sm:block">
+                <span>Cycle Resets: </span>
+                <span className="text-slate-200 font-semibold">{quotaData?.billing_cycle_reset_formatted || "Next month"}</span>
+              </div>
+              <Link
+                href="/pricing"
+                className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-semibold text-white hover:text-emerald-400 transition-colors flex items-center gap-1.5"
+              >
+                <span>Upgrade / Expand</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-5">
+            {/* Metric 1: Audio Hours */}
+            <div className="space-y-1">
+              <div className="text-xs font-mono uppercase tracking-wider text-slate-400 flex items-center justify-between">
+                <span>Audio Hours Meter</span>
+                {quotaData?.is_unlimited ? (
+                  <span className="text-emerald-400 font-bold">100% UNLIMITED</span>
+                ) : (
+                  <span className="text-slate-300 font-medium">
+                    {quotaData?.monthly_used_hours ?? 0}h / {quotaData?.monthly_quota_hours ?? 3}h
+                  </span>
+                )}
+              </div>
+              <div className="text-xl font-bold text-white font-mono">
+                {quotaData?.is_unlimited ? (
+                  <span className="text-emerald-400">Unlimited Hours</span>
+                ) : (
+                  <span>
+                    {quotaData?.monthly_remaining_hours ?? 3} <span className="text-xs font-normal text-slate-400">hrs remaining</span>
+                  </span>
+                )}
+              </div>
+              <p className="text-[11px] text-slate-500">
+                {quotaData?.is_unlimited
+                  ? "RoSense Box hardware acceleration — zero cloud compute limits."
+                  : `${quotaData?.monthly_used_hours ?? 0} hours ingested this month.`}
+              </p>
+            </div>
+
+            {/* Metric 2: Meeting Counts */}
+            <div className="space-y-1">
+              <div className="text-xs font-mono uppercase tracking-wider text-slate-400 flex items-center justify-between">
+                <span>Meeting Sessions</span>
+                {quotaData?.is_unlimited ? (
+                  <span className="text-emerald-400 font-bold">UNLIMITED</span>
+                ) : (
+                  <span className="text-slate-300 font-medium">
+                    {quotaData?.monthly_used_meetings ?? 0} / {quotaData?.monthly_quota_meetings ?? 5} meetings
+                  </span>
+                )}
+              </div>
+              <div className="text-xl font-bold text-white font-mono">
+                {quotaData?.is_unlimited ? (
+                  <span className="text-emerald-400">Unlimited Meetings</span>
+                ) : (
+                  <span>
+                    {quotaData?.monthly_remaining_meetings ?? 5} <span className="text-xs font-normal text-slate-400">meetings remaining</span>
+                  </span>
+                )}
+              </div>
+              <p className="text-[11px] text-slate-500">
+                {quotaData?.is_unlimited
+                  ? "Unlimited ingestion pipelines active."
+                  : `Total sessions queued and processed this calendar month.`}
+              </p>
+            </div>
+
+            {/* Metric 3: Single-Meeting Duration Cap */}
+            <div className="space-y-1">
+              <div className="text-xs font-mono uppercase tracking-wider text-slate-400 flex items-center justify-between">
+                <span>Per-Meeting Limit</span>
+                <span className="text-emerald-400 font-semibold font-mono">
+                  {quotaData?.is_unlimited ? "No Limit" : `Max ${quotaData?.max_meeting_duration_minutes ?? 45} mins`}
+                </span>
+              </div>
+              <div className="text-xl font-bold text-white font-mono">
+                {quotaData?.is_unlimited ? (
+                  <span className="text-emerald-400">18h+ Workshops</span>
+                ) : (
+                  <span>
+                    {quotaData?.max_meeting_duration_minutes ?? 45} <span className="text-xs font-normal text-slate-400">mins / recording</span>
+                  </span>
+                )}
+              </div>
+              <p className="text-[11px] text-slate-500">
+                {quotaData?.is_unlimited
+                  ? "Suitable for multi-day board retreats & all-day sessions."
+                  : "Audio duration enforced at client and server before ingestion."}
+              </p>
+            </div>
+          </div>
+
+          {/* Progress Bar (if tier has finite quota) */}
+          {!quotaData?.is_unlimited && (
+            <div className="pt-4 mt-2">
+              <div className="flex items-center justify-between text-xs font-mono text-slate-400 mb-1.5">
+                <span>Monthly Quota Consumed</span>
+                <span className="text-emerald-400 font-semibold">{quotaData?.percent_used ?? 0}%</span>
+              </div>
+              <div className="h-2 w-full bg-slate-800 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full transition-all duration-500"
+                  style={{ width: `${Math.min(100, quotaData?.percent_used ?? 0)}%` }}
+                />
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Metrics Grid */}

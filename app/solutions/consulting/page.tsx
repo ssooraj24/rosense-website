@@ -2,9 +2,9 @@ import PersonaSolutionLayout from "@/components/PersonaSolutionLayout";
 import { Wrench, Briefcase, FileText, TrendingUp, Clock } from "lucide-react";
 
 export const metadata = {
-  title: "Consulting & Advisory Solution — RoSense AI",
+  title: "Consulting & Advisory Solution — RoSense",
   description:
-    "Deliver 10x value on client engagements, synthesize billable discovery calls into executive reports, and reuse practice knowledge with RoSense AI.",
+    "Deliver 10x value on client engagements, synthesize billable discovery calls into executive reports, and reuse practice knowledge with RoSense.",
 };
 
 export default function ConsultingPage() {
@@ -13,7 +13,7 @@ export default function ConsultingPage() {
       badge="Consulting & Advisory"
       roleTitle="Partners & Advisory Practice Leads"
       heroHeadline="Deliver 10x Value on Client Engagements & Advisory"
-      heroSubheadline="Consulting firms bill for expertise, but associates spend hundreds of non-billable hours manually transcribing client discovery calls and writing synthesis reports. RoSense AI synthesizes multi-hour stakeholder interviews into executive client deliverables."
+      heroSubheadline="Consulting firms bill for expertise, but associates spend hundreds of non-billable hours manually transcribing client discovery calls and writing synthesis reports. RoSense synthesizes multi-hour stakeholder interviews into executive client deliverables."
       heroIcon={Wrench}
       painPointsTitle="The Profit Margin Friction in Professional Services"
       painPointsSubtitle="Advisory partners lose billable margins when senior consultants perform manual meeting synthesis."
@@ -79,7 +79,7 @@ export default function ConsultingPage() {
         },
       ]}
       ctaHeadline="Scale Your Advisory Practice Profitability"
-      ctaSubheadline="Book a demo to see how RoSense AI accelerates client discovery synthesis and engagement margins."
+      ctaSubheadline="Book a demo to see how RoSense accelerates client discovery synthesis and engagement margins."
     />
   );
 }

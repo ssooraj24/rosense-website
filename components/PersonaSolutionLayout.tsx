@@ -5,18 +5,11 @@ import {
   ArrowRight,
   CheckCircle2,
   Lock,
-  ShieldCheck,
-  Zap,
-  HelpCircle,
   LucideIcon,
   ChevronRight,
-  Sparkles,
-  Database,
-  Search,
-  FileText,
-  Clock,
-  Layers,
-  Cpu,
+  HelpCircle,
+  Zap,
+  Shield,
 } from "lucide-react";
 
 export interface PersonaSolutionProps {
@@ -65,51 +58,52 @@ export default function PersonaSolutionLayout(props: PersonaSolutionProps) {
       <Navbar />
 
       <main className="pt-24">
+        {/* ACT I: Pure White Narrative & Workflow */}
+        
         {/* 1. Hero Section */}
-        <section className="bg-slate-900 text-white py-20 relative overflow-hidden">
-          <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#10B981_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
+        <section className="bg-white py-20 lg:py-28 relative overflow-hidden border-b border-slate-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="max-w-4xl space-y-6">
-              <div className="inline-flex items-center gap-2 bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/30 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider font-mono">
+              <div className="inline-flex items-center gap-2 bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/30 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider">
                 <RoleIcon className="w-3.5 h-3.5" />
-                <span>{props.badge} — RoSense Solution</span>
+                <span>{props.badge}</span>
               </div>
 
-              <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-white leading-tight">
+              <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-slate-900 leading-tight">
                 {props.heroHeadline}
               </h1>
 
-              <p className="text-lg sm:text-xl text-slate-300 leading-relaxed font-normal">
+              <p className="text-lg sm:text-xl text-slate-600 leading-relaxed font-normal">
                 {props.heroSubheadline}
               </p>
 
               <div className="pt-4 flex flex-col sm:flex-row gap-4">
                 <Link
                   href="/company/contact"
-                  className="inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-[#059669] text-slate-950 font-bold px-7 py-3.5 rounded-xl transition-all shadow-lg hover:shadow-emerald-500/20 text-sm"
+                  className="inline-flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-semibold px-7 py-3.5 rounded-xl transition-all shadow-lg text-sm"
                 >
-                  <span>Book Demo for {props.roleTitle}</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <span>Experience RoSense for {props.roleTitle}</span>
+                  <ArrowRight className="w-4 h-4 text-[#10B981]" />
                 </Link>
                 <a
                   href="#how-it-works"
-                  className="inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-white font-semibold px-7 py-3.5 rounded-xl border border-slate-700 transition-all text-sm"
+                  className="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-slate-900 font-semibold px-7 py-3.5 rounded-xl border border-slate-200 transition-all text-sm"
                 >
-                  <span>See How RoSense Helps</span>
+                  <span>See how it works</span>
                 </a>
               </div>
             </div>
           </div>
         </section>
 
-        {/* 2. Business Challenges / Problem Section */}
-        <section className="py-20 bg-white">
+        {/* 2. Business Challenges / Bottleneck */}
+        <section className="py-24 bg-white border-b border-slate-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
             <div className="text-center max-w-3xl mx-auto space-y-3">
-              <span className="text-xs font-mono font-bold uppercase tracking-wider text-rose-500 bg-rose-50 px-3 py-1 rounded-full border border-rose-100">
-                The {props.roleTitle} Bottleneck
+              <span className="text-xs font-semibold uppercase tracking-wider text-rose-600 bg-rose-50 px-3 py-1 rounded-full border border-rose-100">
+                The {props.roleTitle} Challenge
               </span>
-              <h2 className="text-3xl font-bold text-slate-900 tracking-tight">
+              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
                 {props.painPointsTitle}
               </h2>
               <p className="text-slate-600 text-base">{props.painPointsSubtitle}</p>
@@ -119,7 +113,7 @@ export default function PersonaSolutionLayout(props: PersonaSolutionProps) {
               {props.painPoints.map((pain, pIdx) => {
                 const PainIcon = pain.icon;
                 return (
-                  <div key={pIdx} className="p-6 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-3 hover:border-slate-300 transition-all">
+                  <div key={pIdx} className="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-3 hover:border-slate-300 hover:shadow-md transition-all">
                     <div className="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center font-bold">
                       <PainIcon className="w-5 h-5" />
                     </div>
@@ -132,35 +126,35 @@ export default function PersonaSolutionLayout(props: PersonaSolutionProps) {
           </div>
         </section>
 
-        {/* 3. How RoSense Helps (Step-by-Step Workflow Pipeline) */}
-        <section id="how-it-works" className="py-20 bg-slate-900 text-white">
+        {/* 3. Step-by-Step Workflow Pipeline */}
+        <section id="how-it-works" className="py-24 bg-white border-b border-slate-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
             <div className="text-center max-w-3xl mx-auto space-y-3">
-              <div className="inline-flex items-center gap-2 bg-[#10B981]/10 text-[#10B981] px-3 py-1 rounded-full text-xs font-mono font-bold">
+              <div className="inline-flex items-center gap-2 bg-[#10B981]/10 text-[#10B981] px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider">
                 <Zap className="w-3.5 h-3.5" />
-                <span>End-to-End Persona Pipeline</span>
+                <span>Workflow Pipeline</span>
               </div>
-              <h2 className="text-3xl font-bold text-white tracking-tight">
-                How RoSense Helps {props.roleTitle} Excel
+              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
+                How RoSense helps {props.roleTitle} excel
               </h2>
-              <p className="text-slate-400 text-sm">
-                From raw multi-party discussions to automated execution and long-term organizational memory.
+              <p className="text-slate-600 text-base">
+                From multi-party conversations to automated execution and long-term organizational memory.
               </p>
             </div>
 
             <div className="grid md:grid-cols-5 gap-4">
               {props.workflowSteps.map((ws, wIdx) => (
-                <div key={wIdx} className="bg-slate-800/80 rounded-2xl p-5 border border-slate-700/80 space-y-3 relative">
+                <div key={wIdx} className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-3 relative hover:border-slate-300 hover:shadow-md transition-all">
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-mono font-bold bg-[#10B981]/20 text-[#10B981] px-2 py-0.5 rounded">
+                    <span className="text-[11px] font-mono font-bold bg-[#10B981]/15 text-emerald-800 px-2 py-0.5 rounded">
                       Step {ws.step}
                     </span>
                     {wIdx < props.workflowSteps.length - 1 && (
-                      <ChevronRight className="w-4 h-4 text-slate-500 hidden md:block" />
+                      <ChevronRight className="w-4 h-4 text-slate-400 hidden md:block" />
                     )}
                   </div>
-                  <h3 className="text-base font-bold text-white">{ws.title}</h3>
-                  <p className="text-xs text-slate-300 leading-relaxed">{ws.description}</p>
+                  <h3 className="text-base font-bold text-slate-900">{ws.title}</h3>
+                  <p className="text-xs text-slate-600 leading-relaxed">{ws.description}</p>
                 </div>
               ))}
             </div>
@@ -168,20 +162,20 @@ export default function PersonaSolutionLayout(props: PersonaSolutionProps) {
         </section>
 
         {/* 4. What RoSense Captures & Understands */}
-        <section className="py-20 bg-slate-50 border-b border-slate-200">
+        <section className="py-24 bg-white border-b border-slate-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
             <div className="text-center max-w-3xl mx-auto space-y-3">
-              <h2 className="text-3xl font-bold text-slate-900 tracking-tight">
+              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
                 {props.capturedItemsTitle}
               </h2>
-              <p className="text-slate-600 text-sm">
-                RoSense doesn't just record audio—it extracts structured domain intelligence tailored to {props.roleTitle}.
+              <p className="text-slate-600 text-base">
+                RoSense doesn&apos;t just transcribe audio—it extracts structured domain intelligence tailored to {props.roleTitle}.
               </p>
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {props.capturedItems.map((item, cIdx) => (
-                <div key={cIdx} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+                <div key={cIdx} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-2 hover:border-slate-300 transition-all">
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-[#10B981] shrink-0" />
                     <h3 className="text-sm font-bold text-slate-900">{item.title}</h3>
@@ -194,20 +188,20 @@ export default function PersonaSolutionLayout(props: PersonaSolutionProps) {
         </section>
 
         {/* 5. Business Outcomes & Measurable KPIs */}
-        <section className="py-20 bg-white">
+        <section className="py-24 bg-white border-b border-slate-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
             <div className="text-center max-w-3xl mx-auto space-y-3">
-              <h2 className="text-3xl font-bold text-slate-900 tracking-tight">
+              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
                 {props.outcomesTitle}
               </h2>
-              <p className="text-slate-600 text-sm">
+              <p className="text-slate-600 text-base">
                 Measurable performance gains delivered for {props.roleTitle} teams.
               </p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
               {props.outcomes.map((outcome, oIdx) => (
-                <div key={oIdx} className="p-8 rounded-3xl bg-slate-900 text-white space-y-3 border border-slate-800 shadow-lg">
+                <div key={oIdx} className="p-8 rounded-3xl bg-slate-950 text-white space-y-3 border border-slate-800 shadow-xl">
                   <div className="text-4xl font-extrabold text-gradient-emerald font-mono">
                     {outcome.metric}
                   </div>
@@ -219,17 +213,17 @@ export default function PersonaSolutionLayout(props: PersonaSolutionProps) {
           </div>
         </section>
 
-        {/* 6. Integrations & Workflow Automation */}
-        <section className="py-16 bg-slate-50 border-y border-slate-200">
+        {/* 6. Integrations Toolchains */}
+        <section className="py-20 bg-white border-b border-slate-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
-            <h3 className="text-xl font-bold text-slate-900">
-              Integrates Seamlessly into {props.roleTitle} Toolchains
+            <h3 className="text-2xl font-bold text-slate-900">
+              Integrates seamlessly into {props.roleTitle} toolchains
             </h3>
             <div className="flex flex-wrap items-center justify-center gap-3">
               {props.integrations.map((tool, tIdx) => (
                 <span
                   key={tIdx}
-                  className="bg-white border border-slate-200 px-4 py-2 rounded-xl text-xs font-bold text-slate-800 shadow-sm"
+                  className="bg-slate-50 border border-slate-200 px-4 py-2 rounded-xl text-xs font-semibold text-slate-800 shadow-sm"
                 >
                   {tool}
                 </span>
@@ -238,33 +232,37 @@ export default function PersonaSolutionLayout(props: PersonaSolutionProps) {
           </div>
         </section>
 
-        {/* 7. Enterprise Air-Gapped Security & RoSense Box */}
-        <section className="py-16 bg-slate-900 text-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-slate-800/80 border border-slate-700 rounded-3xl p-8 sm:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
+        {/* ACT II: Deep Dark Security, FAQ & Final Invitation */}
+
+        {/* 7. Enterprise Air-Gapped Security */}
+        <section className="py-24 bg-slate-950 text-white relative overflow-hidden border-b border-slate-800">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#10B981]/10 rounded-full blur-[140px] pointer-events-none" />
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="bg-slate-900/90 border border-slate-800 rounded-3xl p-8 sm:p-12 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl">
               <div className="space-y-3 max-w-2xl">
-                <div className="inline-flex items-center gap-2 bg-[#10B981]/20 text-[#10B981] px-3 py-1 rounded-full text-xs font-mono font-bold">
+                <div className="inline-flex items-center gap-2 bg-[#10B981]/15 text-[#10B981] px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider border border-[#10B981]/30">
                   <Lock className="w-3.5 h-3.5" />
                   <span>Enterprise Security Guarantee</span>
                 </div>
-                <h3 className="text-2xl font-bold text-white">
-                  Zero Network Leakage for Sensitive {props.roleTitle} Conversations
+                <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                  Zero network leakage for sensitive {props.roleTitle} conversations
                 </h3>
-                <p className="text-xs text-slate-300 leading-relaxed">
-                  Deploy RoSense on-premise using RoSense Box hardware. Complete DPDP compliance, encrypted RAM execution, and 100% air-gapped data sovereign protection.
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                  Deploy RoSense on-premise using the RoSense Box. Complete DPDP compliance, encrypted RAM execution, and 100% air-gapped data sovereign protection.
                 </p>
               </div>
 
               <div className="flex gap-4 shrink-0">
                 <Link
-                  href="/platform/appliance"
-                  className="bg-[#10B981] hover:bg-[#059669] text-slate-950 font-bold px-6 py-3 rounded-xl text-xs"
+                  href="/rosense-box"
+                  className="bg-[#10B981] hover:bg-[#059669] text-slate-950 font-bold px-6 py-3.5 rounded-xl text-xs transition-colors"
                 >
                   Appliance Specs
                 </Link>
                 <Link
                   href="/company/trust"
-                  className="bg-slate-700 hover:bg-slate-600 text-white font-semibold px-6 py-3 rounded-xl text-xs border border-slate-600"
+                  className="bg-slate-800 hover:bg-slate-700 text-white font-semibold px-6 py-3.5 rounded-xl text-xs border border-slate-700 transition-colors"
                 >
                   Trust Center
                 </Link>
@@ -274,42 +272,42 @@ export default function PersonaSolutionLayout(props: PersonaSolutionProps) {
         </section>
 
         {/* 8. Role FAQs */}
-        <section className="py-20 bg-white">
+        <section className="py-24 bg-slate-950 text-white border-b border-slate-800">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
             <div className="text-center space-y-3">
-              <h2 className="text-3xl font-bold text-slate-900">
-                Frequently Asked Questions for {props.roleTitle}
+              <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
+                Frequently asked questions for {props.roleTitle}
               </h2>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-4">
               {props.faqs.map((faq, fIdx) => (
-                <div key={fIdx} className="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
-                  <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
+                <div key={fIdx} className="p-6 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-2">
+                  <h3 className="text-base font-bold text-white flex items-center gap-2">
                     <HelpCircle className="w-4 h-4 text-[#10B981] shrink-0" />
                     <span>{faq.question}</span>
                   </h3>
-                  <p className="text-xs text-slate-600 leading-relaxed pl-6">{faq.answer}</p>
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed pl-6">{faq.answer}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* 9. Role Conversion CTA */}
-        <section className="py-20 bg-slate-900 text-white text-center">
-          <div className="max-w-4xl mx-auto px-4 space-y-6">
-            <h2 className="text-3xl font-bold text-white">{props.ctaHeadline}</h2>
-            <p className="text-sm text-slate-300 leading-relaxed max-w-2xl mx-auto">
+        {/* 9. Final Role Invitation */}
+        <section className="py-24 bg-slate-950 text-white text-center relative overflow-hidden">
+          <div className="max-w-4xl mx-auto px-4 space-y-6 relative z-10">
+            <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight">{props.ctaHeadline}</h2>
+            <p className="text-base text-slate-300 leading-relaxed max-w-2xl mx-auto font-normal">
               {props.ctaSubheadline}
             </p>
-            <div className="pt-2">
+            <div className="pt-4">
               <Link
                 href="/company/contact"
-                className="inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-[#059669] text-slate-950 font-bold px-8 py-4 rounded-xl shadow-lg transition-all text-base"
+                className="inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-[#059669] text-slate-950 font-bold px-8 py-4 rounded-xl shadow-lg transition-all text-sm"
               >
-                <span>Book Demo for {props.roleTitle}</span>
-                <ArrowRight className="w-5 h-5" />
+                <span>Experience RoSense for {props.roleTitle}</span>
+                <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>

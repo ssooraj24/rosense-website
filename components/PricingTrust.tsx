@@ -42,7 +42,7 @@ export default function PricingTrust() {
             <span>The Enterprise Advantage</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-            Why Enterprises Choose <span className="text-gradient-emerald">RoSense AI</span>
+            Why Enterprises Choose <span className="text-gradient-emerald">RoSense</span>
           </h2>
           <p className="mt-3 text-slate-300 text-base">
             Built from the ground up for organizations that demand total data sovereignty and transparent infrastructure costs.

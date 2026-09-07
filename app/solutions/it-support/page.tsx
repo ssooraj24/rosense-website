@@ -2,9 +2,9 @@ import PersonaSolutionLayout from "@/components/PersonaSolutionLayout";
 import { Headphones, Server, ShieldCheck, AlertCircle, RefreshCw } from "lucide-react";
 
 export const metadata = {
-  title: "IT & Support Solution — RoSense AI",
+  title: "IT & Support Solution — RoSense",
   description:
-    "Automate knowledge base creation, incident post-mortems, and IT support debrief documentation with RoSense AI.",
+    "Automate knowledge base creation, incident post-mortems, and IT support debrief documentation with RoSense.",
 };
 
 export default function ITSupportPage() {
@@ -13,7 +13,7 @@ export default function ITSupportPage() {
       badge="IT & Support"
       roleTitle="IT Directors & Service Desk Managers"
       heroHeadline="Automate Knowledge Base Creation & Incident Debriefs"
-      heroSubheadline="IT incident post-mortems and service desk troubleshooting steps are lost in Slack threads and call recordings. RoSense AI automatically turns incident debriefs and support calls into structured Knowledge Base (KB) articles and RCA reports."
+      heroSubheadline="IT incident post-mortems and service desk troubleshooting steps are lost in Slack threads and call recordings. RoSense automatically turns incident debriefs and support calls into structured Knowledge Base (KB) articles and RCA reports."
       heroIcon={Headphones}
       painPointsTitle="The Frustration of IT Support Operations"
       painPointsSubtitle="Service desk teams repeat troubleshooting steps because solution documentation falls behind."
@@ -79,7 +79,7 @@ export default function ITSupportPage() {
         },
       ]}
       ctaHeadline="Upgrade Your IT Support & Incident Management Velocity"
-      ctaSubheadline="Book a demo to see how RoSense AI turns incident debrief calls into automated KB documentation."
+      ctaSubheadline="Book a demo to see how RoSense turns incident debrief calls into automated KB documentation."
     />
   );
 }

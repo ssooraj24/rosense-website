@@ -2,9 +2,9 @@ import PersonaSolutionLayout from "@/components/PersonaSolutionLayout";
 import { UserCheck, HeartHandshake, AlertCircle, RefreshCcw, Smile } from "lucide-react";
 
 export const metadata = {
-  title: "Customer Success Solution — RoSense AI",
+  title: "Customer Success Solution — RoSense",
   description:
-    "Prevent churn, capture client feature requests, and automate Sales-to-CS handoffs with RoSense AI.",
+    "Prevent churn, capture client feature requests, and automate Sales-to-CS handoffs with RoSense.",
 };
 
 export default function CustomerSuccessPage() {
@@ -13,7 +13,7 @@ export default function CustomerSuccessPage() {
       badge="Customer Success"
       roleTitle="Customer Success Leaders"
       heroHeadline="Prevent Churn & Capture Every Client Commitment"
-      heroSubheadline="Customer churn happens when client promises made during sales onboarding are forgotten. RoSense AI monitors account health calls, flags renewal risks, extracts feature requests, and ensures flawless handoffs."
+      heroSubheadline="Customer churn happens when client promises made during sales onboarding are forgotten. RoSense monitors account health calls, flags renewal risks, extracts feature requests, and ensures flawless handoffs."
       heroIcon={UserCheck}
       painPointsTitle="Why Enterprise Account Retention Fails"
       painPointsSubtitle="CS Directors struggle when account history is fragmented across sales handoff calls and unindexed QBRs."
@@ -79,7 +79,7 @@ export default function CustomerSuccessPage() {
         },
       ]}
       ctaHeadline="Protect & Grow Enterprise Account Retention"
-      ctaSubheadline="Book a demo to see how RoSense AI turns client calls into proactive churn prevention and account growth."
+      ctaSubheadline="Book a demo to see how RoSense turns client calls into proactive churn prevention and account growth."
     />
   );
 }

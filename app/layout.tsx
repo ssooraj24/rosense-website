@@ -15,26 +15,25 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "RoSense AI — Enterprise Conversation Intelligence Platform",
+  title: "RoSense — Organizational Memory. Privately.",
   description:
-    "Turn every business conversation into structured action. RoSense captures meetings, strategy workshops, and offsites, extracts decisions, commitments, and risks, and builds a permanent, private memory for your enterprise.",
+    "Your company remembers everything. Every decision captured. Every commitment tracked. Every conversation searchable. Entirely on your terms.",
   keywords: [
     "Enterprise AI",
     "Conversation Intelligence",
     "Meeting Transcription",
-    "Mamba SSM",
     "Private AI Appliance",
     "Decision Intelligence",
     "Air-Gapped AI",
     "DPDP Compliance",
   ],
-  authors: [{ name: "RoSense AI" }],
+  authors: [{ name: "RoSense" }],
   openGraph: {
-    title: "RoSense AI — Enterprise Conversation Intelligence Platform",
+    title: "RoSense — Organizational Memory. Privately.",
     description:
-      "Turn every business conversation into structured action. RoSense extracts decisions, commitments, and risks with 100% data sovereignty.",
+      "Your company remembers everything. Every decision captured. Every commitment tracked. Entirely on your terms.",
     url: "https://rosense.local",
-    siteName: "RoSense AI",
+    siteName: "RoSense",
     type: "website",
   },
 };

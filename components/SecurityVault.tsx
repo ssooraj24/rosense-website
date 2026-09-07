@@ -7,66 +7,66 @@ export default function SecurityVault() {
     {
       num: "01",
       icon: Lock,
-      title: "RBAC & Tenant RLS Isolation",
-      description: "Database Row-Level Security (RLS) ensures users only access data within their assigned company scope.",
+      title: "Complete Data Isolation",
+      description: "Your data is invisible to everyone else on the system. Full tenant-level separation.",
     },
     {
       num: "02",
       icon: Eye,
-      title: "Immutable Audit Trail (SOC2)",
-      description: "Every decrypt, audio playback, search query, and export is recorded in an un-alterable audit log.",
+      title: "Full Audit Trail",
+      description: "Every access, playback, search, and export is recorded. Nothing goes unnoticed.",
     },
     {
       num: "03",
       icon: Cpu,
-      title: "gVisor Processing Sandbox",
-      description: "Audio processing runs inside isolated Docker gVisor containers with zero external network access.",
+      title: "Isolated Processing",
+      description: "Audio processing runs in complete isolation — no external network access, no data leakage.",
     },
     {
       num: "04",
       icon: ShieldCheck,
-      title: "Prompt Injection Protection",
-      description: "Transcripts are isolated inside XML tags before AI processing to prevent malicious prompt hijacking.",
+      title: "AI Safety",
+      description: "Built-in protections prevent data manipulation or unauthorized extraction.",
     },
     {
       num: "05",
       icon: Network,
-      title: "Air-Gapped Network Firewall",
-      description: "In Private Appliance mode, zero audio bytes ever leave your local area network (LAN).",
+      title: "Zero Network Leakage",
+      description: "In private mode, no data ever leaves your local network. Not even once.",
     },
     {
       num: "06",
       icon: Key,
-      title: "Envelope Vault Key Management",
-      description: "AES-256 GCM envelope encryption manages KEK/DEK keys via Supabase Vault.",
+      title: "Enterprise Encryption",
+      description: "Military-grade AES-256 encryption. You control the keys. Always.",
     },
     {
       num: "07",
       icon: FileText,
-      title: "Acoustic & PDF Watermarking",
-      description: "Exported transcripts include user watermarks; audio playback includes inaudible 19kHz leak-tracing pulses.",
+      title: "Leak Traceability",
+      description: "Every export is watermarked. Every playback is traceable. Leaks don't go unnoticed.",
     },
     {
       num: "08",
       icon: Trash2,
-      title: "1-Sec Crypto-Shredding (DPDP)",
-      description: "Deleting a workspace key in Vault instantly renders all encrypted audio and transcripts unrecoverable.",
+      title: "Instant Data Destruction",
+      description: "Delete everything in under one second. Irrecoverably. Full compliance with DPDP and GDPR.",
     },
   ];
 
   return (
-    <section id="security" className="py-24 bg-[#0F172A] text-white relative overflow-hidden">
+    <section id="security" className="py-28 bg-slate-950 text-white relative overflow-hidden border-t border-slate-900/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-1.5 bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/30 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
             <ShieldCheck className="w-4 h-4" />
-            <span>Vault Safeguarding Architecture</span>
+            <span>Privacy & Security</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
-            The <span className="text-gradient-emerald">8-Layer Vault Security</span> Shield
+            What you say <span className="text-gradient-emerald">stays yours</span>. Always.
           </h2>
           <p className="mt-3 text-slate-300 text-base">
-            Designed for Chief Information Security Officers (CISOs) and enterprise compliance teams.
+            Built for organizations where privacy isn't a feature — it's a requirement.
           </p>
         </div>
 

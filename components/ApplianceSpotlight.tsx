@@ -5,7 +5,7 @@ import { Server, Shield, Lock, CheckCircle2, ArrowRight, ShieldCheck, Cpu, Datab
 
 export default function ApplianceSpotlight() {
   return (
-    <section id="appliance" className="py-24 bg-gradient-dark text-white relative overflow-hidden">
+    <section id="appliance" className="py-28 bg-slate-950 text-white relative overflow-hidden">
       {/* Glow Effects */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#10B981]/10 rounded-full blur-3xl pointer-events-none" />
 
@@ -16,10 +16,10 @@ export default function ApplianceSpotlight() {
             <span>Turnkey On-Premise Appliance</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white">
-            The <span className="text-gradient-emerald">RoSense Private Box</span>
+            The <span className="text-gradient-emerald">RoSense Box</span>
           </h2>
           <p className="mt-4 text-lg text-slate-300">
-            Private AI. Complete Data Sovereignty. Run enterprise conversation intelligence entirely inside your organization&apos;s infrastructure with zero public cloud dependency.
+            Your company&apos;s memory. In a box. Intelligence that never leaves your building.
           </p>
         </div>
 
@@ -36,13 +36,10 @@ export default function ApplianceSpotlight() {
                   </div>
                   <div>
                     <div className="text-base font-bold text-white flex items-center gap-2">
-                      <span>RoSense Private Appliance</span>
-                      <span className="text-[10px] font-mono bg-[#10B981]/20 text-[#10B981] px-2 py-0.5 rounded border border-[#10B981]/30">
-                        rosense.local
-                      </span>
+                      <span>RoSense Box</span>
                     </div>
                     <div className="text-xs text-slate-400 font-mono">
-                      High-Performance Local AI • Plug & Play LAN Server
+                      Private intelligence. Plug and play.
                     </div>
                   </div>
                 </div>
@@ -120,11 +117,11 @@ export default function ApplianceSpotlight() {
           {/* Right Column: Key Appliance Benefits & Value Checklist */}
           <div className="lg:col-span-6 space-y-6">
             <h3 className="text-2xl sm:text-3xl font-bold text-white leading-snug">
-              Complete Infrastructure Sovereignty for Your Organization.
+              Your data. Your infrastructure. Your rules.
             </h3>
 
             <p className="text-slate-300 text-base leading-relaxed">
-              Designed for organizations with the highest security and compliance requirements. The RoSense Private Box operates strictly inside your LAN—no external AI cloud calls, no data transmission outside your perimeter.
+              Designed for organizations with the highest privacy requirements. The RoSense Box runs entirely inside your network — no external calls, no data leaving your perimeter.
             </p>
 
             <div className="space-y-3 pt-2">
@@ -147,11 +144,11 @@ export default function ApplianceSpotlight() {
 
             <div className="pt-4 flex flex-col sm:flex-row gap-4">
               <Link
-                href="#pricing"
+                href="/rosense-box"
                 className="inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-[#059669] text-white text-base font-semibold px-7 py-3.5 rounded-xl shadow-lg shadow-emerald-500/20 hover:scale-[1.02] transition-all"
                 id="cta-appliance-demo"
               >
-                <span>Book a Private Demo</span>
+                <span>See the RoSense Box</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>

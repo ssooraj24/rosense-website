@@ -1,13 +1,10 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import TrustBar from "@/components/TrustBar";
 import Pipeline from "@/components/Pipeline";
 import UseCases from "@/components/UseCases";
 import OutcomeCards from "@/components/OutcomeCards";
 import ApplianceSpotlight from "@/components/ApplianceSpotlight";
-import SearchSandbox from "@/components/SearchSandbox";
 import SecurityVault from "@/components/SecurityVault";
-import Pricing from "@/components/Pricing";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -18,35 +15,24 @@ export default function Home() {
 
       {/* Main Page Content Container */}
       <main id="main-content">
-        {/* 02. Hero Section — "Turn Every Business Conversation into Structured Action" */}
+        {/* 02. Act 1: The Statement — "Your company remembers everything. Privately." */}
         <Hero />
 
-        {/* 03. Trust & Compliance Bar — Zero Model Training First */}
-        <TrustBar />
-
-        {/* 04. Core Transformation Pipeline — "Listen ➔ Structure ➔ Deliver" */}
+        {/* 03. Act 2: The Story & Transformation — "Listen ➔ Structure ➔ Deliver" */}
         <Pipeline />
 
-        {/* 05. Who Uses RoSense AI — Use Cases by Industry & Role */}
+        {/* 04. Act 3: Who Uses RoSense — Use Cases & Outcomes */}
         <UseCases />
-
-        {/* 06. Why Enterprise Leaders Choose RoSense AI — 4 Outcome Cards vs Traditional Assistants */}
         <OutcomeCards />
 
-        {/* 07. The Private Appliance Spotlight — "RoSense Box" Turnkey On-Prem Hardware */}
+        {/* 05. Act 4: The Hardware — "The RoSense Box" */}
         <ApplianceSpotlight />
 
-        {/* 08. Interactive RAG Search Sandbox — Multi-Prompt Clickable Demo */}
-        <SearchSandbox />
-
-        {/* 09. 8-Layer Vault Security & Data Safeguarding Shield */}
+        {/* 06. Act 5: The Fortress — "What you say stays yours. Always." */}
         <SecurityVault />
-
-        {/* 10. Transparent Outcome Pricing Tiers — Cloud Sandbox, Business, Appliance */}
-        <Pricing />
       </main>
 
-      {/* 11. Final Conversion Banner & Footer */}
+      {/* Act 6: The Invitation Banner & Footer */}
       <Footer />
     </div>
   );

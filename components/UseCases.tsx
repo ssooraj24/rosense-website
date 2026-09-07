@@ -55,14 +55,14 @@ export default function UseCases() {
   ];
 
   return (
-    <section id="use-cases" className="py-20 bg-slate-50 border-y border-slate-200">
+    <section id="use-cases" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
             Built for Every <span className="text-gradient-emerald">Strategic Conversation</span>
           </h2>
           <p className="mt-4 text-lg text-slate-600">
-            RoSense AI is designed for organizations that demand total data privacy, long-context accuracy, and immediate decision execution.
+            RoSense is designed for organizations that demand total data privacy, long-context accuracy, and immediate decision execution.
           </p>
         </div>
 

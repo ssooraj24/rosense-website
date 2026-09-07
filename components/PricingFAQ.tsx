@@ -50,17 +50,17 @@ export default function PricingFAQ() {
   };
 
   return (
-    <section className="py-24 bg-slate-50 border-t border-slate-200">
+    <section className="py-24 bg-slate-950 text-white border-t border-slate-800">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-14">
           <div className="inline-flex items-center gap-1.5 bg-[#10B981]/10 text-[#10B981] px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
             <HelpCircle className="w-3.5 h-3.5" />
-            <span>Got Questions?</span>
+            <span>Questions & Answers</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
             Frequently Asked <span className="text-gradient-emerald">Questions</span>
           </h2>
-          <p className="mt-3 text-slate-600 text-base">
+          <p className="mt-3 text-slate-400 text-base">
             Everything you need to know about enterprise licensing, infrastructure, and deployment architecture.
           </p>
         </div>
@@ -71,11 +71,11 @@ export default function PricingFAQ() {
             return (
               <div
                 key={idx}
-                className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden transition-all duration-200"
+                className="bg-slate-900/90 rounded-xl border border-slate-800 shadow-sm overflow-hidden transition-all duration-200"
               >
                 <button
                   onClick={() => toggleFAQ(idx)}
-                  className="w-full text-left p-6 flex items-center justify-between gap-4 font-bold text-slate-900 text-base sm:text-lg hover:text-[#059669] transition-colors"
+                  className="w-full text-left p-6 flex items-center justify-between gap-4 font-bold text-white text-base sm:text-lg hover:text-[#10B981] transition-colors"
                 >
                   <span>{faq.q}</span>
                   <ChevronDown
@@ -85,7 +85,7 @@ export default function PricingFAQ() {
                   />
                 </button>
                 {isOpen && (
-                  <div className="px-6 pb-6 text-slate-600 text-sm leading-relaxed border-t border-slate-100 pt-4">
+                  <div className="px-6 pb-6 text-slate-300 text-sm leading-relaxed border-t border-slate-800/80 pt-4">
                     {faq.a}
                   </div>
                 )}

@@ -92,7 +92,7 @@ export default function SearchSandbox() {
             Experience <span className="text-gradient-emerald">Instant Company Memory</span>
           </h2>
           <p className="mt-3 text-slate-300 text-base">
-            Test how RoSense AI searches months of conversations and extracts exact decisions with timestamp audio proof.
+            Test how RoSense searches months of conversations and surfaces exact decisions with audio proof.
           </p>
         </div>
 
@@ -142,7 +142,7 @@ export default function SearchSandbox() {
           <div className="space-y-3" id="sandbox-results-list">
             <div className="flex items-center justify-between text-xs text-slate-400 font-mono pb-2 border-b border-slate-800">
               <span>{currentResults.length} Semantic Match(es) Found (&lt; 200ms)</span>
-              <span className="text-[#10B981]">Engine: bge-large + HNSW</span>
+              <span className="text-[#10B981]">Semantic Search</span>
             </div>
 
             {currentResults.map((res) => (
@@ -168,7 +168,7 @@ export default function SearchSandbox() {
                       {res.type}
                     </span>
                     <span className="text-[10px] font-mono text-slate-500">
-                      similarity {res.score}
+                      match {res.score}
                     </span>
                   </div>
                   <p className="text-xs text-slate-200 leading-relaxed">
@@ -190,7 +190,7 @@ export default function SearchSandbox() {
                   >
                     <Play className="w-3.5 h-3.5 fill-current" />
                     <span>
-                      {playingAudioId === res.id ? "Playing 20s RAM Clip..." : "Play Audio Proof"}
+                      {playingAudioId === res.id ? "Playing audio proof..." : "Play Audio Proof"}
                     </span>
                   </button>
                 </div>
@@ -200,8 +200,8 @@ export default function SearchSandbox() {
 
           {/* Sandbox Footer Disclaimer */}
           <div className="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-500 font-mono">
-            <span>GET /api/v1/jobs/id/audio?start=1394&duration=20</span>
-            <span className="text-emerald-400">RAM-only decrypt • No plain file at rest</span>
+            <span>Encrypted audio playback</span>
+            <span className="text-emerald-400">Private • Encrypted at rest</span>
           </div>
         </div>
       </div>

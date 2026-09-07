@@ -2,9 +2,9 @@ import PersonaSolutionLayout from "@/components/PersonaSolutionLayout";
 import { Megaphone, MessageSquareQuote, Target, BarChart2, Sparkles } from "lucide-react";
 
 export const metadata = {
-  title: "Marketing Solution — RoSense AI",
+  title: "Marketing Solution — RoSense",
   description:
-    "Turn Voice-of-Customer audio into high-converting copy, customer pain point clusters, and competitor insights with RoSense AI.",
+    "Turn Voice-of-Customer audio into high-converting copy, customer pain point clusters, and competitor insights with RoSense.",
 };
 
 export default function MarketingPage() {
@@ -13,7 +13,7 @@ export default function MarketingPage() {
       badge="Marketing"
       roleTitle="CMOs & Product Marketers"
       heroHeadline="Turn Voice-of-Customer Audio into High-Converting Messaging"
-      heroSubheadline="The best marketing copy comes directly from customer mouths, but buyer vocabulary stays trapped in sales and customer success recordings. RoSense AI mines Voice-of-Customer audio to extract real pain points, quotes, and competitor insights."
+      heroSubheadline="The best marketing copy comes directly from customer mouths, but buyer vocabulary stays trapped in sales and customer success recordings. RoSense mines Voice-of-Customer audio to extract real pain points, quotes, and competitor insights."
       heroIcon={Megaphone}
       painPointsTitle="The Barrier to Real Customer-Centric Messaging"
       painPointsSubtitle="Product marketing teams struggle to create resonant messaging when disconnected from real buyer conversations."
@@ -79,7 +79,7 @@ export default function MarketingPage() {
         },
       ]}
       ctaHeadline="Transform Your Product Messaging with Authentic Customer Voice"
-      ctaSubheadline="Book a demo to see how RoSense AI turns buyer call recordings into high-converting marketing campaigns."
+      ctaSubheadline="Book a demo to see how RoSense turns buyer call recordings into high-converting marketing campaigns."
     />
   );
 }

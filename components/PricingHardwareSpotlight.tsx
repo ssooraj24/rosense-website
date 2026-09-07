@@ -83,8 +83,8 @@ export default function PricingHardwareSpotlight() {
             <span>Product Showcase Launch</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
-            RoSense Private Box — <span className="text-gradient-emerald">Enterprise AI Appliance</span>
+          <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight leading-tight">
+            RoSense Private Box — <span className="text-gradient-emerald">Enterprise Appliance</span>
           </h2>
 
           <p className="text-slate-300 text-base sm:text-lg">

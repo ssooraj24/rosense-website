@@ -2,7 +2,7 @@ import PersonaSolutionLayout from "@/components/PersonaSolutionLayout";
 import { Landmark, ShieldCheck, Lock, FileText, AlertTriangle } from "lucide-react";
 
 export const metadata = {
-  title: "Compliance & Risk Solution — RoSense AI",
+  title: "Compliance & Risk Solution — RoSense",
   description:
     "Ensure DPDP compliance, zero-leakage air-gapped transcript vaulting, and automated regulatory risk detection for Legal and Compliance officers.",
 };
@@ -13,7 +13,7 @@ export default function ComplianceRiskPage() {
       badge="Compliance & Risk"
       roleTitle="Compliance & Risk Officers"
       heroHeadline="Continuous Governance & Zero-Leakage Audit Readiness"
-      heroSubheadline="Unrecorded verbal commitments and unverified meeting minutes create massive regulatory exposure. RoSense AI provides 100% air-gapped transcript vaulting, DPDP audit trails, and automated compliance risk detection."
+      heroSubheadline="Unrecorded verbal commitments and unverified meeting minutes create massive regulatory exposure. RoSense provides 100% air-gapped transcript vaulting, DPDP audit trails, and automated compliance risk detection."
       heroIcon={Landmark}
       painPointsTitle="Regulatory Vulnerabilities in Corporate Governance"
       painPointsSubtitle="Chief Risk Officers and Legal Counsel face growing compliance challenges with unmonitored meeting dialogue."
@@ -70,7 +70,7 @@ export default function ComplianceRiskPage() {
           answer: "RoSense runs entirely within your perimeter via RoSense Box hardware. No audio or transcript data ever leaves your private network.",
         },
         {
-          question: "What is crypto-shredding in RoSense AI?",
+          question: "What is crypto-shredding in RoSense?",
           answer: "Crypto-shredding destroys the encryption keys holding raw audio once structured extraction completes, rendering raw files permanently unrecoverable.",
         },
         {

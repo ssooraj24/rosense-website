@@ -1,15 +1,31 @@
 "use client";
 
-import { Sparkles, Cpu, Cloud, Server, ShieldCheck, Check, X } from "lucide-react";
+import { Cpu } from "lucide-react";
 
 export default function PricingMatrix() {
   const rows = [
     {
       feature: "Monthly Processing Quota",
-      sandbox: "5 Meetings / mo",
-      business: "100 Meetings / mo",
+      sandbox: "3 hrs / mo (up to 5 mtgs)",
+      business: "50 hrs / mo (up to 100 mtgs)",
       privateBox: "Unlimited Hours",
       enterprise: "Unlimited Hours",
+      highlight: false,
+    },
+    {
+      feature: "Max Recording Length",
+      sandbox: "45 mins / meeting",
+      business: "2 hours / meeting",
+      privateBox: "Unlimited (18h+ Offsites)",
+      enterprise: "Unlimited",
+      highlight: true,
+    },
+    {
+      feature: "Contract & Flexibility",
+      sandbox: "Free Forever",
+      business: "Monthly • Stop any day",
+      privateBox: "One-Time Capex + AMC",
+      enterprise: "Custom Enterprise SLA",
       highlight: false,
     },
     {
@@ -21,11 +37,11 @@ export default function PricingMatrix() {
       highlight: false,
     },
     {
-      feature: "AI Ingestion Engine",
-      sandbox: "Shared Cloud AI",
-      business: "Priority Cloud AI",
-      privateBox: "Local Offline AI",
-      enterprise: "Custom Fine-Tuned AI",
+      feature: "Audio Intelligence Engine",
+      sandbox: "Shared Cloud",
+      business: "Priority Cloud",
+      privateBox: "Local Offline Engine",
+      enterprise: "Custom Fine-Tuned Engine",
       highlight: true,
     },
     {
@@ -71,12 +87,11 @@ export default function PricingMatrix() {
   ];
 
   return (
-    <section className="py-24 bg-white border-t border-slate-200">
+    <section className="py-24 bg-white border-t border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-1.5 bg-[#10B981]/10 text-[#10B981] px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Clear Upgrade Path</span>
+            <span>Upgrade Path</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
             Feature & Capability <span className="text-gradient-emerald">Comparison</span>
@@ -97,7 +112,7 @@ export default function PricingMatrix() {
                   <th className="p-4 sm:p-5 text-center text-[#10B981] font-sans font-bold text-sm bg-slate-950 border-x border-[#10B981]/40">
                     <div className="flex items-center justify-center gap-1.5">
                       <Cpu className="w-4 h-4 text-[#10B981]" />
-                      <span>Private Box ⭐</span>
+                      <span>Private Box</span>
                     </div>
                   </th>
                   <th className="p-4 sm:p-5 text-center text-slate-200 font-sans text-xs">Enterprise On-Prem</th>
@@ -115,7 +130,7 @@ export default function PricingMatrix() {
                     <td className="p-4 sm:p-5 text-center text-slate-500">{row.sandbox}</td>
                     <td className="p-4 sm:p-5 text-center text-slate-700 font-semibold">{row.business}</td>
                     <td className="p-4 sm:p-5 text-center font-bold text-[#059669] bg-emerald-50/60 border-x border-emerald-200/80">
-                      <span className="inline-block bg-[#10B981] text-slate-950 px-3 py-1 rounded-full text-xs font-black shadow-sm">
+                      <span className="inline-block bg-[#10B981] text-slate-950 px-3 py-1 rounded-full text-xs font-bold shadow-sm">
                         {row.privateBox}
                       </span>
                     </td>

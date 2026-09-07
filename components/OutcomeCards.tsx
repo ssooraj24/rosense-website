@@ -17,7 +17,7 @@ export default function OutcomeCards() {
       title: "Zero Lost Details in Long Sessions",
       description:
         "Built specifically for multi-day strategy offsites, board meetings, and full-day workshops where standard note-takers fail or cut off.",
-      rosense: "Mamba-3 State-Space Model handles 18+ hours without context memory crashes",
+      rosense: "Handles 18+ hours of conversation without losing a single detail",
       traditional: "Optimized for short 30-60 min calls; degrades or fails on long audio",
     },
     {
@@ -33,7 +33,7 @@ export default function OutcomeCards() {
       title: "Instant Organizational Memory",
       description:
         "Stop asking 'didn't we discuss this six months ago?' Search across your entire company's conversation history as easily as searching Google.",
-      rosense: "Unified pgvector RAG memory connecting workshops across teams",
+      rosense: "Unified organizational memory connecting conversations across teams",
       traditional: "Meeting notes remain isolated inside individual files or user inboxes",
     },
   ];
@@ -43,7 +43,7 @@ export default function OutcomeCards() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
-            Why Enterprise Leaders Choose <span className="text-gradient-emerald">RoSense AI</span>
+            Why Enterprise Leaders Choose <span className="text-gradient-emerald">RoSense</span>
           </h2>
           <p className="mt-4 text-lg text-slate-600">
             Beyond basic meeting notes. Built for enterprise decision-making, governance, and long-term memory.
@@ -79,7 +79,7 @@ export default function OutcomeCards() {
                       </div>
                       <div>
                         <div className="text-xs font-bold text-[#059669] uppercase tracking-wide">
-                          RoSense AI Solution
+                          RoSense
                         </div>
                         <div className="text-xs font-semibold text-slate-800 mt-0.5">
                           {item.rosense}

@@ -41,6 +41,11 @@ export default function NewMeetingPage() {
   // Upload State
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isDragging, setIsDragging] = useState(false);
+  const [fileDurationSeconds, setFileDurationSeconds] = useState<number | null>(null);
+  const [durationWarning, setDurationWarning] = useState<string | null>(null);
+
+  // Quota & Tier State
+  const [quotaData, setQuotaData] = useState<any>(null);
 
   // Recording State
   const [isRecording, setIsRecording] = useState(false);
@@ -66,13 +71,32 @@ export default function NewMeetingPage() {
   const animationFrameRef = useRef<number | null>(null);
   const previewAudioRef = useRef<HTMLAudioElement | null>(null);
 
-  // Check auth
+  // Check auth and fetch live quota
   useEffect(() => {
     const token = localStorage.getItem("rosense_access_token");
     if (!token) {
       router.push("/login");
+      return;
     }
-  }, [router]);
+
+    const fetchQuota = async () => {
+      try {
+        const res = await fetch(`${backendUrl}/api/v1/meetings/quota`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        if (res.ok) {
+          const qData = await res.json();
+          setQuotaData(qData);
+        }
+      } catch (err) {
+        console.warn("Failed fetching tenant quota:", err);
+      }
+    };
+
+    fetchQuota();
+  }, [router, backendUrl]);
 
   // Clean up recording audio context and timers on unmount
   useEffect(() => {
@@ -95,6 +119,39 @@ export default function NewMeetingPage() {
     return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
   };
 
+  // Validate audio duration on selection via HTML5 Audio metadata
+  const validateAudioFile = (file: File) => {
+    setDurationWarning(null);
+    setFileDurationSeconds(null);
+
+    try {
+      const audio = new Audio();
+      const objectUrl = URL.createObjectURL(file);
+      audio.src = objectUrl;
+      audio.onloadedmetadata = () => {
+        const duration = audio.duration;
+        URL.revokeObjectURL(objectUrl);
+        if (isFinite(duration) && duration > 0) {
+          setFileDurationSeconds(duration);
+          if (quotaData && !quotaData.is_unlimited) {
+            const maxSecs = (quotaData.max_meeting_duration_minutes || 45) * 60;
+            if (duration > maxSecs) {
+              const detectedMins = (duration / 60).toFixed(1);
+              setDurationWarning(
+                `Recording length is ${detectedMins} mins, exceeding your ${quotaData.tier_name} plan limit of ${quotaData.max_meeting_duration_minutes} mins per meeting. Please trim or split the recording, or upgrade to Business Cloud (2 hrs) / RoSense Box (Unlimited).`
+              );
+            }
+          }
+        }
+      };
+      audio.onerror = () => {
+        URL.revokeObjectURL(objectUrl);
+      };
+    } catch (err) {
+      console.warn("Audio duration check error:", err);
+    }
+  };
+
   // Drag & drop handlers
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
@@ -111,6 +168,7 @@ export default function NewMeetingPage() {
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       const file = e.dataTransfer.files[0];
       setSelectedFile(file);
+      validateAudioFile(file);
       if (!title) {
         setTitle(file.name.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " "));
       }
@@ -121,6 +179,7 @@ export default function NewMeetingPage() {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
       setSelectedFile(file);
+      validateAudioFile(file);
       if (!title) {
         setTitle(file.name.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " "));
       }
@@ -176,6 +235,7 @@ export default function NewMeetingPage() {
   const startRecording = async () => {
     try {
       setErrorMessage(null);
+      setDurationWarning(null);
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       audioChunksRef.current = [];
 
@@ -204,9 +264,21 @@ export default function NewMeetingPage() {
       setIsPaused(false);
       setRecordingSeconds(0);
 
-      // Start timer
+      // Start timer with automatic tier duration cutoff enforcement
       timerRef.current = setInterval(() => {
-        setRecordingSeconds((prev) => prev + 1);
+        setRecordingSeconds((prev) => {
+          const next = prev + 1;
+          if (quotaData && !quotaData.is_unlimited) {
+            const maxSecs = (quotaData.max_meeting_duration_minutes || 45) * 60;
+            if (next >= maxSecs) {
+              stopRecording();
+              setDurationWarning(
+                `Recording automatically stopped at ${quotaData.max_meeting_duration_minutes} minutes (the maximum duration for your ${quotaData.tier_name} plan).`
+              );
+            }
+          }
+          return next;
+        });
       }, 1000);
 
       // Start Canvas Visualizer
@@ -224,7 +296,19 @@ export default function NewMeetingPage() {
       mediaRecorderRef.current.resume();
       setIsPaused(false);
       timerRef.current = setInterval(() => {
-        setRecordingSeconds((prev) => prev + 1);
+        setRecordingSeconds((prev) => {
+          const next = prev + 1;
+          if (quotaData && !quotaData.is_unlimited) {
+            const maxSecs = (quotaData.max_meeting_duration_minutes || 45) * 60;
+            if (next >= maxSecs) {
+              stopRecording();
+              setDurationWarning(
+                `Recording automatically stopped at ${quotaData.max_meeting_duration_minutes} minutes (the maximum duration for your ${quotaData.tier_name} plan).`
+              );
+            }
+          }
+          return next;
+        });
       }, 1000);
     } else {
       mediaRecorderRef.current.pause();
@@ -243,6 +327,15 @@ export default function NewMeetingPage() {
       if (!title) {
         setTitle(`Live Meeting Recording - ${new Date().toLocaleDateString()}`);
       }
+      setFileDurationSeconds(recordingSeconds);
+      if (quotaData && !quotaData.is_unlimited) {
+        const maxSecs = (quotaData.max_meeting_duration_minutes || 45) * 60;
+        if (recordingSeconds > maxSecs) {
+          setDurationWarning(
+            `Recording length is ${(recordingSeconds / 60).toFixed(1)} mins, exceeding your ${quotaData.tier_name} limit of ${quotaData.max_meeting_duration_minutes} mins.`
+          );
+        }
+      }
     }
   };
 
@@ -254,6 +347,8 @@ export default function NewMeetingPage() {
     setRecordedBlob(null);
     setRecordedAudioUrl(null);
     setRecordingSeconds(0);
+    setFileDurationSeconds(null);
+    setDurationWarning(null);
     setPreviewPlaying(false);
   };
 
@@ -304,6 +399,36 @@ export default function NewMeetingPage() {
       return;
     }
 
+    let durationToSend = fileDurationSeconds;
+    if (activeTab === "record") {
+      durationToSend = recordingSeconds;
+    }
+
+    // Pre-flight Quota & Limit Checks
+    if (quotaData && !quotaData.is_unlimited) {
+      if (quotaData.monthly_remaining_meetings !== null && quotaData.monthly_remaining_meetings <= 0) {
+        setErrorMessage(
+          `Monthly meeting limit reached (${quotaData.monthly_used_meetings}/${quotaData.monthly_quota_meetings} meetings). Resets on ${quotaData.billing_cycle_reset_formatted}. Upgrade to Business Cloud or deploy RoSense Box.`
+        );
+        return;
+      }
+      if (quotaData.monthly_remaining_hours !== null && quotaData.monthly_remaining_hours <= 0) {
+        setErrorMessage(
+          `Monthly audio hours exhausted (${quotaData.monthly_used_hours}/${quotaData.monthly_quota_hours} hours). Resets on ${quotaData.billing_cycle_reset_formatted}. Upgrade to Business Cloud (50 hrs) or deploy RoSense Box.`
+        );
+        return;
+      }
+      if (durationToSend) {
+        const maxSecs = (quotaData.max_meeting_duration_minutes || 45) * 60;
+        if (durationToSend > maxSecs) {
+          setErrorMessage(
+            `Meeting duration (${(durationToSend / 60).toFixed(1)} mins) exceeds your ${quotaData.tier_name} plan limit of ${quotaData.max_meeting_duration_minutes} mins. Please trim the recording or upgrade.`
+          );
+          return;
+        }
+      }
+    }
+
     setIsSubmitting(true);
     setPipelineStep(1); // Step 1: Uploading
 
@@ -315,6 +440,9 @@ export default function NewMeetingPage() {
       if (departmentId) formData.append("department_id", departmentId);
       if (description) formData.append("description", description);
       if (expectedSpeakers) formData.append("expected_speakers", expectedSpeakers);
+      if (durationToSend && durationToSend > 0) {
+        formData.append("duration_seconds", String(Math.round(durationToSend)));
+      }
 
       // Simulate step progress for user feedback
       setTimeout(() => setPipelineStep(2), 1200); // Step 2: Storage & Ingestion
@@ -409,6 +537,52 @@ export default function NewMeetingPage() {
             Upload an audio recording or capture live speech directly in your browser. Stage 1 will perform word-level alignment and speaker diarization.
           </p>
         </div>
+
+        {/* Transparent Quota Context Bar */}
+        <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
+          <div className="flex items-center gap-2.5">
+            <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
+            <span className="font-semibold text-white">Tenant Plan:</span>
+            <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-mono text-[11px]">
+              {quotaData?.tier_name || "Cloud Sandbox"}
+            </span>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-3 text-slate-400 font-mono text-[11px]">
+            {quotaData?.is_unlimited ? (
+              <span className="text-emerald-400 font-bold">100% Unlimited Duration & Meetings</span>
+            ) : (
+              <>
+                <span>
+                  Remaining Hours: <strong className="text-white">{quotaData?.monthly_remaining_hours ?? 3}h</strong> / {quotaData?.monthly_quota_hours ?? 3}h
+                </span>
+                <span>•</span>
+                <span>
+                  Meetings: <strong className="text-white">{quotaData?.monthly_remaining_meetings ?? 5} left</strong>
+                </span>
+                <span>•</span>
+                <span className="text-emerald-400 font-medium">
+                  Max {quotaData?.max_meeting_duration_minutes ?? 45} mins / meeting
+                </span>
+              </>
+            )}
+          </div>
+
+          <Link href="/pricing" className="text-slate-400 hover:text-emerald-400 underline underline-offset-2 text-[11px] whitespace-nowrap">
+            View plan limits &rarr;
+          </Link>
+        </div>
+
+        {/* Warning if duration exceeds quota */}
+        {durationWarning && (
+          <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs flex items-start gap-3">
+            <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5 text-amber-400" />
+            <div>
+              <div className="font-semibold">Meeting Duration Notice</div>
+              <div className="text-slate-300 mt-0.5">{durationWarning}</div>
+            </div>
+          </div>
+        )}
 
         {/* Error Alert */}
         {errorMessage && (
@@ -520,15 +694,31 @@ export default function NewMeetingPage() {
                 </div>
 
                 {selectedFile ? (
-                  <div className="space-y-1">
+                  <div className="space-y-2">
                     <div className="text-sm font-bold text-white">{selectedFile.name}</div>
-                    <div className="text-xs text-slate-400 font-mono">
-                      {(selectedFile.size / (1024 * 1024)).toFixed(2)} MB • {selectedFile.type || "Audio File"}
+                    <div className="text-xs text-slate-400 font-mono flex items-center justify-center gap-2 flex-wrap">
+                      <span>{(selectedFile.size / (1024 * 1024)).toFixed(2)} MB</span>
+                      <span>•</span>
+                      {fileDurationSeconds !== null && (
+                        <>
+                          <span className="text-emerald-400 font-semibold flex items-center gap-1">
+                            <Clock className="w-3.5 h-3.5" />
+                            {(fileDurationSeconds / 60).toFixed(1)} mins (
+                            {Math.floor(fileDurationSeconds / 60)}m {Math.round(fileDurationSeconds % 60)}s)
+                          </span>
+                          <span>•</span>
+                        </>
+                      )}
+                      <span>{selectedFile.type || "Audio File"}</span>
                     </div>
                     <button
                       type="button"
-                      onClick={() => setSelectedFile(null)}
-                      className="text-xs text-red-400 hover:underline pt-2 inline-block"
+                      onClick={() => {
+                        setSelectedFile(null);
+                        setFileDurationSeconds(null);
+                        setDurationWarning(null);
+                      }}
+                      className="text-xs text-red-400 hover:underline pt-1 inline-block"
                     >
                       Remove and choose another
                     </button>
@@ -570,15 +760,22 @@ export default function NewMeetingPage() {
                 </div>
 
                 {/* Timer Display */}
-                <div className="flex items-center gap-3">
-                  <div className={`w-3 h-3 rounded-full ${isRecording ? (isPaused ? "bg-amber-400" : "bg-red-500 animate-ping") : "bg-slate-700"}`}></div>
-                  <span className="font-mono text-3xl font-bold tracking-wider text-white">
-                    {formatTime(recordingSeconds)}
-                  </span>
-                  {isRecording && (
-                    <span className="text-xs font-mono uppercase px-2 py-0.5 rounded bg-red-500/20 text-red-400 border border-red-500/30">
-                      {isPaused ? "Paused" : "Live Recording"}
+                <div className="flex flex-col items-center gap-2">
+                  <div className="flex items-center gap-3">
+                    <div className={`w-3 h-3 rounded-full ${isRecording ? (isPaused ? "bg-amber-400" : "bg-red-500 animate-ping") : "bg-slate-700"}`}></div>
+                    <span className="font-mono text-3xl font-bold tracking-wider text-white">
+                      {formatTime(recordingSeconds)}
                     </span>
+                    {isRecording && (
+                      <span className="text-xs font-mono uppercase px-2 py-0.5 rounded bg-red-500/20 text-red-400 border border-red-500/30">
+                        {isPaused ? "Paused" : "Live Recording"}
+                      </span>
+                    )}
+                  </div>
+                  {!quotaData?.is_unlimited && (
+                    <div className="text-[11px] font-mono text-slate-400">
+                      Plan Limit ({quotaData?.tier_name || "Cloud Sandbox"}): <span className="text-emerald-400 font-semibold">{quotaData?.max_meeting_duration_minutes || 45} mins</span>
+                    </div>
                   )}
                 </div>
 

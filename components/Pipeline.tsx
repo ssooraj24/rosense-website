@@ -16,11 +16,11 @@ export default function Pipeline() {
         "Upload multi-hour recordings, boardroom sessions, or multi-day workshop audio. RoSense accurately transcribes and identifies every speaker without losing context.",
       icon: Mic,
       details: [
-        "Handles 18+ hour recordings without context degradation",
-        "Pyannote 3.1 speaker diarization identifies who spoke when",
-        "RAM-only decryption preserves raw audio confidentiality",
+        "Handles 18+ hour recordings without losing a detail",
+        "Accurately identifies every speaker without losing context",
+        "Audio processed privately, never stored unencrypted",
       ],
-      badge: "WhisperX + Pyannote 3.1",
+      badge: "Multi-Speaker Audio Intelligence",
     },
     {
       id: "structure",
@@ -28,14 +28,14 @@ export default function Pipeline() {
       title: "Structure",
       subtitle: "Zero-Shot Decision & Commitment Extraction",
       description:
-        "Instead of generic text paragraphs, Mamba-3 SSM parses conversations to extract concrete business decisions, action commitments, owners, and open risks.",
+        "Conversations are parsed to extract concrete business decisions, action commitments, owners, and open risks — automatically.",
       icon: FileCode2,
       details: [
-        "Extracts Decisions, Commitments (Who, What, By When), and Risks",
-        "No KV-cache memory crashes on long-form discussions",
-        "Prompt-shielded against human speech injection",
+        "Extracts decisions, commitments, owners, deadlines, and risks",
+        "No detail lost, even in 18-hour sessions",
+        "Protected against data manipulation",
       ],
-      badge: "Mamba-3 State-Space Model",
+      badge: "Zero-Shot Decision Extraction",
     },
     {
       id: "deliver",
@@ -46,11 +46,11 @@ export default function Pipeline() {
         "Output structured intelligence into your internal tools, export executive briefing PDFs, or query months of company memory with sub-second RAG search.",
       icon: Share2,
       details: [
-        "1-Click Audio Jump links decisions back to exact 20s audio proof",
-        "Automated Webhooks to Nisol Studio, CRM & internal workflows",
-        "Sub-second RAG semantic search powered by pgvector",
+        "Every decision links back to the exact moment it was spoken",
+        "Automated integration with your CRM and internal workflows",
+        "Instant semantic search across your entire conversation history",
       ],
-      badge: "pgvector RAG + Webhooks",
+      badge: "Enterprise Memory & Integration",
     },
   ];
 
@@ -67,7 +67,7 @@ export default function Pipeline() {
             <span>The Transformation Engine</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
-            How RoSense AI Works:{" "}
+            How RoSense Works:{" "}
             <span className="text-gradient-emerald">Listen ➔ Structure ➔ Deliver</span>
           </h2>
           <p className="mt-4 text-lg text-slate-600">
@@ -176,7 +176,7 @@ export default function Pipeline() {
                 <div className="space-y-3">
                   <div className="p-3 rounded-lg bg-slate-900 border border-slate-800">
                     <div className="text-emerald-400 text-[11px] font-semibold mb-1">
-                      ▶ Ingesting 14.3GB Audio Stream
+                      ▶ Processing audio stream
                     </div>
                     <div className="text-slate-400 text-[11px]">
                       File: Executive_Offsite_FullDay.m4a (18h 45m)
@@ -184,7 +184,7 @@ export default function Pipeline() {
                   </div>
                   <div className="p-3 rounded-lg bg-slate-900 border border-slate-800">
                     <div className="text-slate-300 text-[11px] font-semibold mb-1">
-                      Pyannote Diarization Matrix
+                      Speaker Identification
                     </div>
                     <div className="text-slate-400 text-[10px] space-y-1">
                       <div>Speaker 01: CEO (34% talk time)</div>
@@ -199,7 +199,7 @@ export default function Pipeline() {
                 <div className="space-y-2">
                   <div className="p-3 rounded-lg bg-slate-900 border border-slate-800">
                     <div className="text-amber-400 text-[11px] font-semibold mb-1">
-                      JSON Extraction Output
+                      Structured Output
                     </div>
                     <pre className="text-[10px] text-slate-300 overflow-x-auto">
 {`{

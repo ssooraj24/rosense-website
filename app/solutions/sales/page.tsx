@@ -2,7 +2,7 @@ import PersonaSolutionLayout from "@/components/PersonaSolutionLayout";
 import { TrendingUp, Target, DollarSign, RefreshCw, MessageSquare } from "lucide-react";
 
 export const metadata = {
-  title: "Sales Teams Solution — RoSense AI",
+  title: "Sales Teams Solution — RoSense",
   description:
     "Never lose another customer commitment. Capture sales call objections, pricing talk, decision makers, and update Salesforce/HubSpot automatically.",
 };
@@ -13,7 +13,7 @@ export default function SalesPage() {
       badge="Sales Teams"
       roleTitle="Sales Leaders & Account Executives"
       heroHeadline="Never Lose Another Customer Commitment"
-      heroSubheadline="Sales reps forget critical call details, customer objections disappear, and CRM data hygiene falls behind. RoSense AI captures every sales call, extracts commitments, buying signals, and pricing feedback, and updates your CRM automatically."
+      heroSubheadline="Sales reps forget critical call details, customer objections disappear, and CRM data hygiene falls behind. RoSense captures every sales call, extracts commitments, buying signals, and pricing feedback, and updates your CRM automatically."
       heroIcon={TrendingUp}
       painPointsTitle="The Daily Sales Execution Friction"
       painPointsSubtitle="VPs of Sales lose revenue visibility because CRM entries are incomplete and follow-ups fall through the cracks."
@@ -79,7 +79,7 @@ export default function SalesPage() {
         },
       ]}
       ctaHeadline="Supercharge Your Sales Team's Revenue Execution"
-      ctaSubheadline="Schedule a live demo to see how RoSense AI turns sales call conversations into closed deals."
+      ctaSubheadline="Schedule a live demo to see how RoSense turns sales call conversations into closed deals."
     />
   );
 }

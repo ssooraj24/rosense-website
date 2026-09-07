@@ -2,7 +2,7 @@ import PersonaSolutionLayout from "@/components/PersonaSolutionLayout";
 import { Users, Target, ShieldAlert, Eye, Layers } from "lucide-react";
 
 export const metadata = {
-  title: "Executive Leadership Solution — RoSense AI",
+  title: "Executive Leadership Solution — RoSense",
   description:
     "Empower CEOs, COOs, and Board Directors to eliminate strategic context loss, track organizational decisions, and accelerate execution velocity.",
 };
@@ -13,7 +13,7 @@ export default function ExecutiveLeadershipPage() {
       badge="C-Suite Leadership"
       roleTitle="Executive Leadership"
       heroHeadline="Every Strategic Decision. Never Forgotten."
-      heroSubheadline="Executives lose strategic visibility when crucial decisions stay trapped in hours of meetings. RoSense AI transforms boardroom and leadership discussions into structured decision matrices, board briefs, and cross-team alignment."
+      heroSubheadline="Executives lose strategic visibility when crucial decisions stay trapped in hours of meetings. RoSense transforms boardroom and leadership discussions into structured decision matrices, board briefs, and cross-team alignment."
       heroIcon={Users}
       painPointsTitle="Why Executive Meetings Lose Strategic Momentum"
       painPointsSubtitle="Traditional minutes fail when processing multi-hour strategic discussions across executive leadership."
@@ -79,7 +79,7 @@ export default function ExecutiveLeadershipPage() {
         },
       ]}
       ctaHeadline="Transform Your Executive Decision Tracking Today"
-      ctaSubheadline="Book a private demonstration of RoSense AI configured for C-suite executive leadership."
+      ctaSubheadline="Book a private demonstration of RoSense configured for C-suite executive leadership."
     />
   );
 }

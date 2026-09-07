@@ -2,9 +2,9 @@ import PersonaSolutionLayout from "@/components/PersonaSolutionLayout";
 import { FileCode2, Cpu, Database, Wrench, Terminal } from "lucide-react";
 
 export const metadata = {
-  title: "Engineering Solution — RoSense AI",
+  title: "Engineering Solution — RoSense",
   description:
-    "Preserve technical knowledge beyond every sprint. Auto-generate Architecture Decision Records (ADRs), tech debt logs, and retro action items with RoSense AI.",
+    "Preserve technical knowledge beyond every sprint. Auto-generate Architecture Decision Records (ADRs), tech debt logs, and retro action items with RoSense.",
 };
 
 export default function EngineeringPage() {
@@ -13,7 +13,7 @@ export default function EngineeringPage() {
       badge="Engineering"
       roleTitle="CTOs, VPs of Eng & Tech Leads"
       heroHeadline="Preserve Technical Knowledge Beyond Every Sprint"
-      heroSubheadline="Architecture decisions disappear, context is lost when senior developers leave, and repeated technical discussions waste valuable sprint time. RoSense AI captures engineering syncs to generate Architecture Decision Records (ADRs), tech debt tracking, and retro action items."
+      heroSubheadline="Architecture decisions disappear, context is lost when senior developers leave, and repeated technical discussions waste valuable sprint time. RoSense captures engineering syncs to generate Architecture Decision Records (ADRs), tech debt tracking, and retro action items."
       heroIcon={FileCode2}
       painPointsTitle="The Cost of Technical Knowledge Loss"
       painPointsSubtitle="Engineering orgs lose velocity when technical rationale for codebase decisions isn't captured."
@@ -79,7 +79,7 @@ export default function EngineeringPage() {
         },
       ]}
       ctaHeadline="Build a Permanent Engineering Knowledge Base Today"
-      ctaSubheadline="Book a demo to see how RoSense AI turns technical syncs into automated ADRs and codebase documentation."
+      ctaSubheadline="Book a demo to see how RoSense turns technical syncs into automated ADRs and codebase documentation."
     />
   );
 }

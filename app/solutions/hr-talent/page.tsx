@@ -2,9 +2,9 @@ import PersonaSolutionLayout from "@/components/PersonaSolutionLayout";
 import { UserPlus, UserCheck, ShieldCheck, FileText, Scale } from "lucide-react";
 
 export const metadata = {
-  title: "HR & Talent Solution — RoSense AI",
+  title: "HR & Talent Solution — RoSense",
   description:
-    "Unbiased candidate feedback, standardized talent reviews, and confidential HR interview note extraction with RoSense AI.",
+    "Unbiased candidate feedback, standardized talent reviews, and confidential HR interview note extraction with RoSense.",
 };
 
 export default function HRTalentPage() {
@@ -13,7 +13,7 @@ export default function HRTalentPage() {
       badge="HR & Talent"
       roleTitle="CHROs & Talent Acquisition Leads"
       heroHeadline="Unbiased Candidate Feedback & Standardized Talent Reviews"
-      heroSubheadline="Candidate interview feedback is often vague, subjective, or submitted late, creating hiring bias and compliance risk. RoSense AI extracts structured candidate evaluations, skill competencies, and standardized performance review briefs."
+      heroSubheadline="Candidate interview feedback is often vague, subjective, or submitted late, creating hiring bias and compliance risk. RoSense extracts structured candidate evaluations, skill competencies, and standardized performance review briefs."
       heroIcon={UserPlus}
       painPointsTitle="The Challenges of Modern Talent Management"
       painPointsSubtitle="HR leaders face hiring delays and evaluation inconsistency when interviewer feedback is unstandardized."
@@ -79,7 +79,7 @@ export default function HRTalentPage() {
         },
       ]}
       ctaHeadline="Build an Objective, Fast Talent Acquisition Machine"
-      ctaSubheadline="Book a demo to see how RoSense AI turns interview calls into standardized, unbiased scorecards."
+      ctaSubheadline="Book a demo to see how RoSense turns interview calls into standardized, unbiased scorecards."
     />
   );
 }

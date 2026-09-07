@@ -7,7 +7,7 @@ export default function Pricing() {
   const plans = [
     {
       name: "Private Box",
-      badge: "Flagship Appliance — Most Popular ⭐",
+      badge: "Flagship Appliance — Most Popular",
       summary: "Perfect for organizations wanting complete AI ownership without building complex infrastructure.",
       deploymentTime: "2–5 Business Days",
       icon: Cpu,
@@ -22,7 +22,7 @@ export default function Pricing() {
         "Automated 3-2-1 Multi-Layer Backup Topology",
         "Includes On-Site Installation & Training Support",
       ],
-      ctaText: "Request Private Box Quote",
+      ctaText: "Learn more",
       ctaLink: "/company/contact",
     },
     {
@@ -42,7 +42,7 @@ export default function Pricing() {
         "Dedicated Security Team & SLA Response",
         "Proprietary Model Fine-Tuning Support",
       ],
-      ctaText: "Talk to Sales",
+      ctaText: "Contact us",
       ctaLink: "/company/contact",
     },
     {
@@ -62,7 +62,7 @@ export default function Pricing() {
         "Standard REST APIs & Webhooks Access",
         "24/7 Cloud System Uptime Monitoring",
       ],
-      ctaText: "Contact Sales",
+      ctaText: "Get started",
       ctaLink: "/company/contact",
     },
   ];
@@ -76,7 +76,7 @@ export default function Pricing() {
             <span>Tailored Deployment Options</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
-            Choose Your <span className="text-gradient-emerald">Deployment Approach</span>
+            Choose Your <span className="text-gradient-emerald">Path</span>
           </h2>
           <p className="mt-3 text-slate-600 text-base">
             Every deployment is tailored to your infrastructure, security requirements, AI models, and organizational scale.

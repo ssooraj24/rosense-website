@@ -30,22 +30,22 @@ export default function PricingROICalculator() {
   };
 
   return (
-    <section className="py-24 bg-slate-900 text-white border-t border-slate-800 relative overflow-hidden">
+    <section className="py-24 bg-white border-t border-slate-100 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-1.5 bg-[#10B981]/15 text-[#10B981] border border-[#10B981]/30 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
+          <div className="inline-flex items-center gap-1.5 bg-[#10B981]/10 text-[#10B981] px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
             <Calculator className="w-3.5 h-3.5" />
-            <span>Enterprise Productivity Savings</span>
+            <span>Productivity Savings</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
-            Estimate Your <span className="text-gradient-emerald">Productivity Savings</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight">
+            Estimate your <span className="text-gradient-emerald">productivity savings.</span>
           </h2>
-          <p className="mt-3 text-slate-300 text-base">
+          <p className="mt-3 text-slate-600 text-base">
             See how much time and operational budget your organization reclaims by deploying automated meeting intelligence.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-8 items-center bg-slate-800/80 border border-slate-700/80 rounded-2xl p-6 sm:p-10 shadow-2xl">
+        <div className="grid lg:grid-cols-12 gap-8 items-center bg-slate-950 border border-slate-800 rounded-2xl p-6 sm:p-10 shadow-2xl">
           {/* Sliders Input Column */}
           <div className="lg:col-span-7 space-y-7">
             {/* Input 1: Employees */}

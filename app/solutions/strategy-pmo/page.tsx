@@ -2,7 +2,7 @@ import PersonaSolutionLayout from "@/components/PersonaSolutionLayout";
 import { Briefcase, Clock, Calendar, CheckSquare, Layers } from "lucide-react";
 
 export const metadata = {
-  title: "Strategy & PMO Solution — RoSense AI",
+  title: "Strategy & PMO Solution — RoSense",
   description:
     "Transform 18+ hour strategic offsites, workshops, and program steering committees into structured milestone matrices and decision ownership.",
 };
@@ -13,7 +13,7 @@ export default function StrategyPMOPage() {
       badge="Strategy & PMO"
       roleTitle="Strategy & PMO Leaders"
       heroHeadline="Turn Multi-Day Strategic Retreats into Flawless Execution"
-      heroSubheadline="Multi-day strategy offsites generate hundreds of verbal commitments that get buried in endless recordings. RoSense AI turns workshop audio into an executive decision matrix with clear owners, timelines, and action items."
+      heroSubheadline="Multi-day strategy offsites generate hundreds of verbal commitments that get buried in endless recordings. RoSense turns workshop audio into an executive decision matrix with clear owners, timelines, and action items."
       heroIcon={Briefcase}
       painPointsTitle="The High Cost of Unstructured Strategy Workshops"
       painPointsSubtitle="Program management offices waste hundreds of hours manually reviewing offsite recordings and whiteboard photos."
@@ -79,7 +79,7 @@ export default function StrategyPMOPage() {
         },
       ]}
       ctaHeadline="Accelerate Your Strategy Execution Today"
-      ctaSubheadline="Book a demo to see how RoSense AI synthesizes multi-day offsites into actionable project plans."
+      ctaSubheadline="Book a demo to see how RoSense synthesizes multi-day offsites into actionable project plans."
     />
   );
 }

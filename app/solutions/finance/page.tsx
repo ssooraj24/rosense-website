@@ -2,9 +2,9 @@ import PersonaSolutionLayout from "@/components/PersonaSolutionLayout";
 import { DollarSign, ShieldCheck, FileSpreadsheet, CheckSquare, AlertOctagon } from "lucide-react";
 
 export const metadata = {
-  title: "Finance Solution — RoSense AI",
+  title: "Finance Solution — RoSense",
   description:
-    "Audit-ready financial commitments, budget governance, and vendor contract obligation tracking with RoSense AI.",
+    "Audit-ready financial commitments, budget governance, and vendor contract obligation tracking with RoSense.",
 };
 
 export default function FinancePage() {
@@ -13,7 +13,7 @@ export default function FinancePage() {
       badge="Finance & Control"
       roleTitle="CFOs, Controllers & Procurement"
       heroHeadline="Audit-Ready Financial Commitments & Budget Governance"
-      heroSubheadline="Verbal budget promises and unwritten vendor agreements lead to fiscal leakage and audit friction. RoSense AI logs every financial commitment, pricing term, and vendor obligation into an audit-ready fiscal repository."
+      heroSubheadline="Verbal budget promises and unwritten vendor agreements lead to fiscal leakage and audit friction. RoSense logs every financial commitment, pricing term, and vendor obligation into an audit-ready fiscal repository."
       heroIcon={DollarSign}
       painPointsTitle="The Risk of Untracked Financial Dialogue"
       painPointsSubtitle="Finance leaders face budget surprises when verbal commitments made in executive or vendor meetings go unrecorded."
@@ -79,7 +79,7 @@ export default function FinancePage() {
         },
       ]}
       ctaHeadline="Enforce Strict Fiscal Governance & Budget Control"
-      ctaSubheadline="Book a demo to see how RoSense AI turns financial negotiations into audit-ready commitment records."
+      ctaSubheadline="Book a demo to see how RoSense turns financial negotiations into audit-ready commitment records."
     />
   );
 }

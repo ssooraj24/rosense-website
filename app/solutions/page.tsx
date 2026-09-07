@@ -26,9 +26,9 @@ import {
 } from "lucide-react";
 
 export const metadata = {
-  title: "Enterprise Solutions by Buyer Persona — RoSense AI",
+  title: "Solutions — RoSense Enterprise",
   description:
-    "Discover how RoSense AI empowers Executive Leadership, Sales, Engineering, HR, Finance, PMO, and Compliance teams to excel through role-tailored intelligence.",
+    "Discover how RoSense empowers Executive Leadership, Sales, Engineering, HR, Finance, PMO, and Compliance teams to excel through role-tailored intelligence.",
 };
 
 const personaCategories = [
@@ -195,37 +195,37 @@ export default function SolutionsPage() {
       <Navbar />
 
       <main className="pt-24">
-        {/* Solutions Hero */}
-        <section className="bg-slate-900 text-white py-24 relative overflow-hidden">
-          <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#10B981_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
+        {/* ACT I: Pure White Narrative & Persona Directory */}
+        <section className="bg-white py-20 lg:py-28 relative overflow-hidden border-b border-slate-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="max-w-3xl mx-auto text-center space-y-6">
-              <div className="inline-flex items-center gap-2 bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/30 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider font-mono">
+              <div className="inline-flex items-center gap-2 bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/30 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider">
                 <Compass className="w-3.5 h-3.5" />
-                <span>Buyer-Centric Intelligence Architecture</span>
+                <span>Role-Tailored Intelligence</span>
               </div>
 
-              <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-white leading-tight">
-                Software Built Around <span className="text-gradient-emerald">Your Buyer Persona</span>
+              <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-slate-900 leading-tight">
+                Software built around <br />
+                <span className="text-gradient-emerald">how you work.</span>
               </h1>
 
-              <p className="text-lg text-slate-300 leading-relaxed font-normal">
-                Enterprise buyers don't buy software for raw features—they buy it to transform how their team executes. Explore how RoSense AI empowers each role to eliminate memory loss, accelerate decision velocity, and excel.
+              <p className="text-lg text-slate-600 leading-relaxed font-normal">
+                Enterprise teams don&apos;t need generic transcription bots. They need intelligence tailored to how their team executes—eliminating memory loss, accelerating decisions, and protecting privacy.
               </p>
 
               <div className="pt-4 flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   href="/company/contact"
-                  className="inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-[#059669] text-slate-950 font-bold px-7 py-3.5 rounded-xl transition-all shadow-lg hover:shadow-emerald-500/20"
+                  className="inline-flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-semibold px-7 py-3.5 rounded-xl transition-all shadow-lg text-sm"
                 >
-                  <span>Book Role-Tailored Demo</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <span>Experience RoSense</span>
+                  <ArrowRight className="w-4 h-4 text-[#10B981]" />
                 </Link>
                 <a
                   href="#persona-matrix"
-                  className="inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-white font-semibold px-7 py-3.5 rounded-xl transition-all border border-slate-700"
+                  className="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-slate-900 font-semibold px-7 py-3.5 rounded-xl transition-all border border-slate-200 text-sm"
                 >
-                  <span>Explore 12 Persona Stories</span>
+                  <span>Explore 12 Role Outcomes</span>
                 </a>
               </div>
             </div>
@@ -233,14 +233,14 @@ export default function SolutionsPage() {
         </section>
 
         {/* Persona Directory Matrix */}
-        <section id="persona-matrix" className="py-24 bg-slate-50 border-b border-slate-200">
+        <section id="persona-matrix" className="py-24 bg-white border-b border-slate-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
             <div className="text-center max-w-3xl mx-auto space-y-3">
               <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
-                How RoSense Helps Your Team Excel
+                How RoSense helps your team excel
               </h2>
               <p className="text-slate-600 text-base">
-                Select your business function to discover how RoSense AI turns dialogue into role-specific business outcomes.
+                Select your business function to discover how RoSense turns dialogue into role-specific business outcomes.
               </p>
             </div>
 
@@ -288,7 +288,7 @@ export default function SolutionsPage() {
 
                             <div className="space-y-2 pt-2 border-t border-slate-100">
                               <p className="text-xs text-slate-600 leading-relaxed">
-                                <strong className="text-slate-900">Problem:</strong> {persona.problem}
+                                <strong className="text-slate-900">Challenge:</strong> {persona.problem}
                               </p>
                               <p className="text-xs text-slate-600 leading-relaxed">
                                 <strong className="text-[#10B981]">RoSense Value:</strong> {persona.solution}
@@ -306,7 +306,7 @@ export default function SolutionsPage() {
                           </div>
 
                           <div className="pt-6 mt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-[#10B981] group-hover:translate-x-1 transition-transform">
-                            <span>Read Persona Guide</span>
+                            <span>Read Role Guide</span>
                             <ArrowRight className="w-4 h-4" />
                           </div>
                         </Link>
@@ -319,11 +319,11 @@ export default function SolutionsPage() {
           </div>
         </section>
 
-        {/* Capability Strategy Section: One Engine, 12 Stories */}
-        <section className="py-24 bg-white">
+        {/* Capability Strategy Section: One Engine, 12 Outcomes */}
+        <section className="py-24 bg-white border-b border-slate-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
             <div className="text-center max-w-3xl mx-auto space-y-3">
-              <div className="inline-flex items-center gap-2 bg-slate-100 text-slate-800 px-3 py-1 rounded-full text-xs font-bold font-mono">
+              <div className="inline-flex items-center gap-2 bg-slate-100 text-slate-800 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider">
                 <Brain className="w-3.5 h-3.5 text-[#10B981]" />
                 <span>The Core Advantage</span>
               </div>
@@ -331,13 +331,13 @@ export default function SolutionsPage() {
                 One Platform Engine. <span className="text-gradient-emerald">12 Tailored Outcomes.</span>
               </h2>
               <p className="text-slate-600 text-base">
-                Rather than forcing every team to adapt to generic AI tools, RoSense AI applies its core intelligence engine to solve each persona's distinct daily operational bottleneck.
+                Rather than forcing every team to adapt to generic tools, RoSense applies its core intelligence engine to solve each role&apos;s distinct daily operational bottleneck.
               </p>
             </div>
 
             <div className="space-y-12">
               {capabilityStories.map((story, sIdx) => (
-                <div key={sIdx} className="bg-slate-900 rounded-3xl p-8 sm:p-10 text-white space-y-6 shadow-xl border border-slate-800">
+                <div key={sIdx} className="bg-slate-950 rounded-3xl p-8 sm:p-10 text-white space-y-6 shadow-xl border border-slate-800">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-xl bg-[#10B981] text-slate-950 flex items-center justify-center font-bold">
                       <Sparkles className="w-5 h-5" />
@@ -349,22 +349,22 @@ export default function SolutionsPage() {
                   </div>
 
                   <div className="grid md:grid-cols-4 gap-6 pt-4 border-t border-slate-800">
-                    <div className="p-4 rounded-xl bg-slate-800/60 border border-slate-700/60 space-y-2">
+                    <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
                       <p className="text-xs font-bold text-[#10B981] uppercase tracking-wider font-mono">Sales View</p>
                       <p className="text-xs text-slate-300 leading-relaxed">{story.sales}</p>
                     </div>
 
-                    <div className="p-4 rounded-xl bg-slate-800/60 border border-slate-700/60 space-y-2">
+                    <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
                       <p className="text-xs font-bold text-[#10B981] uppercase tracking-wider font-mono">Engineering View</p>
                       <p className="text-xs text-slate-300 leading-relaxed">{story.engineering}</p>
                     </div>
 
-                    <div className="p-4 rounded-xl bg-slate-800/60 border border-slate-700/60 space-y-2">
+                    <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
                       <p className="text-xs font-bold text-[#10B981] uppercase tracking-wider font-mono">HR View</p>
                       <p className="text-xs text-slate-300 leading-relaxed">{story.hr}</p>
                     </div>
 
-                    <div className="p-4 rounded-xl bg-slate-800/60 border border-slate-700/60 space-y-2">
+                    <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
                       <p className="text-xs font-bold text-[#10B981] uppercase tracking-wider font-mono">Executive View</p>
                       <p className="text-xs text-slate-300 leading-relaxed">{story.executive}</p>
                     </div>
@@ -375,17 +375,21 @@ export default function SolutionsPage() {
           </div>
         </section>
 
+        {/* ACT II: Security & Final Invitation */}
+
         {/* Security & Private Appliance Banner */}
-        <section className="py-16 bg-slate-900 text-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border border-slate-700 rounded-3xl p-8 sm:p-12 flex flex-col lg:flex-row items-center justify-between gap-8">
+        <section className="py-24 bg-slate-950 text-white relative overflow-hidden border-b border-slate-800">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#10B981]/10 rounded-full blur-[140px] pointer-events-none" />
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="bg-slate-900/90 border border-slate-800 rounded-3xl p-8 sm:p-12 flex flex-col lg:flex-row items-center justify-between gap-8 shadow-2xl">
               <div className="space-y-4 max-w-2xl">
-                <div className="inline-flex items-center gap-2 bg-[#10B981]/20 text-[#10B981] px-3 py-1 rounded-full text-xs font-bold font-mono border border-[#10B981]/30">
+                <div className="inline-flex items-center gap-2 bg-[#10B981]/15 text-[#10B981] px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider border border-[#10B981]/30">
                   <Lock className="w-3.5 h-3.5" />
-                  <span>RoSense Box Flagship Hardware</span>
+                  <span>RoSense Box Enterprise Hardware</span>
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-bold text-white">
-                  Built for Enterprise Personas with 100% Air-Gapped Privacy Requirements
+                <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                  Built for Enterprise Teams with 100% Air-Gapped Privacy Requirements
                 </h3>
                 <p className="text-sm text-slate-300 leading-relaxed">
                   Whether you manage confidential executive board meetings, sensitive HR interviews, or high-stakes financial commitments, RoSense Box provides on-premise hardware execution with zero cloud network leakage.
@@ -394,7 +398,7 @@ export default function SolutionsPage() {
 
               <div className="flex flex-col sm:flex-row gap-4 shrink-0">
                 <Link
-                  href="/platform/appliance"
+                  href="/rosense-box"
                   className="inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-[#059669] text-slate-950 font-bold px-6 py-3.5 rounded-xl transition-all text-sm"
                 >
                   <span>Explore RoSense Box</span>
@@ -402,7 +406,7 @@ export default function SolutionsPage() {
                 </Link>
                 <Link
                   href="/company/trust"
-                  className="inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-white font-semibold px-6 py-3.5 rounded-xl border border-slate-700 text-sm"
+                  className="inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-white font-semibold px-6 py-3.5 rounded-xl border border-slate-700 text-sm transition-colors"
                 >
                   <ShieldCheck className="w-4 h-4 text-[#10B981]" />
                   <span>Trust & DPDP Center</span>
@@ -412,21 +416,21 @@ export default function SolutionsPage() {
           </div>
         </section>
 
-        {/* Global Persona Demo CTA */}
-        <section className="py-20 bg-white">
-          <div className="max-w-4xl mx-auto px-4 text-center space-y-6">
-            <h2 className="text-3xl font-bold text-slate-900 tracking-tight">
-              Ready to Accelerate Your Role's Execution Velocity?
+        {/* Global Invitation CTA */}
+        <section className="py-24 bg-slate-950 text-white text-center relative overflow-hidden">
+          <div className="max-w-4xl mx-auto px-4 space-y-6 relative z-10">
+            <h2 className="text-3xl sm:text-5xl font-bold text-white tracking-tight">
+              Ready to transform how your team executes?
             </h2>
-            <p className="text-base text-slate-600 leading-relaxed">
-              Schedule a personalized 30-minute demonstration tailored specifically to your buyer persona and team workflows.
+            <p className="text-base text-slate-300 leading-relaxed max-w-2xl mx-auto font-normal">
+              Schedule a personalized 30-minute demonstration tailored specifically to your role and team workflows.
             </p>
-            <div className="pt-2">
+            <div className="pt-4">
               <Link
                 href="/company/contact"
-                className="inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-[#059669] text-slate-950 font-bold text-base px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all"
+                className="inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-[#059669] text-slate-950 font-bold text-base px-8 py-4 rounded-xl shadow-lg transition-all"
               >
-                <span>Book Persona Demo Now</span>
+                <span>Experience RoSense</span>
                 <ArrowRight className="w-5 h-5" />
               </Link>
             </div>

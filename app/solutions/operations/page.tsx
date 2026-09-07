@@ -2,9 +2,9 @@ import PersonaSolutionLayout from "@/components/PersonaSolutionLayout";
 import { BarChart3, Workflow, AlertCircle, FileCheck, Users } from "lucide-react";
 
 export const metadata = {
-  title: "Operations Leaders Solution — RoSense AI",
+  title: "Operations Leaders Solution — RoSense",
   description:
-    "Eliminate operational friction, extract SOPs automatically, and ensure seamless cross-department task accountability with RoSense AI.",
+    "Eliminate operational friction, extract SOPs automatically, and ensure seamless cross-department task accountability with RoSense.",
 };
 
 export default function OperationsPage() {
@@ -13,7 +13,7 @@ export default function OperationsPage() {
       badge="Operations Leaders"
       roleTitle="Operations Leaders"
       heroHeadline="Eliminate Operational Friction Across Department Silos"
-      heroSubheadline="Operational bottlenecks happen when process decisions stay verbal. RoSense AI automatically extracts Standard Operating Procedures (SOPs), cross-department handoffs, and operational risk flags from daily meetings."
+      heroSubheadline="Operational bottlenecks happen when process decisions stay verbal. RoSense automatically extracts Standard Operating Procedures (SOPs), cross-department handoffs, and operational risk flags from daily meetings."
       heroIcon={BarChart3}
       painPointsTitle="The Daily Challenges of Enterprise Operations"
       painPointsSubtitle="Operations directors spend hours tracking down missing status updates and resolving cross-team misalignment."
@@ -79,7 +79,7 @@ export default function OperationsPage() {
         },
       ]}
       ctaHeadline="Streamline Enterprise Operations Today"
-      ctaSubheadline="Book a demo to see how RoSense AI turns daily operational syncs into automated SOPs and task execution."
+      ctaSubheadline="Book a demo to see how RoSense turns daily operational syncs into automated SOPs and task execution."
     />
   );
 }

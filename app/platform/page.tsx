@@ -17,6 +17,7 @@ import {
   AlertTriangle,
   Clock,
   User,
+  UserCheck,
   Play,
   Volume2,
   Copy,
@@ -67,82 +68,82 @@ export default function PlatformOverviewPage() {
     {
       step: "01",
       icon: Mic,
-      title: "Meeting",
-      desc: "Captures multi-hour audio streams across physical rooms & virtual calls.",
+      title: "Intake",
+      desc: "Captures multi-hour audio streams across physical rooms and virtual calls.",
       modelTech: "Multi-Channel Audio Intake Engine",
-      spec: "Sample Rate: 16kHz | 24-bit FLAC | Dual-stream redundancy",
-      details: "Captures physical room microphones, Zoom/Teams webhooks, and raw board room audio without cloud transmission.",
+      spec: "High-Fidelity Audio • Redundant Local Ring Buffer",
+      details: "Captures room microphones, video conferences, and board room discussions privately without public cloud transmission.",
     },
     {
       step: "02",
       icon: Database,
-      title: "Capture",
-      desc: "High-fidelity local capture with automatic acoustic noise cancellation.",
-      modelTech: "Acoustic DSP & Reverberation Removal",
-      spec: "SNR Boost: +18dB | Zero-latency local ring buffer",
-      details: "Filters HVAC rumble, room echo, and keyboard clicks before passing clean spectral frames to speech models.",
+      title: "Isolate",
+      desc: "Acoustic noise cancellation and speaker isolation in real time.",
+      modelTech: "Acoustic Signal Processing",
+      spec: "Real-Time Noise Filter • Reverberation Removal",
+      details: "Removes room echo, background chatter, and HVAC noise before passing clean spectral frames to intelligence models.",
     },
     {
       step: "03",
       icon: Brain,
-      title: "Understand",
-      desc: "WhisperX speaker diarization & deep context preservation.",
-      modelTech: "WhisperX + Pyannote 3.1 Diarization",
-      spec: "Word Error Rate < 2.8% | Diarization Accuracy 97.4%",
-      details: "Performs precise speaker identification with word-level phoneme timestamps and overlapping speech resolution.",
+      title: "Identify",
+      desc: "Multi-speaker diarization and deep conversational context preservation.",
+      modelTech: "Multi-Speaker Audio Intelligence",
+      spec: "Precise Speaker Separation • Word-Level Timestamps",
+      details: "Performs precise speaker identification with exact timestamps and overlapping speech resolution.",
     },
     {
       step: "04",
       icon: Zap,
       title: "Extract",
-      desc: "Mamba-3 SSM parses decisions, commitments, owners & risks.",
-      modelTech: "Mamba-3 State Space Model (SSM)",
-      spec: "128k Context Window | Sub-second extraction latency",
-      details: "Identifies decisions, action items, risks, and commitments without context window truncation or hallucination.",
+      desc: "Captures decisions, commitments, owners, and risks without context limits.",
+      modelTech: "Zero-Shot Decision Extraction",
+      spec: "Full-Context Retention • Sub-second Extraction",
+      details: "Identifies strategic decisions, action items, risks, and commitments without context degradation or lost details.",
     },
     {
       step: "05",
       icon: Layers,
       title: "Structure",
-      desc: "Normalizes unstructured conversations into standard schema & entity relationships.",
-      modelTech: "JSON-LD & Enterprise Schema Engine",
-      spec: "Schema.org + Custom Enterprise Taxonomies",
-      details: "Normalizes raw transcript snippets into structured JSON-LD entity nodes linked to owners, dates, and topics.",
+      desc: "Normalizes unstructured dialogue into structured enterprise schemas.",
+      modelTech: "Structured Enterprise Schema Engine",
+      spec: "Normalized Entity Graphs • Linked Timelines",
+      details: "Normalizes raw conversations into structured records linked to explicit owners, deadlines, and strategic themes.",
     },
     {
       step: "06",
       icon: Network,
-      title: "Enterprise Memory",
-      desc: "Connects decisions across months of past and present organization meetings.",
-      modelTech: "Temporal Graph Vector Engine",
-      spec: "Sub-50ms Graph Traversal | Cross-meeting linkage",
-      details: "Connects today's decisions to historical strategy sessions from months or years ago into a cohesive memory graph.",
+      title: "Connect",
+      desc: "Connects decisions across months of past and present organizational discussions.",
+      modelTech: "Enterprise Memory Graph",
+      spec: "Sub-50ms Graph Traversal • Cross-Session Linkage",
+      details: "Connects today's decisions to historical strategy sessions from quarters ago into a living, interconnected memory graph.",
     },
     {
       step: "07",
       icon: Search,
       title: "Search",
-      desc: "Sub-second RAG search via pgvector across all company knowledge.",
-      modelTech: "pgvector + bge-large-en-v1.5 RAG",
-      spec: "Dense Retrieval Latency < 180ms | Hybrid BM25 + HNSW",
-      details: "Enables instant natural language search across thousands of hours of historical transcript data with 1-click audio proof.",
+      desc: "Instant semantic search across your organization's entire conversation history.",
+      modelTech: "Instant Enterprise Semantic Search",
+      spec: "Sub-Second Retrieval • 1-Click Audio Proof",
+      details: "Enables natural language search across thousands of hours of historical conversations with instant audio proof.",
     },
     {
       step: "08",
       icon: Share2,
-      title: "Reuse",
-      desc: "Instant onboarding for new hires and seamless multi-team context sharing.",
-      modelTech: "Multi-Tenant Access Control & RBAC Gateway",
-      spec: "Row-Level Security (RLS) | AES-256 encrypted payload",
-      details: "Safely surfaces historical context to new team members according to department-level access control rules.",
+      title: "Share",
+      desc: "Instant onboarding for new team members with granular access control.",
+      modelTech: "Enterprise Access Control Gateway",
+      spec: "Role-Based Access • Zero-Leakage Encryption",
+      details: "Safely surfaces historical context to new team members according to department-level permissions and governance rules.",
     },
     {
       step: "09",
       icon: TrendingUp,
-      title: "Business Outcomes",
-      desc: "Flawless execution with zero forgotten commitments or repeated discussions.",
-      modelTech: "Continuous Execution Audit & Task Sync",
-      spec: "100% Traceability to audio proof | Zero lost commitments",
+      title: "Act",
+      desc: "Flawless execution with zero forgotten commitments or repeated debates.",
+      modelTech: "Continuous Execution Tracking",
+      spec: "100% Decision Traceability • Automated Task Sync",
       details: "Guarantees that every agreement made in meetings translates directly into tracked, verifiable business execution.",
     },
   ];
@@ -179,33 +180,33 @@ export default function PlatformOverviewPage() {
   const teamRoles = [
     {
       role: "Executive Leadership",
-      emoji: "👔",
+      icon: Users,
       desc: "Gain instant visibility into strategic decisions, cross-department alignment, and organizational risks across all executive sessions.",
       highlights: ["Strategic Alignment", "Risk Tracking", "Board Briefing Export"],
     },
     {
       role: "Sales & Revenue",
-      emoji: "💼",
+      icon: TrendingUp,
       desc: "Capture exact customer commitments, deal risks, contract objections, and action items automatically synced to your CRM.",
       highlights: ["Deal Risk Alerts", "CRM Auto-Sync", "Customer Voice Search"],
     },
     {
       role: "Operations & Delivery",
-      emoji: "🛠",
+      icon: BarChart3,
       desc: "Track execution, resolve project bottlenecks, enforce clear accountability, and ensure commitments are never missed.",
       highlights: ["Owner Attribution", "Blocker Resolution", "SLAs & Deadlines"],
     },
     {
       role: "HR & People",
-      emoji: "👥",
+      icon: UserCheck,
       desc: "Preserve deep interview insights, streamline new employee onboarding, and retain institutional memory during team transitions.",
       highlights: ["Instant Onboarding", "Interview Archival", "Talent Context"],
     },
     {
       role: "Engineering & Product",
-      emoji: "💻",
-      desc: "Record architectural decisions (ADRs), system design trade-offs, technical debts, and RFC discussions with precise audio proof.",
-      highlights: ["ADR Auto-Doc", "Tech Spec Search", "Audio Proof Verification"],
+      icon: FileCode2,
+      desc: "Record architectural decisions, system design trade-offs, technical debts, and RFC discussions with precise audio proof.",
+      highlights: ["Architecture Docs", "Tech Spec Search", "Audio Proof Verification"],
     },
   ];
 
@@ -223,13 +224,13 @@ export default function PlatformOverviewPage() {
 
   // Section 10: Turn Conversations Into Action (Workflow Pipeline)
   const workflowSteps = [
-    { title: "Meeting Ends", desc: "Local audio streams finalized", color: "border-slate-700 bg-slate-900" },
-    { title: "Decision Identified", desc: "Mamba-3 extracts core facts", color: "border-[#10B981]/50 bg-[#10B981]/10 text-[#10B981]" },
-    { title: "Owner Assigned", desc: "Speaker linked to action item", color: "border-emerald-500/50 bg-slate-900" },
-    { title: "Task Created", desc: "Normalized JSON-LD record", color: "border-teal-500/50 bg-slate-900" },
-    { title: "Slack Notification", desc: "Instant channel dispatch", color: "border-slate-700 bg-slate-900" },
-    { title: "Jira Updated", desc: "Backlog ticket auto-populated", color: "border-slate-700 bg-slate-900" },
-    { title: "CRM Updated", desc: "Salesforce / HubSpot sync", color: "border-[#10B981]/80 bg-[#10B981]/20 text-white" },
+    { title: "Meeting Ends", desc: "Local audio streams finalized", color: "border-slate-300 bg-white" },
+    { title: "Decision Captured", desc: "Extracts decisions & commitments", color: "border-[#10B981]/50 bg-[#10B981]/10 text-[#10B981]" },
+    { title: "Owner Assigned", desc: "Speaker linked to action item", color: "border-emerald-500/50 bg-white" },
+    { title: "Task Created", desc: "Normalized structured record", color: "border-teal-500/50 bg-white" },
+    { title: "Slack Notification", desc: "Instant channel dispatch", color: "border-slate-300 bg-white" },
+    { title: "Jira Updated", desc: "Backlog ticket auto-populated", color: "border-slate-300 bg-white" },
+    { title: "CRM Updated", desc: "Salesforce & HubSpot sync", color: "border-[#10B981]/80 bg-[#10B981]/20 text-slate-900" },
   ];
 
   const workflowCards = [
@@ -374,25 +375,23 @@ export default function PlatformOverviewPage() {
 
       <main className="pt-24" id="platform-main">
         {/* =========================================================================
-            SECTION 01: HERO — "ENTERPRISE MEMORY ENGINE"
+            SECTION 01: HERO — "ORGANIZATIONAL MEMORY"
            ========================================================================= */}
-        <section className="bg-slate-950 text-white py-24 relative overflow-hidden border-b border-slate-800">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#10B981]/10 rounded-full blur-3xl pointer-events-none" />
-
+        <section className="bg-white text-slate-900 py-24 sm:py-32 relative overflow-hidden border-b border-slate-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="text-center max-w-4xl mx-auto space-y-6">
               <div className="inline-flex items-center gap-2 bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/30 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">
                 <Sparkles className="w-3.5 h-3.5" />
-                <span>Enterprise Memory Engine</span>
+                <span>The RoSense Platform</span>
               </div>
 
-              <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-white leading-[1.15]">
-                Every Important Conversation Becomes{" "}
-                <span className="text-gradient-emerald">Actionable Knowledge</span>
+              <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-slate-900 leading-[1.15]">
+                Your organization&apos;s collective memory.{" "}
+                <span className="text-gradient-emerald">In one place.</span>
               </h1>
 
-              <p className="text-lg sm:text-xl text-slate-300 leading-relaxed max-w-3xl mx-auto font-normal">
-                RoSense captures business discussions, identifies decisions, commitments, risks, and insights, and transforms them into structured organizational memory that your teams can search and reuse—deployed securely on your terms.
+              <p className="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto font-normal">
+                RoSense captures conversations, extracts decisions and commitments, and transforms them into a living organizational memory that your teams can search and reuse—privately, securely, and entirely on your terms.
               </p>
 
               <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -401,42 +400,41 @@ export default function PlatformOverviewPage() {
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#10B981] hover:bg-[#059669] text-slate-950 font-bold text-base px-8 py-4 rounded-xl shadow-lg shadow-emerald-500/20 hover:scale-[1.02] transition-all"
                   id="hero-demo-btn"
                 >
-                  <span>Book a Private Demo</span>
+                  <span>Experience RoSense</span>
                   <ArrowRight className="w-5 h-5" />
                 </Link>
-                <Link
-                  href="/platform/appliance"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-semibold text-base px-7 py-4 rounded-xl border border-slate-700 transition-all"
-                  id="hero-appliance-btn"
+                <a
+                  href="#how-it-works"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-900 font-semibold text-base px-7 py-4 rounded-xl border border-slate-200 transition-all"
+                  id="hero-how-it-works-btn"
                 >
-                  <Lock className="w-4 h-4 text-[#10B981]" />
-                  <span>Explore Appliance Specs</span>
-                </Link>
+                  <span>See How It Works</span>
+                </a>
               </div>
 
               {/* Visual Stylized Knowledge Graph Container */}
               <div className="pt-12 max-w-4xl mx-auto">
-                <div className="rounded-2xl bg-slate-900/80 border border-slate-800 p-6 sm:p-8 backdrop-blur-md shadow-2xl relative overflow-hidden emerald-glow-sm">
+                <div className="rounded-2xl bg-slate-950 text-white border border-slate-800 p-6 sm:p-8 shadow-2xl relative overflow-hidden emerald-glow-sm">
                   <div className="flex flex-wrap items-center justify-around gap-6 text-left">
-                    <div className="flex items-center gap-3 bg-slate-950/80 p-3.5 rounded-xl border border-slate-800">
+                    <div className="flex items-center gap-3 bg-slate-900 p-3.5 rounded-xl border border-slate-800">
                       <div className="w-10 h-10 rounded-lg bg-[#10B981]/20 text-[#10B981] flex items-center justify-center font-bold">
                         Q1
                       </div>
                       <div>
                         <div className="text-xs text-slate-400 font-mono">Board Offsite</div>
-                        <div className="text-sm font-semibold text-white">SAP Migration Approved</div>
+                        <div className="text-sm font-semibold text-white">Migration Approved</div>
                       </div>
                     </div>
 
                     <div className="hidden sm:block text-slate-600 font-mono text-xl">➔</div>
 
-                    <div className="flex items-center gap-3 bg-slate-950/80 p-3.5 rounded-xl border border-slate-800">
+                    <div className="flex items-center gap-3 bg-slate-900 p-3.5 rounded-xl border border-slate-800">
                       <div className="w-10 h-10 rounded-lg bg-[#10B981]/20 text-[#10B981] flex items-center justify-center font-bold">
                         Q2
                       </div>
                       <div>
                         <div className="text-xs text-slate-400 font-mono">Risk Workshop</div>
-                        <div className="text-sm font-semibold text-white">Legacy Latency Flagged</div>
+                        <div className="text-sm font-semibold text-white">Latency Trade-offs Resolved</div>
                       </div>
                     </div>
 
@@ -447,7 +445,7 @@ export default function PlatformOverviewPage() {
                         NOW
                       </div>
                       <div>
-                        <div className="text-xs text-[#10B981] font-mono">Sub-second Search</div>
+                        <div className="text-xs text-[#10B981] font-mono">Instant Search</div>
                         <div className="text-sm font-bold text-white">Connected Memory Active</div>
                       </div>
                     </div>
@@ -461,40 +459,40 @@ export default function PlatformOverviewPage() {
         {/* =========================================================================
             SECTION 02: TRADITIONAL VS. ROSENSE (SIDE-BY-SIDE COMPARISON)
            ========================================================================= */}
-        <section className="py-20 bg-slate-50 border-b border-slate-200">
+        <section className="py-24 bg-white border-b border-slate-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
-                Traditional Meeting Assistants vs. <span className="text-[#10B981]">RoSense AI</span>
+                Conversations don&apos;t have to <span className="text-gradient-emerald">end.</span>
               </h2>
               <p className="mt-3 text-slate-600 text-base">
-                Why standard transcription bots fail enterprise organizations—and how structured company memory solves it.
+                Most meetings are forgotten. Yours become part of a living memory.
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
               {/* Traditional Side */}
-              <div className="rounded-2xl bg-white border border-rose-200 p-8 shadow-sm relative overflow-hidden">
-                <div className="absolute top-0 right-0 bg-rose-500 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wider">
-                  Legacy Paradigm
+              <div className="rounded-2xl bg-slate-50 border border-slate-200 p-8 shadow-sm relative overflow-hidden">
+                <div className="absolute top-0 right-0 bg-slate-400 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wider">
+                  Traditional Approach
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
                   <X className="w-5 h-5 text-rose-500" />
-                  Traditional Assistant
+                  Meeting Bots & Transcripts
                 </h3>
 
                 <div className="space-y-4 font-medium text-slate-700">
-                  <div className="flex items-center justify-between p-3 rounded-lg bg-slate-50 border border-slate-100">
+                  <div className="flex items-center justify-between p-3 rounded-lg bg-white border border-slate-200">
                     <span className="text-slate-500">Input</span>
                     <span className="font-semibold text-slate-800">Raw Conversation</span>
                   </div>
                   <div className="text-center text-slate-400 text-sm">↓</div>
-                  <div className="flex items-center justify-between p-3 rounded-lg bg-rose-50/50 border border-rose-100 text-rose-900">
+                  <div className="flex items-center justify-between p-3 rounded-lg bg-rose-50 border border-rose-100 text-rose-900">
                     <span>Processing</span>
-                    <span className="font-semibold">Unstructured Notes / Transcript</span>
+                    <span className="font-semibold">Unstructured 40-Page Transcript</span>
                   </div>
                   <div className="text-center text-slate-400 text-sm">↓</div>
-                  <div className="flex items-center justify-between p-3 rounded-lg bg-rose-50/80 border border-rose-200 text-rose-900">
+                  <div className="flex items-center justify-between p-3 rounded-lg bg-rose-50 border border-rose-200 text-rose-900">
                     <span>Outcome</span>
                     <span className="font-semibold">Forgotten in Silos</span>
                   </div>
@@ -509,35 +507,35 @@ export default function PlatformOverviewPage() {
               </div>
 
               {/* RoSense Side */}
-              <div className="rounded-2xl bg-slate-900 text-white border border-[#10B981]/50 p-8 shadow-xl relative overflow-hidden emerald-glow-sm">
+              <div className="rounded-2xl bg-slate-950 text-white border border-[#10B981]/50 p-8 shadow-xl relative overflow-hidden emerald-glow-sm">
                 <div className="absolute top-0 right-0 bg-[#10B981] text-slate-950 text-[10px] font-extrabold px-3 py-1 rounded-bl-lg uppercase tracking-wider">
-                  RoSense Enterprise
+                  RoSense
                 </div>
                 <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
                   <CheckCircle2 className="w-5 h-5 text-[#10B981]" />
-                  RoSense AI Memory Engine
+                  Organizational Memory
                 </h3>
 
                 <div className="space-y-4 font-medium text-slate-200">
-                  <div className="flex items-center justify-between p-3 rounded-lg bg-slate-800 border border-slate-700">
+                  <div className="flex items-center justify-between p-3 rounded-lg bg-slate-900 border border-slate-800">
                     <span className="text-slate-400">Input</span>
                     <span className="font-semibold text-white">Raw Conversation</span>
                   </div>
                   <div className="text-center text-[#10B981] text-sm">↓</div>
-                  <div className="flex items-center justify-between p-3 rounded-lg bg-slate-800/80 border border-slate-700">
+                  <div className="flex items-center justify-between p-3 rounded-lg bg-slate-900 border border-slate-800">
                     <span>Processing</span>
-                    <span className="font-semibold text-[#10B981]">Captured & Structured (Mamba-3)</span>
+                    <span className="font-semibold text-[#10B981]">Captured & Structured Automatically</span>
                   </div>
                   <div className="text-center text-[#10B981] text-sm">↓</div>
-                  <div className="flex items-center justify-between p-3 rounded-lg bg-slate-800/90 border border-slate-700">
+                  <div className="flex items-center justify-between p-3 rounded-lg bg-slate-900 border border-slate-800">
                     <span>Outcome</span>
-                    <span className="font-semibold text-[#10B981]">Connected Knowledge Graph</span>
+                    <span className="font-semibold text-[#10B981]">Connected Memory Graph</span>
                   </div>
                   <div className="text-center text-[#10B981] text-sm">↓</div>
                   <div className="flex items-center justify-between p-3 rounded-lg bg-[#10B981]/20 border border-[#10B981] text-white font-bold">
                     <span>Result</span>
                     <span className="flex items-center gap-1.5 text-[#10B981]">
-                      <Check className="w-4 h-4 stroke-[3]" /> Searchable Forever ✅
+                      <Check className="w-4 h-4 stroke-[3]" /> Searchable Forever with Audio Proof
                     </span>
                   </div>
                 </div>
@@ -549,24 +547,24 @@ export default function PlatformOverviewPage() {
         {/* =========================================================================
             SECTION 03: THE ROSENSE INTELLIGENCE FLOW (VISUAL TIMELINE)
            ========================================================================= */}
-        <section id="how-it-works" className="py-24 bg-slate-950 text-white relative border-b border-slate-800 scroll-mt-20">
+        <section id="how-it-works" className="py-24 bg-white text-slate-900 relative border-b border-slate-100 scroll-mt-20">
           <div id="audio-intelligence" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-20">
             <div className="text-center max-w-3xl mx-auto mb-12">
               <div className="inline-flex items-center gap-1.5 bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/30 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
                 <Network className="w-3.5 h-3.5" />
                 <span>End-to-End Pipeline</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900">
                 The RoSense <span className="text-gradient-emerald">Intelligence Flow</span>
               </h2>
-              <p className="mt-3 text-slate-300 text-base">
-                Click or hover over any of the 9 stages below to expand its underlying local AI model specifications directly inside the card.
+              <p className="mt-3 text-slate-600 text-base">
+                From raw speech to structured action. Explore each stage of the organizational memory pipeline.
               </p>
             </div>
 
             {/* Horizontal Flow Stepper Nav (01 -> 09) */}
             <div className="mb-12 overflow-x-auto pb-4 scrollbar-thin">
-              <div className="flex items-center min-w-max justify-between gap-2 bg-slate-900/90 border border-slate-800 p-3 rounded-2xl">
+              <div className="flex items-center min-w-max justify-between gap-2 bg-slate-100 border border-slate-200 p-3 rounded-2xl">
                 {flowSteps.map((step, idx) => {
                   const isActive = activeFlowIndex === idx;
                   return (
@@ -577,20 +575,20 @@ export default function PlatformOverviewPage() {
                       className={`flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-mono font-semibold transition-all ${
                         isActive
                           ? "bg-[#10B981] text-slate-950 shadow-md shadow-emerald-500/20 scale-105"
-                          : "text-slate-400 hover:text-white hover:bg-slate-800/80"
+                          : "text-slate-600 hover:text-slate-900 hover:bg-slate-200/80"
                       }`}
                       id={`stepper-btn-${step.step}`}
                     >
                       <span
                         className={`w-5 h-5 rounded-md flex items-center justify-center text-[10px] font-bold ${
-                          isActive ? "bg-slate-950 text-[#10B981]" : "bg-slate-800 text-slate-300"
+                          isActive ? "bg-slate-950 text-[#10B981]" : "bg-white text-slate-700 border border-slate-200"
                         }`}
                       >
                         {step.step}
                       </span>
                       <span>{step.title}</span>
                       {idx < flowSteps.length - 1 && (
-                        <span className="text-slate-600 font-normal ml-1">➔</span>
+                        <span className="text-slate-400 font-normal ml-1">➔</span>
                       )}
                     </button>
                   );
@@ -610,8 +608,8 @@ export default function PlatformOverviewPage() {
                     onMouseEnter={() => setActiveFlowIndex(idx)}
                     className={`rounded-2xl transition-all duration-300 border cursor-pointer relative overflow-hidden ${
                       isActive
-                        ? "bg-slate-900 border-[#10B981] shadow-2xl shadow-emerald-500/10 ring-1 ring-[#10B981]/50 p-6"
-                        : "bg-slate-900/60 border-slate-800 hover:border-slate-700 p-6 hover:bg-slate-900/80"
+                        ? "bg-slate-950 border-[#10B981] shadow-2xl shadow-emerald-500/10 ring-1 ring-[#10B981]/50 p-6 text-white"
+                        : "bg-slate-900 border-slate-800 hover:border-slate-700 p-6 hover:bg-slate-900/90 text-white"
                     }`}
                     id={`flow-card-${step.step}`}
                   >
@@ -632,8 +630,8 @@ export default function PlatformOverviewPage() {
                             isActive ? "text-[#10B981]" : "text-slate-400"
                           }`}
                         />
-                        <span className="text-xs text-slate-500 font-mono">
-                          {isActive ? "▼ Active" : "▶ Click/Hover"}
+                        <span className="text-xs text-slate-400 font-mono">
+                          {isActive ? "▼ Active" : "▶ Details"}
                         </span>
                       </div>
                     </div>
@@ -659,12 +657,12 @@ export default function PlatformOverviewPage() {
 
                         <div className="flex items-center justify-between text-[10px] font-mono text-slate-400 pt-1">
                           <span>Latency Target: &lt; 200ms</span>
-                          <span className="text-[#10B981] font-bold">100% Offline LAN</span>
+                          <span className="text-[#10B981] font-bold">Private Processing</span>
                         </div>
                       </div>
                     ) : (
-                      <div className="text-[11px] font-mono text-slate-500 hover:text-[#10B981] transition-colors flex items-center gap-1 pt-1">
-                        <span>Show Model Specification</span>
+                      <div className="text-[11px] font-mono text-slate-400 hover:text-[#10B981] transition-colors flex items-center gap-1 pt-1">
+                        <span>Show Specification</span>
                         <ChevronRight className="w-3.5 h-3.5" />
                       </div>
                     )}
@@ -676,9 +674,9 @@ export default function PlatformOverviewPage() {
         </section>
 
         {/* =========================================================================
-            SECTION 04: BUSINESS OUTCOMES — WHAT CHANGES AFTER ROSENSE? (NEW)
+            SECTION 04: BUSINESS OUTCOMES — WHAT CHANGES AFTER ROSENSE?
            ========================================================================= */}
-        <section className="py-24 bg-white border-b border-slate-200">
+        <section className="py-24 bg-white border-b border-slate-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <div className="inline-flex items-center gap-1.5 bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/30 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
@@ -693,7 +691,7 @@ export default function PlatformOverviewPage() {
               </p>
             </div>
 
-            <div className="max-w-5xl mx-auto rounded-3xl bg-slate-900 text-white p-6 sm:p-10 border border-slate-800 shadow-2xl emerald-glow-sm">
+            <div className="max-w-5xl mx-auto rounded-3xl bg-slate-950 text-white p-6 sm:p-10 border border-slate-800 shadow-2xl emerald-glow-sm">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pb-6 border-b border-slate-800 font-mono text-xs uppercase tracking-wider text-slate-400">
                 <div className="flex items-center gap-2 text-rose-400">
                   <X className="w-4 h-4" />
@@ -725,47 +723,52 @@ export default function PlatformOverviewPage() {
         </section>
 
         {/* =========================================================================
-            SECTION 05: BUILT FOR EVERY BUSINESS TEAM (NEW)
+            SECTION 05: BUILT FOR EVERY BUSINESS TEAM
            ========================================================================= */}
-        <section className="py-24 bg-slate-950 text-white relative border-b border-slate-800">
+        <section className="py-24 bg-white border-b border-slate-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-16">
-              <div className="inline-flex items-center gap-1.5 bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/30 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
+              <div className="inline-flex items-center gap-1.5 bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/30 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
                 <Users className="w-3.5 h-3.5" />
                 <span>Role-Based Enterprise Value</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900">
                 Built for <span className="text-gradient-emerald">Every Business Team</span>
               </h2>
-              <p className="mt-3 text-slate-300 text-base">
+              <p className="mt-3 text-slate-600 text-base">
                 Whether you lead strategy, drive revenue, run operations, hire talent, or architect systems—RoSense empowers your team.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
-              {teamRoles.map((team, idx) => (
-                <div
-                  key={idx}
-                  className="rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-[#10B981] p-6 flex flex-col justify-between transition-all hover:-translate-y-1 hover:shadow-xl group"
-                >
-                  <div>
-                    <div className="text-3xl mb-4 group-hover:scale-110 transition-transform">{team.emoji}</div>
-                    <h3 className="text-lg font-bold text-white mb-2 group-hover:text-[#10B981] transition-colors">
-                      {team.role}
-                    </h3>
-                    <p className="text-xs text-slate-300 leading-relaxed mb-6">{team.desc}</p>
-                  </div>
-
-                  <div className="space-y-2 pt-4 border-t border-slate-800">
-                    {team.highlights.map((h, hIdx) => (
-                      <div key={hIdx} className="flex items-center gap-2 text-[11px] text-[#10B981] font-mono">
-                        <Check className="w-3 h-3 stroke-[3]" />
-                        <span>{h}</span>
+              {teamRoles.map((team, idx) => {
+                const IconComponent = team.icon;
+                return (
+                  <div
+                    key={idx}
+                    className="rounded-2xl bg-white border border-slate-200 hover:border-[#10B981] p-6 flex flex-col justify-between transition-all hover:-translate-y-1 hover:shadow-xl group"
+                  >
+                    <div>
+                      <div className="w-10 h-10 rounded-xl bg-slate-100 text-slate-800 group-hover:bg-[#10B981]/10 group-hover:text-[#10B981] flex items-center justify-center transition-colors mb-4">
+                        <IconComponent className="w-5 h-5" />
                       </div>
-                    ))}
+                      <h3 className="text-lg font-bold text-slate-900 mb-2 group-hover:text-[#10B981] transition-colors">
+                        {team.role}
+                      </h3>
+                      <p className="text-xs text-slate-600 leading-relaxed mb-6">{team.desc}</p>
+                    </div>
+
+                    <div className="space-y-2 pt-4 border-t border-slate-100">
+                      {team.highlights.map((h, hIdx) => (
+                        <div key={hIdx} className="flex items-center gap-2 text-[11px] text-[#10B981] font-mono">
+                          <Check className="w-3 h-3 stroke-[3]" />
+                          <span>{h}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
@@ -773,7 +776,7 @@ export default function PlatformOverviewPage() {
         {/* =========================================================================
             SECTION 06: WHAT WILL YOUR ORGANIZATION NEVER MISS AGAIN? (REFRAMED TAXONOMY)
            ========================================================================= */}
-        <section id="intelligence" className="py-20 bg-white border-b border-slate-200 scroll-mt-20">
+        <section id="intelligence" className="py-24 bg-white border-b border-slate-100 scroll-mt-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <div className="inline-flex items-center gap-1.5 bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/30 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
@@ -797,7 +800,7 @@ export default function PlatformOverviewPage() {
                     className="p-6 rounded-2xl bg-white border border-slate-200 hover:border-[#10B981] hover:shadow-lg transition-all group relative overflow-hidden"
                   >
                     <div className="flex items-center justify-between mb-4">
-                      <div className="w-10 h-10 rounded-xl bg-slate-900 text-[#10B981] flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <div className="w-10 h-10 rounded-xl bg-slate-100 text-slate-800 group-hover:bg-[#10B981]/10 group-hover:text-[#10B981] flex items-center justify-center transition-colors">
                         <IconComp className="w-5 h-5" />
                       </div>
                       <span className="text-[10px] font-mono font-bold text-slate-500 uppercase bg-slate-100 px-2 py-0.5 rounded-md">
@@ -817,9 +820,9 @@ export default function PlatformOverviewPage() {
         </section>
 
         {/* =========================================================================
-            SECTION 07: DECISION TRACEABILITY — 1-CLICK PROOF (TRUST ANCHOR)
+            SECTION 07: DECISION TRACEABILITY — PROOF IN A CLICK
            ========================================================================= */}
-        <section id="decision-intelligence" className="py-24 bg-slate-50 border-b border-slate-200 scroll-mt-20">
+        <section id="decision-intelligence" className="py-24 bg-white border-b border-slate-100 scroll-mt-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-12">
               <div className="inline-flex items-center gap-1.5 bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/30 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
@@ -827,23 +830,23 @@ export default function PlatformOverviewPage() {
                 <span>Enterprise Trust Anchor</span>
               </div>
               <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
-                Decision Traceability — <span className="text-[#10B981]">1-Click Proof</span>
+                Proof in a <span className="text-gradient-emerald">click.</span>
               </h2>
               <p className="mt-3 text-slate-600 text-base">
-                Never argue about who agreed to what. Every extracted decision links directly back to exact audio proof.
+                Every decision links to the moment it was spoken. Listen in 20 seconds.
               </p>
             </div>
 
             {/* Interactive Decision Card */}
-            <div className="max-w-3xl mx-auto rounded-2xl bg-white border border-slate-300 p-8 shadow-xl relative">
+            <div className="max-w-3xl mx-auto rounded-2xl bg-white border border-slate-200 p-8 shadow-xl relative">
               <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
                 <div className="flex items-center gap-2">
                   <span className="w-3 h-3 rounded-full bg-[#10B981]" />
                   <span className="text-xs font-bold uppercase tracking-wider text-slate-900">
-                    📋 Extracted Decision Card
+                    Extracted Decision
                   </span>
                 </div>
-                <span className="text-xs font-mono text-slate-400">Confidence Score: 0.98</span>
+                <span className="text-xs font-mono text-emerald-600 font-semibold bg-emerald-50 px-2 py-0.5 rounded">Verified Confidence: High</span>
               </div>
 
               <div className="mb-6">
@@ -878,7 +881,7 @@ export default function PlatformOverviewPage() {
                   id="play-audio-proof-btn"
                 >
                   {playingAudio ? <Volume2 className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-                  <span>{playingAudio ? "Playing Audio Proof (20s)..." : "🔊 Play Audio Proof (20s)"}</span>
+                  <span>{playingAudio ? "Playing Audio Proof (20s)..." : "Play Audio Proof (20s)"}</span>
                 </button>
 
                 <div className="flex items-center gap-2">
@@ -910,7 +913,7 @@ export default function PlatformOverviewPage() {
         {/* =========================================================================
             SECTION 08: ENTERPRISE MEMORY — CONNECTED KNOWLEDGE
            ========================================================================= */}
-        <section id="organizational-memory" className="py-20 bg-white border-b border-slate-200 scroll-mt-20">
+        <section id="organizational-memory" className="py-24 bg-white border-b border-slate-100 scroll-mt-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="space-y-6">
@@ -920,7 +923,7 @@ export default function PlatformOverviewPage() {
                 </div>
 
                 <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
-                  Enterprise Memory — <span className="text-[#10B981]">Connected Knowledge</span>
+                  Your company remembers <span className="text-gradient-emerald">everything.</span>
                 </h2>
 
                 <p className="text-base text-slate-600 leading-relaxed">
@@ -944,8 +947,8 @@ export default function PlatformOverviewPage() {
               </div>
 
               {/* Timeline Diagram */}
-              <div className="rounded-2xl bg-slate-900 text-white p-8 border border-slate-800 shadow-xl space-y-4">
-                <div className="p-4 rounded-xl bg-slate-800/80 border border-slate-700">
+              <div className="rounded-2xl bg-slate-950 text-white p-8 border border-slate-800 shadow-xl space-y-4">
+                <div className="p-4 rounded-xl bg-slate-900 border border-slate-800">
                   <div className="flex items-center justify-between text-xs text-slate-400 font-mono mb-1">
                     <span>Q1 Strategic Planning</span>
                     <span className="text-[#10B981]">Jan 12</span>
@@ -953,7 +956,7 @@ export default function PlatformOverviewPage() {
                   <p className="text-sm font-semibold text-white">Decision: Migration target set for Q4 launch.</p>
                 </div>
                 <div className="text-center text-[#10B981] text-xs font-mono">│ Link: Entity &quot;ERP&quot;</div>
-                <div className="p-4 rounded-xl bg-slate-800/80 border border-slate-700">
+                <div className="p-4 rounded-xl bg-slate-900 border border-slate-800">
                   <div className="flex items-center justify-between text-xs text-slate-400 font-mono mb-1">
                     <span>Q2 Engineering Review</span>
                     <span className="text-[#10B981]">Apr 24</span>
@@ -981,40 +984,40 @@ export default function PlatformOverviewPage() {
         {/* =========================================================================
             SECTION 10: TURN CONVERSATIONS INTO ACTION (WORKFLOW AUTOMATION UPGRADED)
            ========================================================================= */}
-        <section id="workflow-automation" className="py-24 bg-slate-950 text-white relative border-b border-slate-800 scroll-mt-20">
+        <section id="workflow-automation" className="py-24 bg-white text-slate-900 relative border-b border-slate-100 scroll-mt-20">
           <div id="executive-summaries" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-20">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <div className="inline-flex items-center gap-1.5 bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/30 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
                 <Zap className="w-3.5 h-3.5" />
                 <span>Operational Execution Flow</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900">
                 Turn Conversations Into <span className="text-gradient-emerald">Action</span>
               </h2>
-              <p className="mt-3 text-slate-300 text-base">
+              <p className="mt-3 text-slate-600 text-base">
                 RoSense doesn&apos;t just capture spoken words—it drives execution by automatically routing structured outcomes directly into your enterprise stack.
               </p>
             </div>
 
             {/* Visual Workflow Sequential Diagram */}
-            <div className="mb-16 rounded-2xl bg-slate-900/90 border border-slate-800 p-6 sm:p-8 backdrop-blur-md shadow-2xl">
-              <h3 className="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider mb-6 text-center">
+            <div className="mb-16 rounded-2xl bg-slate-50 border border-slate-200 p-6 sm:p-8 shadow-sm">
+              <h3 className="text-xs font-mono font-bold text-slate-500 uppercase tracking-wider mb-6 text-center">
                 Automated Post-Meeting Operational Sequence
               </h3>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-3 relative">
                 {workflowSteps.map((step, sIdx) => (
                   <div key={sIdx} className="flex flex-col items-center text-center relative group">
-                    <div className={`w-full p-3.5 rounded-xl border ${step.color} transition-all duration-300 hover:scale-105`}>
+                    <div className={`w-full p-3.5 rounded-xl border ${step.color} transition-all duration-300 hover:scale-105 shadow-sm`}>
                       <span className="font-mono text-[10px] text-[#10B981] block mb-1 font-bold">
                         STEP 0{sIdx + 1}
                       </span>
-                      <h4 className="text-xs font-bold text-white mb-1">{step.title}</h4>
-                      <p className="text-[10px] text-slate-400 leading-tight">{step.desc}</p>
+                      <h4 className="text-xs font-bold text-slate-900 mb-1">{step.title}</h4>
+                      <p className="text-[10px] text-slate-500 leading-tight">{step.desc}</p>
                     </div>
 
                     {sIdx < workflowSteps.length - 1 && (
-                      <div className="hidden lg:block absolute -right-3.5 top-1/2 -translate-y-1/2 text-slate-600 font-mono text-sm z-10">
+                      <div className="hidden lg:block absolute -right-3.5 top-1/2 -translate-y-1/2 text-slate-400 font-mono text-sm z-10">
                         ➔
                       </div>
                     )}
@@ -1030,25 +1033,25 @@ export default function PlatformOverviewPage() {
                 return (
                   <div
                     key={idx}
-                    className="p-6 rounded-2xl bg-slate-900 border border-slate-800 hover:border-[#10B981] shadow-sm transition-all flex flex-col justify-between"
+                    className="p-6 rounded-2xl bg-white border border-slate-200 hover:border-[#10B981] shadow-sm transition-all flex flex-col justify-between"
                   >
                     <div>
                       <div className="flex items-center justify-between mb-4">
-                        <div className="w-10 h-10 rounded-xl bg-slate-950 text-[#10B981] flex items-center justify-center border border-slate-800">
-                          <CardIcon className="w-5 h-5" />
+                        <div className="w-10 h-10 rounded-xl bg-slate-100 text-slate-800 flex items-center justify-center">
+                          <CardIcon className="w-5 h-5 text-[#10B981]" />
                         </div>
                         <span
                           className={`text-[10px] font-bold px-2.5 py-1 rounded-full border ${
                             card.isComingSoon
-                              ? "bg-amber-500/10 text-amber-400 border-amber-500/30"
+                              ? "bg-amber-500/10 text-amber-600 border-amber-500/30"
                               : "bg-[#10B981]/10 text-[#10B981] border-[#10B981]/30"
                           }`}
                         >
                           {card.tag}
                         </span>
                       </div>
-                      <h3 className="text-lg font-bold text-white mb-2">{card.title}</h3>
-                      <p className="text-xs text-slate-300 leading-relaxed">{card.desc}</p>
+                      <h3 className="text-lg font-bold text-slate-900 mb-2">{card.title}</h3>
+                      <p className="text-xs text-slate-600 leading-relaxed">{card.desc}</p>
                     </div>
                   </div>
                 );
@@ -1058,7 +1061,50 @@ export default function PlatformOverviewPage() {
         </section>
 
         {/* =========================================================================
-            SECTION 11: ENTERPRISE READY — PRIVATE DEPLOYMENT
+            SECTION 12: ROI & BUSINESS IMPACT
+           ========================================================================= */}
+        <section className="py-24 bg-white border-b border-slate-100">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <div className="inline-flex items-center gap-1.5 bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/30 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
+                <BarChart3 className="w-3.5 h-3.5" />
+                <span>Quantifiable Value</span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
+                ROI & Business <span className="text-[#10B981]">Impact</span>
+              </h2>
+              <p className="mt-3 text-slate-600 text-base">
+                Enterprise buyers expect results. RoSense delivers immediate operational ROI across every business metric.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              {roiMetrics.map((roi, idx) => (
+                <div
+                  key={idx}
+                  className="p-8 rounded-2xl bg-white border border-slate-200 shadow-md hover:border-[#10B981] transition-all flex flex-col justify-between group"
+                >
+                  <div>
+                    <div className="flex items-baseline gap-2 mb-3">
+                      <span className="text-4xl sm:text-5xl font-black text-slate-900 group-hover:text-[#10B981] transition-colors">
+                        {roi.stat}
+                      </span>
+                      <span className="text-xs font-bold uppercase tracking-wider text-[#10B981] font-mono">
+                        {roi.unit}
+                      </span>
+                    </div>
+
+                    <h3 className="text-lg font-bold text-slate-900 mb-2">{roi.title}</h3>
+                    <p className="text-xs text-slate-600 leading-relaxed">{roi.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* =========================================================================
+            SECTION 11: ENTERPRISE READY — PRIVATE DEPLOYMENT (ACT II START)
            ========================================================================= */}
         <section id="private-deployment" className="py-24 bg-slate-950 text-white relative border-b border-slate-800 scroll-mt-20">
           <div id="air-gapped" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-20">
@@ -1068,7 +1114,7 @@ export default function PlatformOverviewPage() {
                 <span>Zero Data Leakage Guarantee</span>
               </div>
               <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
-                Enterprise Ready — <span className="text-gradient-emerald">Private Deployment</span>
+                Your data. Your infrastructure. <span className="text-gradient-emerald">Your rules.</span>
               </h2>
               <p className="mt-3 text-slate-300 text-base">
                 Deploy RoSense on your terms. Cloud sandbox for evaluation or private appliance for complete sovereignty.
@@ -1129,52 +1175,9 @@ export default function PlatformOverviewPage() {
         </section>
 
         {/* =========================================================================
-            SECTION 12: ROI & BUSINESS IMPACT (NEW)
+            SECTION 13: DESIGNED FOR ENTERPRISE TRUST
            ========================================================================= */}
-        <section className="py-24 bg-slate-50 border-b border-slate-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              <div className="inline-flex items-center gap-1.5 bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/30 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
-                <BarChart3 className="w-3.5 h-3.5" />
-                <span>Quantifiable Value</span>
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
-                ROI & Business <span className="text-[#10B981]">Impact</span>
-              </h2>
-              <p className="mt-3 text-slate-600 text-base">
-                Enterprise buyers expect results. RoSense delivers immediate operational ROI across every business metric.
-              </p>
-            </div>
-
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {roiMetrics.map((roi, idx) => (
-                <div
-                  key={idx}
-                  className="p-8 rounded-2xl bg-white border border-slate-200 shadow-md hover:border-[#10B981] transition-all flex flex-col justify-between group"
-                >
-                  <div>
-                    <div className="flex items-baseline gap-2 mb-3">
-                      <span className="text-4xl sm:text-5xl font-black text-slate-900 group-hover:text-[#10B981] transition-colors">
-                        {roi.stat}
-                      </span>
-                      <span className="text-xs font-bold uppercase tracking-wider text-[#10B981] font-mono">
-                        {roi.unit}
-                      </span>
-                    </div>
-
-                    <h3 className="text-lg font-bold text-slate-900 mb-2">{roi.title}</h3>
-                    <p className="text-xs text-slate-600 leading-relaxed">{roi.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* =========================================================================
-            SECTION 13: DESIGNED FOR ENTERPRISE TRUST / SOCIAL PROOF (NEW)
-           ========================================================================= */}
-        <section className="py-24 bg-slate-900 text-white relative border-b border-slate-800">
+        <section className="py-24 bg-slate-950 text-white relative border-b border-slate-800">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-16">
               <div className="inline-flex items-center gap-1.5 bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/30 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
@@ -1189,11 +1192,11 @@ export default function PlatformOverviewPage() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8 mb-16">
+            <div className="grid md:grid-cols-3 gap-8">
               {trustSignals.map((ts, idx) => {
                 const TsIcon = ts.icon;
                 return (
-                  <div key={idx} className="p-8 rounded-2xl bg-slate-950 border border-slate-800 space-y-4">
+                  <div key={idx} className="p-8 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
                     <div className="inline-flex items-center gap-2 text-[10px] font-mono font-bold text-[#10B981] bg-[#10B981]/10 px-3 py-1 rounded-md border border-[#10B981]/30">
                       <TsIcon className="w-3.5 h-3.5" />
                       <span>{ts.badge}</span>
@@ -1205,32 +1208,21 @@ export default function PlatformOverviewPage() {
                 );
               })}
             </div>
-
-            {/* Reserved Layout Card for Customer Case Studies / Testimonials */}
-            <div className="rounded-2xl bg-slate-950/80 border border-dashed border-slate-700 p-8 text-center max-w-4xl mx-auto">
-              <div className="inline-flex items-center gap-2 text-slate-400 font-mono text-xs mb-2">
-                <Users className="w-4 h-4 text-[#10B981]" />
-                <span>Customer Success & Industry Case Studies</span>
-              </div>
-              <p className="text-sm text-slate-300">
-                Reserving capacity for upcoming enterprise pilot testimonials, case studies, and customer deployment statistics.
-              </p>
-            </div>
           </div>
         </section>
 
         {/* =========================================================================
-            SECTION 14: FINAL CTA — BOOK DEMO
+            SECTION 14: FINAL CTA — EXPERIENCE ROSENSE
            ========================================================================= */}
         <section className="py-24 bg-slate-950 text-white relative">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="rounded-3xl bg-gradient-to-r from-slate-900 via-slate-900 to-emerald-950 border border-slate-800 p-10 sm:p-16 text-center relative overflow-hidden emerald-glow-sm">
               <div className="relative z-10 max-w-3xl mx-auto space-y-6">
                 <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white leading-tight">
-                  Ready to See Your Organization <span className="text-gradient-emerald">Think Better?</span>
+                  Ready to see your organization <span className="text-gradient-emerald">think better?</span>
                 </h2>
                 <p className="text-slate-300 text-base sm:text-lg">
-                  Book a private demo and experience how RoSense turns business conversations into permanent, searchable enterprise memory.
+                  See how RoSense gives your conversations a permanent, searchable memory.
                 </p>
                 <div className="pt-4">
                   <Link
@@ -1238,7 +1230,7 @@ export default function PlatformOverviewPage() {
                     className="inline-flex items-center justify-center gap-2.5 bg-[#10B981] hover:bg-[#059669] text-slate-950 text-base font-bold px-9 py-4.5 rounded-xl shadow-xl shadow-emerald-500/20 hover:scale-[1.02] transition-all"
                     id="final-cta-demo-btn"
                   >
-                    <span>Book a Private Demo</span>
+                    <span>Experience RoSense</span>
                     <ArrowRight className="w-5 h-5" />
                   </Link>
                 </div>
