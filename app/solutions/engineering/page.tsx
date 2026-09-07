@@ -44,7 +44,7 @@ export default function EngineeringPage() {
         { step: "2", title: "ADR Extraction", description: "Isolate architectural options evaluated, selected approaches, and trade-offs." },
         { step: "3", title: "Auto-Docs Generation", description: "Format structured Markdown Architecture Decision Records (ADRs)." },
         { step: "4", title: "Developer Tool Sync", description: "Commit ADRs directly to GitHub repositories or Confluence spaces." },
-        { step: "5", title: "Codebase RAG Search", description: "Developers query technical design rationale via sub-second natural language RAG." },
+        { step: "5", title: "Engineering Memory Search", description: "Developers query technical design rationale via sub-second natural language search." },
       ]}
       capturedItemsTitle="What RoSense Captures for Engineering Teams"
       capturedItems={[
@@ -79,7 +79,7 @@ export default function EngineeringPage() {
         },
       ]}
       ctaHeadline="Build a Permanent Engineering Knowledge Base Today"
-      ctaSubheadline="Book a demo to see how RoSense turns technical syncs into automated ADRs and codebase documentation."
+      ctaSubheadline="Experience how RoSense turns technical syncs into automated ADRs and codebase documentation."
     />
   );
 }

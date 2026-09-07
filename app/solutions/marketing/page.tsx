@@ -41,7 +41,7 @@ export default function MarketingPage() {
       ]}
       workflowSteps={[
         { step: "1", title: "Conversation Intake", description: "Aggregate sales calls, customer interviews, and user feedback audio." },
-        { step: "2", title: "Phrase Clustering", description: "Mamba-3 SSM clusters recurring customer pain points and vocabulary." },
+        { step: "2", title: "Phrase Clustering", description: "Language intelligence clusters recurring customer pain points and vocabulary." },
         { step: "3", title: "Quote Extraction", description: "Isolate verbatim buyer quotes describing business problems and desired outcomes." },
         { step: "4", title: "Competitor Matrix", description: "Map buyer mentions of competitors, pricing perception, and feature gaps." },
         { step: "5", title: "Messaging Repository", description: "Provide PMMs with a searchable Voice-of-Customer intelligence database." },
@@ -79,7 +79,7 @@ export default function MarketingPage() {
         },
       ]}
       ctaHeadline="Transform Your Product Messaging with Authentic Customer Voice"
-      ctaSubheadline="Book a demo to see how RoSense turns buyer call recordings into high-converting marketing campaigns."
+      ctaSubheadline="Experience how RoSense turns buyer call recordings into high-converting marketing campaigns."
     />
   );
 }

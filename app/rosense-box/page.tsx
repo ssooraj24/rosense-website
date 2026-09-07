@@ -286,7 +286,7 @@ export default function RoSenseBoxPage() {
                   { title: "Intellectual Property Protection", desc: "Keep R&D blueprints, trade secrets, and patent discussions locked strictly inside your firewall." },
                   { title: "Regulatory & Legal Compliance", desc: "Satisfy DPDP, HIPAA, GDPR, and industry audit mandates without third-party data processor agreements." },
                   { title: "Complete Data Sovereignty", desc: "Ensure all raw audio, transcripts, and AI vector embeddings remain 100% physically on premise." },
-                  { title: "Air-Gapped LAN Operations", desc: "Operate full AI transcription and RAG search in environments with zero internet access." },
+                  { title: "Air-Gapped LAN Operations", desc: "Operate full transcription and instant memory search in environments with zero internet access." },
                   { title: "Confidential Board & Executive Privacy", desc: "Capture C-suite strategy meetings and merger discussions without external risk." },
                   { title: "Long-Term Organizational Memory", desc: "Turn decades of meeting knowledge into a searchable asset that stays within company walls." },
                 ].map((item, idx) => (

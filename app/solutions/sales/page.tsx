@@ -79,7 +79,7 @@ export default function SalesPage() {
         },
       ]}
       ctaHeadline="Supercharge Your Sales Team's Revenue Execution"
-      ctaSubheadline="Schedule a live demo to see how RoSense turns sales call conversations into closed deals."
+      ctaSubheadline="Experience how RoSense turns sales call conversations into closed deals."
     />
   );
 }

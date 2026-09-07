@@ -44,7 +44,7 @@ export default function CustomerSuccessPage() {
         { step: "2", title: "Sentiment & Risk Analysis", description: "Detect customer dissatisfaction, renewal risks, and health indicators." },
         { step: "3", title: "Feature Extraction", description: "Extract client feature requests and sync directly to Product management tools." },
         { step: "4", title: "CSM Task Automation", description: "Generate follow-up action items in Gainsight, Zendesk, or HubSpot." },
-        { step: "5", title: "Account History RAG", description: "Instantly search complete account conversation history across years." },
+        { step: "5", title: "Account History Search", description: "Instantly search complete account conversation history across years." },
       ]}
       capturedItemsTitle="What RoSense Captures for Customer Success"
       capturedItems={[
@@ -79,7 +79,7 @@ export default function CustomerSuccessPage() {
         },
       ]}
       ctaHeadline="Protect & Grow Enterprise Account Retention"
-      ctaSubheadline="Book a demo to see how RoSense turns client calls into proactive churn prevention and account growth."
+      ctaSubheadline="Experience how RoSense turns client calls into proactive churn prevention and account growth."
     />
   );
 }

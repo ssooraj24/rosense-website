@@ -44,7 +44,7 @@ export default function ConsultingPage() {
         { step: "2", title: "Theme Extraction", description: "Extract client pain points, organizational bottlenecks, and system requirements." },
         { step: "3", title: "Deliverable Synthesis", description: "Generate structured executive briefing decks and findings summaries." },
         { step: "4", title: "Client Proof Links", description: "Attach 1-click decrypted audio clip proof for every key finding." },
-        { step: "5", title: "Practice Knowledge RAG", description: "Build a firm-wide searchable repository of practice methodologies and findings." },
+        { step: "5", title: "Practice Knowledge Search", description: "Build a firm-wide searchable repository of practice methodologies and findings." },
       ]}
       capturedItemsTitle="What RoSense Extracts for Consulting Firms"
       capturedItems={[
@@ -79,7 +79,7 @@ export default function ConsultingPage() {
         },
       ]}
       ctaHeadline="Scale Your Advisory Practice Profitability"
-      ctaSubheadline="Book a demo to see how RoSense accelerates client discovery synthesis and engagement margins."
+      ctaSubheadline="Experience how RoSense accelerates client discovery synthesis and engagement margins."
     />
   );
 }

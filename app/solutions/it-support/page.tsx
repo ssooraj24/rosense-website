@@ -44,7 +44,7 @@ export default function ITSupportPage() {
         { step: "2", title: "RCA Extraction", description: "Extract root cause analysis, affected systems, and resolution steps." },
         { step: "3", title: "Auto-KB Generation", description: "Format structured Knowledge Base articles with step-by-step resolution guides." },
         { step: "4", title: "ITSM Tool Sync", description: "Push KB articles and incident logs directly to ServiceNow or Zendesk." },
-        { step: "5", title: "Support RAG Search", description: "Enable Tier 1 agents to query historical incident solutions in sub-seconds." },
+        { step: "5", title: "Support Knowledge Search", description: "Enable Tier 1 agents to query historical incident solutions in sub-seconds." },
       ]}
       capturedItemsTitle="What RoSense Extracts for IT & Support Teams"
       capturedItems={[
@@ -79,7 +79,7 @@ export default function ITSupportPage() {
         },
       ]}
       ctaHeadline="Upgrade Your IT Support & Incident Management Velocity"
-      ctaSubheadline="Book a demo to see how RoSense turns incident debrief calls into automated KB documentation."
+      ctaSubheadline="Experience how RoSense turns incident debrief calls into automated KB documentation."
     />
   );
 }

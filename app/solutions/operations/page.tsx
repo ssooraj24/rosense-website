@@ -44,7 +44,7 @@ export default function OperationsPage() {
         { step: "2", title: "Process Extraction", description: "Identify workflow updates, operational rules, and owner assignments." },
         { step: "3", title: "Auto-SOP Generation", description: "Generate structured Standard Operating Procedure documentation." },
         { step: "4", title: "System Automation", description: "Trigger automated webhooks and task assignments across ops tools." },
-        { step: "5", title: "Ops Knowledge RAG", description: "Search historical operational decisions and process changes instantly." },
+        { step: "5", title: "Operational Memory Search", description: "Search historical operational decisions and process changes instantly." },
       ]}
       capturedItemsTitle="What RoSense Extracts for Operations"
       capturedItems={[
@@ -79,7 +79,7 @@ export default function OperationsPage() {
         },
       ]}
       ctaHeadline="Streamline Enterprise Operations Today"
-      ctaSubheadline="Book a demo to see how RoSense turns daily operational syncs into automated SOPs and task execution."
+      ctaSubheadline="Experience how RoSense turns daily operational syncs into automated SOPs and task execution."
     />
   );
 }

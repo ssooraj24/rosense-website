@@ -64,7 +64,7 @@ export default function SearchSandbox() {
           speaker: "Rahul (CEO)",
           type: "Decision",
           score: "0.92",
-          text: "Approved Q4 product roadmap prioritizing RAG Search and Private Appliance release.",
+          text: "Approved Q4 product roadmap prioritizing Organizational Memory Search and Private Appliance release.",
         },
         {
           id: 6,

@@ -18,7 +18,7 @@ export default function Home() {
         {/* 02. Act 1: The Statement — "Your company remembers everything. Privately." */}
         <Hero />
 
-        {/* 03. Act 2: The Story & Transformation — "Listen ➔ Structure ➔ Deliver" */}
+        {/* 03. Act 2: The Story & Transformation — "Remember ➔ Connect ➔ Act" */}
         <Pipeline />
 
         {/* 04. Act 3: Who Uses RoSense — Use Cases & Outcomes */}

@@ -269,7 +269,7 @@ export default function PlatformOverviewPage() {
       desc: "Ideal for testing and small teams evaluating RoSense capabilities in a secure cloud environment.",
       features: [
         "5 Hours / month free processing",
-        "Sub-second RAG search",
+        "Sub-second memory search",
         "Standard decision extraction",
         "Web browser access",
       ],

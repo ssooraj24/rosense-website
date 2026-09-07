@@ -250,7 +250,7 @@ export default function Navbar() {
                         <div className="text-xs font-semibold text-slate-900 group-hover:text-[#10B981]">
                           Search Enterprise Knowledge
                         </div>
-                        <div className="text-[10px] text-slate-500">Sub-second natural language RAG</div>
+                        <div className="text-[10px] text-slate-500">Sub-second memory search</div>
                       </div>
                     </Link>
 
@@ -881,9 +881,9 @@ export default function Navbar() {
             <Link
               href="/company/contact"
               className="inline-flex items-center justify-center gap-1.5 bg-[#10B981] hover:bg-[#059669] text-white text-sm font-semibold px-4.5 py-2 rounded-lg shadow-sm hover:shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
-              id="nav-book-demo-btn"
+              id="nav-experience-rosense-btn"
             >
-              <span>Book a Demo</span>
+              <span>Experience RoSense</span>
               <ChevronRight className="w-4 h-4" />
             </Link>
           </div>
@@ -1162,7 +1162,7 @@ export default function Navbar() {
               onClick={() => setMobileMenuOpen(false)}
               className="w-full text-center py-3 font-semibold text-white bg-[#10B981] hover:bg-[#059669] rounded-lg shadow"
             >
-              Book a Demo
+              Experience RoSense
             </Link>
           </div>
         </div>

@@ -41,10 +41,10 @@ export default function ExecutiveLeadershipPage() {
       ]}
       workflowSteps={[
         { step: "1", title: "Executive Intake", description: "Record executive committee & board meeting audio automatically." },
-        { step: "2", title: "Decision Extraction", description: "Mamba-3 SSM isolates strategic decisions, risks, and commitment owners." },
+        { step: "2", title: "Decision Extraction", description: "Conversational intelligence isolates strategic decisions, risks, and commitment owners." },
         { step: "3", title: "Board Brief Generation", description: "Generate concise, board-ready executive summaries in seconds." },
         { step: "4", title: "Cross-Team Sync", description: "Automate task creation across Jira, Salesforce, and enterprise tools." },
-        { step: "5", title: "Org Memory RAG", description: "Query past executive decisions via sub-second natural language search." },
+        { step: "5", title: "Org Memory Search", description: "Query past executive decisions via sub-second natural language search." },
       ]}
       capturedItemsTitle="What RoSense Extracts for Executive Leadership"
       capturedItems={[
@@ -71,15 +71,15 @@ export default function ExecutiveLeadershipPage() {
         },
         {
           question: "Can executives search across multi-year board meeting history?",
-          answer: "Yes. RoSense Organizational Memory uses RAG architecture to answer questions like 'What were our Q2 2024 expansion commitments?' instantly.",
+          answer: "Yes. RoSense Organizational Memory uses deep semantic search to answer questions like 'What were our Q2 2024 expansion commitments?' instantly.",
         },
         {
           question: "How does RoSense differentiate speaker roles in executive meetings?",
-          answer: "Pyannote 3.1 neural speaker diarization accurately distinguishes between CEO, CFO, Board Members, and guest presenters.",
+          answer: "Advanced neural speaker diarization accurately distinguishes between CEO, CFO, Board Members, and guest presenters.",
         },
       ]}
       ctaHeadline="Transform Your Executive Decision Tracking Today"
-      ctaSubheadline="Book a private demonstration of RoSense configured for C-suite executive leadership."
+      ctaSubheadline="Experience RoSense configured for C-suite executive leadership."
     />
   );
 }

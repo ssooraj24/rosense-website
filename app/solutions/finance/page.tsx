@@ -79,7 +79,7 @@ export default function FinancePage() {
         },
       ]}
       ctaHeadline="Enforce Strict Fiscal Governance & Budget Control"
-      ctaSubheadline="Book a demo to see how RoSense turns financial negotiations into audit-ready commitment records."
+      ctaSubheadline="Experience how RoSense turns financial negotiations into audit-ready commitment records."
     />
   );
 }

@@ -79,7 +79,7 @@ export default function HRTalentPage() {
         },
       ]}
       ctaHeadline="Build an Objective, Fast Talent Acquisition Machine"
-      ctaSubheadline="Book a demo to see how RoSense turns interview calls into standardized, unbiased scorecards."
+      ctaSubheadline="Experience how RoSense turns interview calls into standardized, unbiased scorecards."
     />
   );
 }

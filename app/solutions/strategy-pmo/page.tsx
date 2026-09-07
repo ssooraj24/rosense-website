@@ -41,7 +41,7 @@ export default function StrategyPMOPage() {
       ]}
       workflowSteps={[
         { step: "1", title: "Offsite Capture", description: "Record full multi-day workshop audio sessions via room mic or stream." },
-        { step: "2", title: "Long-Context Processing", description: "Mamba-3 SSM processes 18+ continuous hours without memory degradation." },
+        { step: "2", title: "Long-Context Processing", description: "Long-context memory architecture processes 18+ continuous hours without degradation." },
         { step: "3", title: "Milestone Extraction", description: "Automatically identify strategic goals, owners, risks, and deadlines." },
         { step: "4", title: "PM Tool Sync", description: "Push deliverables into Asana, Jira, Monday.com, or Microsoft Project." },
         { step: "5", title: "Executive Dashboard", description: "Provide leadership with an interactive offsite synthesis brief." },
@@ -79,7 +79,7 @@ export default function StrategyPMOPage() {
         },
       ]}
       ctaHeadline="Accelerate Your Strategy Execution Today"
-      ctaSubheadline="Book a demo to see how RoSense synthesizes multi-day offsites into actionable project plans."
+      ctaSubheadline="Experience how RoSense synthesizes multi-day offsites into actionable project plans."
     />
   );
 }

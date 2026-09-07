@@ -8,12 +8,12 @@ export default function Pipeline() {
 
   const steps = [
     {
-      id: "listen",
+      id: "remember",
       number: "01",
-      title: "Listen",
-      subtitle: "Multi-Hour Audio Ingestion & Speaker Diarization",
+      title: "Remember",
+      subtitle: "Multi-Hour Audio Ingestion & Speaker Retention",
       description:
-        "Upload multi-hour recordings, boardroom sessions, or multi-day workshop audio. RoSense accurately transcribes and identifies every speaker without losing context.",
+        "Upload multi-hour recordings, boardroom sessions, or multi-day workshop audio. RoSense accurately transcribes and identifies every speaker without losing nuance or context.",
       icon: Mic,
       details: [
         "Handles 18+ hour recordings without losing a detail",
@@ -23,34 +23,34 @@ export default function Pipeline() {
       badge: "Multi-Speaker Audio Intelligence",
     },
     {
-      id: "structure",
+      id: "connect",
       number: "02",
-      title: "Structure",
-      subtitle: "Zero-Shot Decision & Commitment Extraction",
+      title: "Connect",
+      subtitle: "Decision Lineage & Commitment Linking",
       description:
-        "Conversations are parsed to extract concrete business decisions, action commitments, owners, and open risks — automatically.",
+        "Conversations become interconnected knowledge. Concrete business decisions, action commitments, owners, and risks are parsed and linked across time.",
       icon: FileCode2,
       details: [
         "Extracts decisions, commitments, owners, deadlines, and risks",
-        "No detail lost, even in 18-hour sessions",
+        "Connects discussions across weeks, quarters, and teams",
         "Protected against data manipulation",
       ],
-      badge: "Zero-Shot Decision Extraction",
+      badge: "Decision Lineage & Linking",
     },
     {
-      id: "deliver",
+      id: "act",
       number: "03",
-      title: "Deliver",
-      subtitle: "Executive Memory & Workflow Integration",
+      title: "Act",
+      subtitle: "Decisive Execution & Living Memory",
       description:
-        "Output structured intelligence into your internal tools, export executive briefing PDFs, or query months of company memory with sub-second RAG search.",
+        "Output structured intelligence into your internal tools, export executive briefing dossiers, or query months of company memory with sub-second search.",
       icon: Share2,
       details: [
         "Every decision links back to the exact moment it was spoken",
         "Automated integration with your CRM and internal workflows",
-        "Instant semantic search across your entire conversation history",
+        "Instant natural language search across your entire conversation history",
       ],
-      badge: "Enterprise Memory & Integration",
+      badge: "Decisive Action & Enterprise Memory",
     },
   ];
 
@@ -68,25 +68,25 @@ export default function Pipeline() {
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
             How RoSense Works:{" "}
-            <span className="text-gradient-emerald">Listen ➔ Structure ➔ Deliver</span>
+            <span className="text-gradient-emerald">Remember ➔ Connect ➔ Act</span>
           </h2>
           <p className="mt-4 text-lg text-slate-600">
-            From raw, chaotic meeting audio to structured, actionable enterprise intelligence.
+            Your conversations become your company&apos;s living memory.
           </p>
         </div>
 
         {/* Visual Narrative Flow Banner */}
         <div className="flex items-center justify-center gap-2 sm:gap-4 mb-8 text-xs font-mono font-bold text-slate-500 uppercase tracking-wider">
           <span className={`px-3 py-1.5 rounded-lg border transition-all ${activeStep === 0 ? "bg-slate-900 text-emerald-400 border-slate-800 shadow-md" : "bg-slate-100 text-slate-600 border-slate-200"}`}>
-            01. Listen
+            01. Remember
           </span>
           <ArrowRight className="w-4 h-4 text-[#10B981] shrink-0 animate-pulse" />
           <span className={`px-3 py-1.5 rounded-lg border transition-all ${activeStep === 1 ? "bg-slate-900 text-emerald-400 border-slate-800 shadow-md" : "bg-slate-100 text-slate-600 border-slate-200"}`}>
-            02. Structure
+            02. Connect
           </span>
           <ArrowRight className="w-4 h-4 text-[#10B981] shrink-0 animate-pulse" />
           <span className={`px-3 py-1.5 rounded-lg border transition-all ${activeStep === 2 ? "bg-slate-900 text-emerald-400 border-slate-800 shadow-md" : "bg-slate-100 text-slate-600 border-slate-200"}`}>
-            03. Deliver
+            03. Act
           </span>
         </div>
 
@@ -203,10 +203,10 @@ export default function Pipeline() {
                     </div>
                     <pre className="text-[10px] text-slate-300 overflow-x-auto">
 {`{
-  "decision": "Migrate core DB to pgvector",
+  "decision": "Approve Q4 EMEA expansion",
   "owner": "Siddharth",
   "due_date": "2026-09-01",
-  "risk": "Legacy API dependency"
+  "risk": "Regulatory compliance dependency"
 }`}
                     </pre>
                   </div>
